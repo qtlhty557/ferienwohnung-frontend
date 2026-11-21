@@ -1,0 +1,1364 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Villa Seeblick - Ihr Urlaub am See">
+<title>Villa Seeblick | Ferienwohnung am See</title>
+
+<!-- KONFIGURATION - HIER ANPASSEN -->
+<script>
+const CONFIG = {
+  // Use index.php/wp-json/ for reliable API access (works on all Apache configs)
+  apiBase: 'http://localhost/plug/index.php/wp-json/fh/v1',  // ← Deine Domain hier
+  propertyDomain: 'villa-seeblick.de',                  // Für Offline-Fallback
+  defaultLang: 'de',
+  // Fallback-Daten für Offline-Betrieb (werden überschrieben wenn API erreichbar)
+  fallback: {
+    name_de: 'Villa Seeblick',
+    name_en: 'Villa Lake View',
+    place_de: 'Mustersee',
+    place_en: 'Sample Lake',
+    price_per_night: 150,
+    currency: 'EUR',
+    max_guests: 6,
+    min_nights: 3,
+    max_nights: 21,
+    downpayment_percent: 25,
+    images: [
+      'data:image/webp;base64,UklGRiIAAABXRUJQVlA4IBYAAAAwAQCdASoBAAEADsD+JaQAA3AAAAAA',
+      'data:image/webp;base64,UklGRiIAAABXRUJQVlA4IBYAAAAwAQCdASoBAAEADsD+JaQAA3AAAAAA'
+    ],
+    description_de: 'Wunderschöne Villa direkt am See mit eigenem Bootssteg. Genießen Sie den Panoramablick vom großen Balkon.',
+    description_en: 'Beautiful villa directly on the lake with private jetty. Enjoy the panoramic view from the large balcony.',
+    owner_name: 'Max Mustermann',
+    owner_address: 'Seestraße 1, 12345 Mustersee',
+    owner_email: 'max@villa-seeblick.de',
+    owner_phone: '+49 123 456789',
+    owner_whatsapp: '+49 123 456789',
+    owner_website: 'https://villa-seeblick.de'
+  }
+};
+</script>
+
+<style>
+/* ===== RESET & BASE ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --color-primary: #2c5f3d;
+  --color-primary-dark: #1e452b;
+  --color-primary-light: #e8f5ec;
+  --color-secondary: #f5f5f5;
+  --color-text: #333;
+  --color-text-light: #666;
+  --color-white: #fff;
+  --color-error: #a83232;
+  --color-error-bg: #fdf2f2;
+  --color-success: #2c5f3d;
+  --color-success-bg: #e8f5ec;
+  --color-booked: #a83232;
+  --color-available: #2c5f3d;
+  --color-today: #ffa500;
+  --shadow: 0 2px 8px rgba(0,0,0,0.08);
+  --shadow-hover: 0 4px 16px rgba(0,0,0,0.12);
+  --radius: 8px;
+  --transition: 0.2s ease;
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --container-max: 1200px;
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--color-text);
+  background: var(--color-white);
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--color-primary); text-decoration: none; }
+a:hover { text-decoration: underline; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+input, select, textarea { font-family: inherit; font-size: 1rem; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+/* ===== LAYOUT ===== */
+.container { max-width: var(--container-max); margin: 0 auto; padding: 0 20px; }
+.section { padding: 60px 0; }
+.section-alt { background: var(--color-secondary); }
+.section-title { font-size: 2rem; font-weight: 700; color: var(--color-primary); margin-bottom: 1.5rem; text-align: center; }
+@media (max-width: 639px) { .section { padding: 40px 0; } .section-title { font-size: 1.5rem; } }
+
+/* ===== HEADER / NAV ===== */
+.header {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid #eee;
+}
+.header-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+.logo { font-size: 1.25rem; font-weight: 700; color: var(--color-primary); }
+.lang-switcher { display: flex; gap: 8px; }
+.lang-btn {
+  padding: 6px 12px; border-radius: 20px; font-size: 0.875rem; font-weight: 600;
+  background: var(--color-secondary); color: var(--color-text);
+  transition: var(--transition);
+}
+.lang-btn.active, .lang-btn:hover { background: var(--color-primary); color: var(--color-white); }
+.lang-btn:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; }
+
+/* ===== HERO ===== */
+.hero { position: relative; min-height: 60vh; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.hero-slider { position: absolute; inset: 0; }
+.hero-slide { position: absolute; inset: 0; opacity: 0; transition: opacity 0.5s ease; }
+.hero-slide.active { opacity: 1; z-index: 1; }
+.hero-slide img { width: 100%; height: 100%; object-fit: cover; }
+.hero-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.4) 100%); }
+.hero-content { position: relative; z-index: 2; text-align: center; color: var(--color-white); padding: 20px; }
+.hero-title { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700; text-shadow: 0 2px 8px rgba(0,0,0,0.3); margin-bottom: 0.5rem; }
+.hero-subtitle { font-size: clamp(1rem, 2.5vw, 1.25rem); text-shadow: 0 1px 4px rgba(0,0,0,0.3); }
+.hero-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 100%; display: flex; justify-content: space-between; padding: 0 20px; pointer-events: none; z-index: 3; }
+.hero-nav button { pointer-events: all; width: 48px; height: 48px; border-radius: 50%; background: rgba(255,255,255,0.9); display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow); transition: var(--transition); }
+.hero-nav button:hover { background: var(--color-white); transform: translateY(-50%) scale(1.1); }
+.hero-nav button:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; }
+.hero-nav svg { width: 24px; height: 24px; color: var(--color-primary); }
+.hero-dots { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 3; }
+.hero-dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.5); cursor: pointer; transition: var(--transition); }
+.hero-dot.active { background: var(--color-white); transform: scale(1.2); }
+
+/* ===== BUTTONS ===== */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 28px; border-radius: var(--radius); font-weight: 600; font-size: 1rem; transition: var(--transition); }
+.btn-primary { background: var(--color-primary); color: var(--color-white); }
+.btn-primary:hover { background: var(--color-primary-dark); color: var(--color-white); text-decoration: none; }
+.btn-secondary { background: var(--color-secondary); color: var(--color-text); border: 1px solid #ddd; }
+.btn-secondary:hover { background: #eee; color: var(--color-text); text-decoration: none; }
+.btn:disabled { opacity: 0.6; cursor: not-allowed; }
+.btn:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; }
+.btn-sm { padding: 10px 20px; font-size: 0.875rem; }
+.btn-full { width: 100%; }
+
+/* ===== GALLERY THUMBS ===== */
+.gallery-thumbs { display: flex; gap: 10px; margin-top: 16px; overflow-x: auto; padding-bottom: 10px; scrollbar-width: thin; }
+.gallery-thumb { flex-shrink: 0; width: 80px; height: 60px; border-radius: var(--radius); overflow: hidden; cursor: pointer; border: 2px solid transparent; transition: var(--transition); opacity: 0.6; }
+.gallery-thumb.active, .gallery-thumb:hover { opacity: 1; border-color: var(--color-primary); }
+.gallery-thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+/* ===== INFO GRID ===== */
+.info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+.info-card { background: var(--color-white); border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow); }
+.info-card h3 { font-size: 1.125rem; font-weight: 600; color: var(--color-primary); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+.info-card p { color: var(--color-text-light); }
+
+/* ===== PRICE BREAKDOWN ===== */
+.price-breakdown { background: var(--color-white); border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow); margin-top: 24px; }
+.price-breakdown h3 { font-size: 1.125rem; font-weight: 600; color: var(--color-primary); margin-bottom: 16px; }
+.price-table { width: 100%; border-collapse: collapse; }
+.price-table th, .price-table td { padding: 12px; text-align: left; border-bottom: 1px solid #eee; }
+.price-table th { font-weight: 600; color: var(--color-text-light); font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.5px; }
+.price-table tr:last-child td { border-bottom: none; }
+.price-table .season-name { font-size: 0.875rem; color: var(--color-primary); font-weight: 500; }
+.price-table .total-row { background: var(--color-primary-light); font-weight: 700; }
+.price-table .total-row td { border-top: 2px solid var(--color-primary); }
+
+/* ===== CALENDAR ===== */
+.calendar-wrapper { background: var(--color-white); border-radius: var(--radius); box-shadow: var(--shadow); padding: 24px; }
+.calendar-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+.calendar-month { font-size: 1.125rem; font-weight: 600; color: var(--color-primary); }
+.calendar-nav { display: flex; gap: 8px; }
+.calendar-nav button { width: 40px; height: 40px; border-radius: 50%; background: var(--color-secondary); display: flex; align-items: center; justify-content: center; transition: var(--transition); }
+.calendar-nav button:hover { background: var(--color-primary); color: var(--color-white); }
+.calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+.calendar-day-header { text-align: center; font-size: 0.75rem; font-weight: 600; color: var(--color-text-light); padding: 8px 0; text-transform: uppercase; }
+.calendar-day { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; font-size: 0.875rem; border-radius: var(--radius); cursor: pointer; transition: var(--transition); position: relative; }
+.calendar-day:not(.empty):not(.booked):not(.past):hover { background: var(--color-primary-light); color: var(--color-primary); }
+.calendar-day.today { font-weight: 700; color: var(--color-today); }
+.calendar-day.today::after { content: ''; position: absolute; bottom: 4px; left: 50%; transform: translateX(-50%); width: 6px; height: 6px; border-radius: 50%; background: var(--color-today); }
+.calendar-day.selected-start { background: var(--color-primary); color: var(--color-white); border-radius: var(--radius) 0 0 var(--radius); }
+.calendar-day.selected-end { background: var(--color-primary); color: var(--color-white); border-radius: 0 var(--radius) var(--radius) 0; }
+.calendar-day.in-range { background: var(--color-primary-light); color: var(--color-primary); border-radius: 0; }
+.calendar-day.booked { color: #ccc; background: #fafafa; cursor: not-allowed; text-decoration: line-through; }
+.calendar-day.past { color: #ddd; cursor: not-allowed; }
+.calendar-day.empty { cursor: default; }
+.calendar-legend { display: flex; gap: 16px; margin-top: 16px; flex-wrap: wrap; font-size: 0.875rem; }
+.legend-item { display: flex; align-items: center; gap: 6px; }
+.legend-color { width: 16px; height: 16px; border-radius: 4px; }
+.legend-color.available { background: var(--color-primary-light); border: 1px solid var(--color-primary); }
+.legend-color.booked { background: #fef2f2; border: 1px solid var(--color-error); }
+.legend-color.selected { background: var(--color-primary); }
+.legend-color.in-range { background: var(--color-primary-light); }
+.legend-color.today { border: 2px solid var(--color-today); background: transparent; }
+
+/* ===== BOOKING FORM MODAL ===== */
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 1000; display: none; align-items: center; justify-content: center; padding: 20px; opacity: 0; transition: opacity 0.3s ease; }
+.modal-overlay.active { display: flex; opacity: 1; }
+.modal { background: var(--color-white); border-radius: var(--radius); max-width: 520px; width: 100%; max-height: 90vh; overflow-y: auto; box-shadow: 0 20px 60px rgba(0,0,0,0.2); transform: scale(0.95); transition: transform 0.3s ease; }
+.modal-overlay.active .modal { transform: scale(1); }
+.modal-header { display: flex; align-items: center; justify-content: space-between; padding: 20px 24px; border-bottom: 1px solid #eee; }
+.modal-title { font-size: 1.125rem; font-weight: 600; color: var(--color-primary); }
+.modal-close { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--color-text-light); transition: var(--transition); }
+.modal-close:hover { background: var(--color-secondary); color: var(--color-text); }
+.modal-body { padding: 24px; }
+.form-group { margin-bottom: 20px; }
+.form-label { display: block; font-weight: 500; margin-bottom: 6px; }
+.form-input, .form-select, .form-textarea {
+  width: 100%; padding: 12px 14px; border: 1px solid #ddd; border-radius: var(--radius);
+  background: var(--color-white); transition: var(--transition);
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 3px var(--color-primary-light); }
+.form-input.error, .form-select.error, .form-textarea.error { border-color: var(--color-error); }
+.form-error { color: var(--color-error); font-size: 0.875rem; margin-top: 6px; display: none; }
+.form-input.error + .form-error { display: block; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-checkbox { display: flex; align-items: flex-start; gap: 10px; }
+.form-checkbox input { margin-top: 4px; width: 18px; height: 18px; accent-color: var(--color-primary); }
+.form-checkbox label { font-size: 0.875rem; color: var(--color-text-light); }
+.form-checkbox a { color: var(--color-primary); text-decoration: underline; }
+.modal-footer { display: flex; gap: 12px; padding: 20px 24px; border-top: 1px solid #eee; justify-content: flex-end; }
+.submit-options { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+.submit-option { display: flex; align-items: center; gap: 10px; padding: 12px; border: 1px solid #ddd; border-radius: var(--radius); cursor: pointer; transition: var(--transition); }
+.submit-option:hover { border-color: var(--color-primary); background: var(--color-primary-light); }
+.submit-option input { accent-color: var(--color-primary); width: 18px; height: 18px; }
+.submit-option-label { font-weight: 500; }
+.submit-option-desc { font-size: 0.875rem; color: var(--color-text-light); display: block; margin-top: 2px; }
+
+/* ===== TOAST ===== */
+.toast-container { position: fixed; bottom: 20px; right: 20px; z-index: 2000; display: flex; flex-direction: column; gap: 10px; }
+.toast { background: var(--color-white); border-radius: var(--radius); box-shadow: 0 4px 20px rgba(0,0,0,0.15); padding: 16px 20px; display: flex; align-items: center; gap: 12px; min-width: 280px; max-width: 400px; animation: slideIn 0.3s ease; border-left: 4px solid var(--color-primary); }
+.toast.success { border-left-color: var(--color-success); }
+.toast.error { border-left-color: var(--color-error); }
+.toast-icon { width: 24px; height: 24px; flex-shrink: 0; }
+.toast.success .toast-icon { color: var(--color-success); }
+.toast.error .toast-icon { color: var(--color-error); }
+.toast-message { flex: 1; font-size: 0.875rem; }
+.toast-close { background: none; border: none; color: var(--color-text-light); padding: 4px; }
+@keyframes slideIn { from { opacity: 0; transform: translateX(100%); } to { opacity: 1; transform: translateX(0); } }
+
+/* ===== FOOTER ===== */
+.footer { background: var(--color-text); color: var(--color-white); padding: 40px 0 20px; }
+.footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 32px; margin-bottom: 32px; }
+.footer-col h4 { font-size: 1rem; font-weight: 600; margin-bottom: 16px; color: var(--color-primary-light); }
+.footer-col p, .footer-col a { color: #ccc; font-size: 0.875rem; line-height: 1.8; }
+.footer-col a:hover { color: var(--color-white); }
+.footer-bottom { border-top: 1px solid #444; padding-top: 20px; text-align: center; font-size: 0.75rem; color: #888; }
+
+/* ===== LOADING ===== */
+.loading { display: inline-block; width: 20px; height: 20px; border: 2px solid #f3f3f3; border-top: 2px solid var(--color-primary); border-radius: 50%; animation: spin 1s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ===== CONTENT MODALS (AGB, etc.) ===== */
+.content-modal .modal { max-width: 700px; }
+.content-modal .modal-body { max-height: 60vh; overflow-y: auto; }
+.content-modal h2 { color: var(--color-primary); margin-bottom: 1rem; }
+.content-modal h3 { color: var(--color-text); margin: 1.5rem 0 0.5rem; }
+.content-modal p { margin-bottom: 1rem; }
+.content-modal ul { margin: 1rem 0 1rem 1.5rem; }
+.content-modal a { color: var(--color-primary); }
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="header" role="banner">
+  <div class="container header-inner">
+    <a href="#" class="logo" aria-label="Villa Seeblick - Startseite">
+      <span id="logo-text">Villa Seeblick</span>
+    </a>
+    <div class="lang-switcher" role="group" aria-label="Sprachauswahl">
+      <button class="lang-btn active" data-lang="de" aria-pressed="true" aria-label="Deutsch">DE</button>
+      <button class="lang-btn" data-lang="en" aria-pressed="false" aria-label="English">EN</button>
+    </div>
+  </div>
+</header>
+
+<main id="main-content" role="main">
+
+<!-- ===== HERO ===== -->
+<section class="hero" aria-label="Bildergalerie">
+  <div class="hero-slider" id="heroSlider" role="region" aria-label="Bilder der Ferienwohnung"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1 class="hero-title" id="heroTitle">Villa Seeblick</h1>
+    <p class="hero-subtitle" id="heroSubtitle">Mustersee • 6 Personen • ab 150€/Nacht</p>
+  </div>
+  <div class="hero-nav" aria-hidden="true">
+    <button class="hero-prev" aria-label="Vorheriges Bild"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
+    <button class="hero-next" aria-label="Nächstes Bild"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
+  </div>
+  <div class="hero-dots" id="heroDots" role="tablist" aria-label="Bildnavigation"></div>
+</section>
+
+<!-- ===== GALLERY THUMBS ===== -->
+<div class="container">
+  <div class="gallery-thumbs" id="galleryThumbs" role="group" aria-label="Bilder-Vorschau"></div>
+</div>
+
+<!-- ===== BOOKING CALCULATOR / CALENDAR ===== -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title" id="bookingTitle">Verfügbarkeit prüfen & Anfragen</h2>
+    <div class="calendar-wrapper" id="calendarWrapper">
+      <div class="calendar-header">
+        <button class="calendar-nav-btn" id="calPrevMonth" aria-label="Vorheriger Monat"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
+        <div class="calendar-month" id="calCurrentMonth">Juli 2024</div>
+        <button class="calendar-nav-btn" id="calNextMonth" aria-label="Nächster Monat"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
+      </div>
+      <div class="calendar-grid" id="calGrid" role="grid" aria-label="Belegungskalender">
+        <!-- Wochentage -->
+        <div class="calendar-day-header" aria-hidden="true">Mo</div>
+        <div class="calendar-day-header" aria-hidden="true">Di</div>
+        <div class="calendar-day-header" aria-hidden="true">Mi</div>
+        <div class="calendar-day-header" aria-hidden="true">Do</div>
+        <div class="calendar-day-header" aria-hidden="true">Fr</div>
+        <div class="calendar-day-header" aria-hidden="true">Sa</div>
+        <div class="calendar-day-header" aria-hidden="true">So</div>
+      </div>
+      <div class="calendar-legend">
+        <div class="legend-item"><span class="legend-color available"></span><span id="legendFree">Frei</span></div>
+        <div class="legend-item"><span class="legend-color booked"></span><span id="legendBooked">Belegt</span></div>
+        <div class="legend-item"><span class="legend-color selected"></span><span id="legendSelected">Ausgewählt</span></div>
+        <div class="legend-item"><span class="legend-color in-range"></span><span id="legendRange">Im Zeitraum</span></div>
+        <div class="legend-item"><span class="legend-color today"></span><span id="legendToday">Heute</span></div>
+      </div>
+    </div>
+
+    <!-- Preisstaffelung -->
+    <div class="price-breakdown" id="priceBreakdown" style="display:none;">
+      <h3 id="priceTitle">Preisübersicht</h3>
+      <table class="price-table" id="priceTable">
+        <thead>
+          <tr><th id="thDate">Datum</th><th id="thPrice">Preis</th><th id="thSeason">Saison</th></tr>
+        </thead>
+        <tbody id="priceTableBody"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DESCRIPTION ===== -->
+<section class="section section-alt">
+  <div class="container">
+    <h2 class="section-title" id="descTitle">Die Ferienwohnung</h2>
+    <div id="descriptionContent" style="max-width: 800px; margin: 0 auto;"></div>
+  </div>
+</section>
+
+<!-- ===== INFO GRID ===== -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title" id="infoTitle">Wichtige Infos</h2>
+    <div class="info-grid">
+      <article class="info-card">
+        <h3><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg> <span id="infoLocationTitle">Lage</span></h3>
+        <p id="infoLocation">Mustersee, Deutschland</p>
+      </article>
+      <article class="info-card">
+        <h3><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg> <span id="infoGuestsTitle">Gäste</span></h3>
+        <p id="infoGuests">Max. 6 Personen (4 Erwachsene + 2 Kinder)</p>
+      </article>
+      <article class="info-card">
+        <h3><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg> <span id="infoStayTitle">Aufenthalt</span></h3>
+        <p id="infoStay">Mindestaufenthalt: 3 Nächte • Maximal: 21 Nächte</p>
+      </article>
+      <article class="info-card">
+        <h3><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> <span id="infoCheckinTitle">Check-in / Check-out</span></h3>
+        <p id="infoCheckin">Anreise: 15:00–18:00 • Abreise: bis 10:00</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT / IMPRESSUM ===== -->
+<section class="section section-alt">
+  <div class="container">
+    <h2 class="section-title" id="contactTitle">Kontakt & Impressum</h2>
+    <div style="max-width: 600px; margin: 0 auto; text-align: center;">
+      <p id="contactOwner" style="font-weight: 600; font-size: 1.125rem; margin-bottom: 8px;">Max Mustermann</p>
+      <p id="contactAddress" style="margin-bottom: 16px;">Seestraße 1, 12345 Mustersee</p>
+      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin-bottom: 16px;">
+        <a href="mailto:max@villa-seeblick.de" id="contactEmail">max@villa-seeblick.de</a>
+        <a href="tel:+49123456789" id="contactPhone">+49 123 456789</a>
+        <a href="https://wa.me/49123456789" target="_blank" rel="noopener" id="contactWhatsApp">WhatsApp</a>
+        <a href="https://villa-seeblick.de" target="_blank" rel="noopener" id="contactWebsite">Website</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4 id="footerLegalTitle">Rechtliches</h4>
+        <button class="content-link" data-content="imprint" style="background:none;border:none;color:#ccc;padding:0;font:inherit;text-align:left;cursor:pointer;" id="linkImprint">Impressum</button>
+        <button class="content-link" data-content="privacy" style="background:none;border:none;color:#ccc;padding:0;font:inherit;text-align:left;cursor:pointer;display:block;margin-top:8px;" id="linkPrivacy">Datenschutz</button>
+        <button class="content-link" data-content="terms" style="background:none;border:none;color:#ccc;padding:0;font:inherit;text-align:left;cursor:pointer;display:block;margin-top:8px;" id="linkTerms">AGB</button>
+        <button class="content-link" data-content="cancellation" style="background:none;border:none;color:#ccc;padding:0;font:inherit;text-align:left;cursor:pointer;display:block;margin-top:8px;" id="linkCancellation">Stornobedingungen</button>
+      </div>
+      <div class="footer-col">
+        <h4>Villa Seeblick</h4>
+        <p id="footerAddress">Seestraße 1<br>12345 Mustersee</p>
+      </div>
+      <div class="footer-col">
+        <h4 id="footerContactTitle">Kontakt</h4>
+        <p><a href="mailto:max@villa-seeblick.de" id="footerEmail">max@villa-seeblick.de</a><br><a href="tel:+49123456789" id="footerPhone">+49 123 456789</a></p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p id="footerCopyright">© 2024 Villa Seeblick. Alle Rechte vorbehalten.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== BOOKING MODAL ===== -->
+<div class="modal-overlay" id="bookingModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 class="modal-title" id="modalTitle">Buchungsanfrage</h3>
+      <button class="modal-close" id="modalClose" aria-label="Schließen"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+    </div>
+    <div class="modal-body">
+      <form id="bookingForm" novalidate>
+        <input type="hidden" name="arrival" id="formArrival">
+        <input type="hidden" name="departure" id="formDeparture">
+        <input type="hidden" name="adults" id="formAdults" value="2">
+        <input type="hidden" name="children" id="formChildren" value="0">
+        <input type="hidden" name="lang" id="formLang" value="de">
+
+        <div class="form-group">
+          <label class="form-label" for="guest_name"><span id="lblName">Name</span> <span aria-hidden="true">*</span></label>
+          <input type="text" class="form-input" name="guest_name" id="guest_name" required autocomplete="name" aria-required="true">
+          <div class="form-error" id="errName"></div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="guest_email"><span id="lblEmail">E-Mail</span> <span aria-hidden="true">*</span></label>
+          <input type="email" class="form-input" name="guest_email" id="guest_email" required autocomplete="email" aria-required="true">
+          <div class="form-error" id="errEmail"></div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="guest_street"><span id="lblStreet">Straße</span> <span aria-hidden="true">*</span></label>
+            <input type="text" class="form-input" name="guest_street" id="guest_street" required autocomplete="street-address" aria-required="true">
+            <div class="form-error" id="errStreet"></div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="guest_zip"><span id="lblZip">PLZ</span> <span aria-hidden="true">*</span></label>
+            <input type="text" class="form-input" name="guest_zip" id="guest_zip" required autocomplete="postal-code" aria-required="true">
+            <div class="form-error" id="errZip"></div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="guest_city"><span id="lblCity">Ort</span> <span aria-hidden="true">*</span></label>
+            <input type="text" class="form-input" name="guest_city" id="guest_city" required autocomplete="address-level2" aria-required="true">
+            <div class="form-error" id="errCity"></div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="guest_country"><span id="lblCountry">Land</span> <span aria-hidden="true">*</span></label>
+            <select class="form-select" name="guest_country" id="guest_country" required aria-required="true">
+              <option value="Deutschland">Deutschland</option>
+              <option value="Österreich">Österreich</option>
+              <option value="Schweiz">Schweiz</option>
+              <option value="Niederlande">Niederlande</option>
+              <option value="Belgien">Belgien</option>
+              <option value="Frankreich">Frankreich</option>
+              <option value="Andere">Andere</option>
+            </select>
+            <div class="form-error" id="errCountry"></div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="guest_message"><span id="lblMessage">Nachricht (optional)</span></label>
+          <textarea class="form-textarea" name="guest_message" id="guest_message" rows="3" placeholder="Spezielle Wünsche, Anreisezeit, etc."></textarea>
+        </div>
+
+        <div class="form-group form-checkbox">
+          <input type="checkbox" name="agb" id="agb" required aria-required="true">
+          <label for="agb"><span id="lblAgb">Ich habe die <button type="button" class="content-link" data-content="terms" style="background:none;border:none;color:var(--color-primary);padding:0;font:inherit;cursor:pointer;">AGB</button> und die <button type="button" class="content-link" data-content="privacy" style="background:none;border:none;color:var(--color-primary);padding:0;font:inherit;cursor:pointer;">Datenschutzerklärung</button> gelesen und stimme zu.</span> <span aria-hidden="true">*</span></label>
+        </div>
+
+        <div class="submit-options">
+          <label class="submit-option">
+            <input type="radio" name="submit_method" value="mailto" checked>
+            <span class="submit-option-label" id="optMailtoLabel">E-Mail-Programm öffnen</span>
+            <span class="submit-option-desc" id="optMailtoDesc">Erstellt eine E-Mail mit allen Daten (funktioniert offline)</span>
+          </label>
+          <label class="submit-option">
+            <input type="radio" name="submit_method" value="api">
+            <span class="submit-option-label" id="optApiLabel">Direkt online absenden</span>
+            <span class="submit-option-desc" id="optApiDesc">Sendet die Anfrage direkt an den Vermieter (benötigt Internet)</span>
+          </label>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" id="modalCancel"><span id="btnCancel">Abbrechen</span></button>
+      <button type="button" class="btn btn-primary" id="modalSubmit"><span id="btnSubmit">Anfrage senden</span><span class="loading" style="display:none;"></span></button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== CONTENT MODAL (AGB, Datenschutz, etc.) ===== -->
+<div class="modal-overlay content-modal" id="contentModal" role="dialog" aria-modal="true" aria-labelledby="contentModalTitle">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 class="modal-title" id="contentModalTitle">Inhalt</h3>
+      <button class="modal-close" id="contentModalClose" aria-label="Schließen"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+    </div>
+    <div class="modal-body" id="contentModalBody"></div>
+  </div>
+</div>
+
+<!-- ===== TOAST CONTAINER ===== -->
+<div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+/* ============================================================
+   FERIENWOHNUNG FRONTEND - Single File Application
+   Version: 1.0.0 | Plugin: ferienwohnungen-headless
+   ============================================================ */
+
+// ===== ZUSTAND =====
+const state = {
+  lang: CONFIG.defaultLang,
+  currentMonth: new Date(),
+  selectedStart: null,
+  selectedEnd: null,
+  hoveredDate: null,
+  bookedDates: new Set(),
+  minNights: CONFIG.fallback.min_nights,
+  maxNights: CONFIG.fallback.max_nights,
+  priceBreakdown: [],
+  totalPrice: 0,
+  downpayment: 0,
+  remainder: 0,
+  propertyData: { ...CONFIG.fallback },
+  apiAvailable: false,
+  images: [...CONFIG.fallback.images],
+  contentCache: {}
+};
+
+// ===== I18N =====
+const i18n = {
+  de: {
+    // Header
+    logoText: 'Villa Seeblick',
+    // Hero
+    heroTitle: 'Villa Seeblick',
+    heroSubtitle: 'Mustersee • 6 Personen • ab 150€/Nacht',
+    // Booking
+    bookingTitle: 'Verfügbarkeit prüfen & Anfragen',
+    priceTitle: 'Preisübersicht',
+    thDate: 'Datum',
+    thPrice: 'Preis',
+    thSeason: 'Saison',
+    legendFree: 'Frei',
+    legendBooked: 'Belegt',
+    legendSelected: 'Ausgewählt',
+    legendRange: 'Im Zeitraum',
+    legendToday: 'Heute',
+    // Description
+    descTitle: 'Die Ferienwohnung',
+    // Info
+    infoTitle: 'Wichtige Infos',
+    infoLocationTitle: 'Lage',
+    infoLocation: 'Mustersee, Deutschland',
+    infoGuestsTitle: 'Gäste',
+    infoGuests: 'Max. 6 Personen (4 Erwachsene + 2 Kinder)',
+    infoStayTitle: 'Aufenthalt',
+    infoStay: 'Mindestaufenthalt: 3 Nächte • Maximal: 21 Nächte',
+    infoCheckinTitle: 'Check-in / Check-out',
+    infoCheckin: 'Anreise: 15:00–18:00 • Abreise: bis 10:00',
+    // Contact
+    contactTitle: 'Kontakt & Impressum',
+    contactOwner: 'Max Mustermann',
+    contactAddress: 'Seestraße 1, 12345 Mustersee',
+    contactEmail: 'max@villa-seeblick.de',
+    contactPhone: '+49 123 456789',
+    contactWhatsApp: 'WhatsApp',
+    contactWebsite: 'Website',
+    // Footer
+    footerLegalTitle: 'Rechtliches',
+    footerContactTitle: 'Kontakt',
+    footerAddress: 'Seestraße 1<br>12345 Mustersee',
+    footerEmail: 'max@villa-seeblick.de',
+    footerPhone: '+49 123 456789',
+    footerCopyright: '© 2024 Villa Seeblick. Alle Rechte vorbehalten.',
+    // Modal
+    modalTitle: 'Buchungsanfrage',
+    lblName: 'Name',
+    lblEmail: 'E-Mail',
+    lblStreet: 'Straße',
+    lblZip: 'PLZ',
+    lblCity: 'Ort',
+    lblCountry: 'Land',
+    lblMessage: 'Nachricht (optional)',
+    lblAgb: 'Ich habe die AGB und die Datenschutzerklärung gelesen und stimme zu.',
+    optMailtoLabel: 'E-Mail-Programm öffnen',
+    optMailtoDesc: 'Erstellt eine E-Mail mit allen Daten (funktioniert offline)',
+    optApiLabel: 'Direkt online absenden',
+    optApiDesc: 'Sendet die Anfrage direkt an den Vermieter (benötigt Internet)',
+    btnCancel: 'Abbrechen',
+    btnSubmit: 'Anfrage senden',
+    // Validation
+    errRequired: 'Dieses Feld ist erforderlich.',
+    errEmail: 'Bitte geben Sie eine gültige E-Mail-Adresse ein.',
+    errAgb: 'Sie müssen den AGB zustimmen.',
+    // Toast
+    toastMailtoSuccess: 'E-Mail-Programm geöffnet. Bitte senden Sie die E-Mail ab.',
+    toastApiSuccess: 'Buchungsanfrage erfolgreich gesendet! Der Vermieter wird sich zeitnah melden.',
+    toastApiError: 'Fehler beim Senden: ',
+    toastNetworkError: 'Keine Verbindung zum Server. Bitte nutzen Sie die E-Mail-Option.',
+    // Content
+    contentLoading: 'Lade Inhalt...',
+    contentError: 'Inhalt konnte nicht geladen werden.',
+    // Calendar
+    monthNames: ['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'],
+    dayNames: ['Mo','Di','Mi','Do','Fr','Sa','So']
+  },
+  en: {
+    logoText: 'Villa Lake View',
+    heroTitle: 'Villa Lake View',
+    heroSubtitle: 'Sample Lake • 6 Guests • from 150€/night',
+    bookingTitle: 'Check Availability & Request',
+    priceTitle: 'Price Breakdown',
+    thDate: 'Date',
+    thPrice: 'Price',
+    thSeason: 'Season',
+    legendFree: 'Available',
+    legendBooked: 'Booked',
+    legendSelected: 'Selected',
+    legendRange: 'In Range',
+    legendToday: 'Today',
+    descTitle: 'The Vacation Rental',
+    infoTitle: 'Important Info',
+    infoLocationTitle: 'Location',
+    infoLocation: 'Sample Lake, Germany',
+    infoGuestsTitle: 'Guests',
+    infoGuests: 'Max. 6 persons (4 adults + 2 children)',
+    infoStayTitle: 'Stay',
+    infoStay: 'Min. stay: 3 nights • Max: 21 nights',
+    infoCheckinTitle: 'Check-in / Check-out',
+    infoCheckin: 'Check-in: 3–6 PM • Check-out: until 10 AM',
+    contactTitle: 'Contact & Imprint',
+    contactOwner: 'Max Mustermann',
+    contactAddress: 'Seestraße 1, 12345 Sample Lake',
+    contactEmail: 'max@villa-seeblick.de',
+    contactPhone: '+49 123 456789',
+    contactWhatsApp: 'WhatsApp',
+    contactWebsite: 'Website',
+    footerLegalTitle: 'Legal',
+    footerContactTitle: 'Contact',
+    footerAddress: 'Seestraße 1<br>12345 Sample Lake',
+    footerEmail: 'max@villa-seeblick.de',
+    footerPhone: '+49 123 456789',
+    footerCopyright: '© 2024 Villa Lake View. All rights reserved.',
+    modalTitle: 'Booking Request',
+    lblName: 'Name',
+    lblEmail: 'Email',
+    lblStreet: 'Street',
+    lblZip: 'ZIP Code',
+    lblCity: 'City',
+    lblCountry: 'Country',
+    lblMessage: 'Message (optional)',
+    lblAgb: 'I have read and agree to the <button type="button" class="content-link" data-content="terms" style="background:none;border:none;color:var(--color-primary);padding:0;font:inherit;cursor:pointer;">Terms</button> and <button type="button" class="content-link" data-content="privacy" style="background:none;border:none;color:var(--color-primary);padding:0;font:inherit;cursor:pointer;">Privacy Policy</button>.',
+    optMailtoLabel: 'Open Email Client',
+    optMailtoDesc: 'Creates an email with all data (works offline)',
+    optApiLabel: 'Submit Online',
+    optApiDesc: 'Sends request directly to host (requires internet)',
+    btnCancel: 'Cancel',
+    btnSubmit: 'Send Request',
+    errRequired: 'This field is required.',
+    errEmail: 'Please enter a valid email address.',
+    errAgb: 'You must accept the terms.',
+    toastMailtoSuccess: 'Email client opened. Please send the email.',
+    toastApiSuccess: 'Booking request sent successfully! The host will contact you shortly.',
+    toastApiError: 'Error sending: ',
+    toastNetworkError: 'No connection to server. Please use the email option.',
+    contentLoading: 'Loading content...',
+    contentError: 'Failed to load content.',
+    monthNames: ['January','February','March','April','May','June','July','August','September','October','November','December'],
+    dayNames: ['Mo','Tu','We','Th','Fr','Sa','Su']
+  }
+};
+
+// ===== HILFSFUNKTIONEN =====
+const $ = (sel, ctx = document) => ctx.querySelector(sel);
+const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
+
+function t(key) { return i18n[state.lang]?.[key] || i18n.de[key] || key; }
+function formatDate(date) { return date.toISOString().split('T')[0]; }
+function parseDate(str) { return new Date(str + 'T00:00:00'); }
+function addDays(date, days) { const d = new Date(date); d.setDate(d.getDate() + days); return d; }
+function diffDays(a, b) { return Math.round((b - a) / 86400000); }
+function isPast(date) { return date < new Date(new Date().setHours(0,0,0,0)); }
+function isBooked(dateStr) { return state.bookedDates.has(dateStr); }
+function escapeHtml(str) { return String(str).replace(/[&<>"']/g, m => ({'&':'&','<':'<','>':'>','"':'"',"'":'''}[m])); }
+
+// ===== API =====
+// Detect if we need index.php prefix for API calls (XAMPP/Apache rewrite issues)
+let apiPrefix = '';
+async function detectApiPrefix() {
+  if (apiPrefix) return apiPrefix;
+  try {
+    // Try without index.php first
+    const res1 = await fetch(`${CONFIG.apiBase}/health`, { method: 'HEAD' });
+    if (res1.ok) { apiPrefix = ''; return ''; }
+  } catch (e) {}
+  try {
+    // Try with index.php
+    const baseWithIndex = CONFIG.apiBase.replace('/wp-json', '/index.php/wp-json');
+    const res2 = await fetch(`${baseWithIndex}/health`, { method: 'HEAD' });
+    if (res2.ok) { apiPrefix = '/index.php'; return '/index.php'; }
+  } catch (e) {}
+  apiPrefix = ''; // fallback
+  return '';
+}
+
+async function apiFetch(endpoint, params = {}) {
+  // Detect prefix on first call
+  if (!apiPrefix && apiPrefix !== '') {
+    await detectApiPrefix();
+  }
+  const base = CONFIG.apiBase + (apiPrefix || '');
+  const url = new URL(`${base}${endpoint}`);
+  params.lang = state.lang;
+  Object.entries(params).forEach(([k,v]) => url.searchParams.append(k, v));
+  try {
+    const res = await fetch(url, { headers: { 'Accept': 'application/json' } });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return await res.json();
+  } catch (e) {
+    console.warn('API fetch failed:', e.message);
+    return null;
+  }
+}
+
+async function loadPropertyData() {
+  // Health check + property info via quote/availability
+  const [health, avail] = await Promise.all([
+    apiFetch('/health'),
+    apiFetch('/availability')
+  ]);
+  if (health && health.property) {
+    state.apiAvailable = true;
+    // Wir laden keine separaten Property-Daten, sondern nutzen Fallback + API für dynamische Teile
+  }
+  if (avail) {
+    state.bookedDates = new Set(avail.booked || []);
+    state.minNights = avail.min_nights || state.minNights;
+    state.maxNights = avail.max_nights || state.maxNights;
+    renderCalendar();
+  }
+}
+
+async function loadQuote(arrival, departure, adults = 2, children = 0) {
+  const data = await apiFetch('/quote', { arrival, departure, adults, children });
+  if (data) {
+    state.priceBreakdown = data.price_breakdown || [];
+    state.totalPrice = data.total;
+    state.downpayment = data.downpayment;
+    state.remainder = data.remainder;
+    renderPriceBreakdown();
+  }
+  return data;
+}
+
+async function loadContent(key) {
+  if (state.contentCache[key]) return state.contentCache[key];
+  const data = await apiFetch(`/content/${key}`);
+  if (data && data.content) {
+    state.contentCache[key] = data.content;
+    return data.content;
+  }
+  return null;
+}
+
+async function submitBooking(formData) {
+  const data = await apiFetch('/book', {}, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(formData)
+  });
+  return data;
+}
+
+// Fallback für POST (da apiFetch nur GET kann)
+async function apiPost(endpoint, body) {
+  const url = new URL(`${CONFIG.apiBase}${endpoint}`);
+  url.searchParams.append('lang', state.lang);
+  try {
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(body)
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return await res.json();
+  } catch (e) {
+    console.warn('API POST failed:', e.message);
+    return null;
+  }
+}
+
+// ===== RENDER =====
+function applyLanguage() {
+  document.documentElement.lang = state.lang;
+  // Texte aktualisieren
+  $('#logo-text').textContent = t('logoText');
+  $('#heroTitle').textContent = t('heroTitle');
+  $('#heroSubtitle').innerHTML = t('heroSubtitle');
+  $('#bookingTitle').innerHTML = t('bookingTitle');
+  $('#priceTitle').textContent = t('priceTitle');
+  $('#thDate').textContent = t('thDate');
+  $('#thPrice').textContent = t('thPrice');
+  $('#thSeason').textContent = t('thSeason');
+  $('#legendFree').textContent = t('legendFree');
+  $('#legendBooked').textContent = t('legendBooked');
+  $('#legendSelected').textContent = t('legendSelected');
+  $('#legendRange').textContent = t('legendRange');
+  $('#legendToday').textContent = t('legendToday');
+  $('#descTitle').textContent = t('descTitle');
+  $('#infoTitle').textContent = t('infoTitle');
+  $('#infoLocationTitle').innerHTML = t('infoLocationTitle');
+  $('#infoLocation').textContent = t('infoLocation');
+  $('#infoGuestsTitle').innerHTML = t('infoGuestsTitle');
+  $('#infoGuests').textContent = t('infoGuests');
+  $('#infoStayTitle').innerHTML = t('infoStayTitle');
+  $('#infoStay').textContent = t('infoStay');
+  $('#infoCheckinTitle').innerHTML = t('infoCheckinTitle');
+  $('#infoCheckin').textContent = t('infoCheckin');
+  $('#contactTitle').innerHTML = t('contactTitle');
+  $('#contactOwner').textContent = t('contactOwner');
+  $('#contactAddress').textContent = t('contactAddress');
+  $('#contactEmail').textContent = t('contactEmail');
+  $('#contactPhone').textContent = t('contactPhone');
+  $('#contactWhatsApp').textContent = t('contactWhatsApp');
+  $('#contactWebsite').textContent = t('contactWebsite');
+  $('#footerLegalTitle').textContent = t('footerLegalTitle');
+  $('#footerContactTitle').textContent = t('footerContactTitle');
+  $('#footerAddress').innerHTML = t('footerAddress');
+  $('#footerEmail').textContent = t('footerEmail');
+  $('#footerPhone').textContent = t('footerPhone');
+  $('#footerCopyright').textContent = t('footerCopyright');
+  $('#modalTitle').textContent = t('modalTitle');
+  $('#lblName').textContent = t('lblName');
+  $('#lblEmail').textContent = t('lblEmail');
+  $('#lblStreet').textContent = t('lblStreet');
+  $('#lblZip').textContent = t('lblZip');
+  $('#lblCity').textContent = t('lblCity');
+  $('#lblCountry').textContent = t('lblCountry');
+  $('#lblMessage').textContent = t('lblMessage');
+  $('#lblAgb').innerHTML = t('lblAgb');
+  $('#optMailtoLabel').textContent = t('optMailtoLabel');
+  $('#optMailtoDesc').textContent = t('optMailtoDesc');
+  $('#optApiLabel').textContent = t('optApiLabel');
+  $('#optApiDesc').textContent = t('optApiDesc');
+  $('#btnCancel').textContent = t('btnCancel');
+  $('#btnSubmit').textContent = t('btnSubmit');
+  // Content-Links neu binden
+  $$('.content-link').forEach(el => el.onclick = () => openContentModal(el.dataset.content));
+  // AGB-Checkbox Label neu setzen (da HTML)
+  const agbLabel = $('#agb').nextElementSibling;
+  if (agbLabel) agbLabel.innerHTML = t('lblAgb');
+
+  // Sprach-Buttons
+  $$('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.lang === state.lang);
+    btn.setAttribute('aria-pressed', btn.dataset.lang === state.lang);
+  });
+}
+
+function renderHero() {
+  const slider = $('#heroSlider');
+  const dots = $('#heroDots');
+  const thumbs = $('#galleryThumbs');
+  slider.innerHTML = '';
+  dots.innerHTML = '';
+  thumbs.innerHTML = '';
+
+  state.images.forEach((src, i) => {
+    // Slide
+    const slide = document.createElement('div');
+    slide.className = 'hero-slide' + (i === 0 ? ' active' : '');
+    slide.setAttribute('role', 'tabpanel');
+    slide.setAttribute('aria-label', `Bild ${i+1}`);
+    const img = document.createElement('img');
+    img.src = src;
+    img.alt = '';
+    img.loading = i === 0 ? 'eager' : 'lazy';
+    slide.appendChild(img);
+    slider.appendChild(slide);
+
+    // Dot
+    const dot = document.createElement('button');
+    dot.className = 'hero-dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('role', 'tab');
+    dot.setAttribute('aria-selected', i === 0);
+    dot.setAttribute('aria-label', `Zu Bild ${i+1}`);
+    dot.onclick = () => goToSlide(i);
+    dots.appendChild(dot);
+
+    // Thumb
+    const thumb = document.createElement('button');
+    thumb.className = 'gallery-thumb' + (i === 0 ? ' active' : '');
+    thumb.setAttribute('aria-label', `Vorschau Bild ${i+1}`);
+    const thumbImg = document.createElement('img');
+    thumbImg.src = src;
+    thumbImg.alt = '';
+    thumb.appendChild(thumbImg);
+    thumb.onclick = () => goToSlide(i);
+    thumbs.appendChild(thumb);
+  });
+}
+
+let currentSlide = 0;
+function goToSlide(index) {
+  $$('.hero-slide').forEach((s, i) => s.classList.toggle('active', i === index));
+  $$('.hero-dot').forEach((d, i) => {
+    d.classList.toggle('active', i === index);
+    d.setAttribute('aria-selected', i === index);
+  });
+  $$('.gallery-thumb').forEach((t, i) => t.classList.toggle('active', i === index));
+  currentSlide = index;
+}
+function nextSlide() { goToSlide((currentSlide + 1) % state.images.length); }
+function prevSlide() { goToSlide((currentSlide - 1 + state.images.length) % state.images.length); }
+
+$('#heroSlider').addEventListener('click', e => {
+  if (e.target.closest('.hero-next')) nextSlide();
+  if (e.target.closest('.hero-prev')) prevSlide();
+});
+
+// Keyboard Navigation
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight') nextSlide();
+  if (e.key === 'ArrowLeft') prevSlide();
+});
+
+function renderCalendar() {
+  const grid = $('#calGrid');
+  const monthEl = $('#calCurrentMonth');
+  const date = state.currentMonth;
+  const year = date.getFullYear();
+  const month = date.getMonth();
+
+  monthEl.textContent = `${t('monthNames')[month]} ${year}`;
+
+  // Bestehende Tage entfernen (außer Headern)
+  $$('.calendar-day:not(.calendar-day-header)', grid).forEach(el => el.remove());
+
+  const firstDay = new Date(year, month, 1);
+  const lastDay = new Date(year, month + 1, 0);
+  const startOffset = (firstDay.getDay() + 6) % 7; // Mo=0
+  const daysInMonth = lastDay.getDate();
+
+  // Leere Zellen vor dem 1.
+  for (let i = 0; i < startOffset; i++) {
+    const empty = document.createElement('div');
+    empty.className = 'calendar-day empty';
+    grid.appendChild(empty);
+  }
+
+  // Tage des Monats
+  for (let d = 1; d <= daysInMonth; d++) {
+    const dayDate = new Date(year, month, d);
+    const dateStr = formatDate(dayDate);
+    const dayEl = document.createElement('button');
+    dayEl.className = 'calendar-day';
+    dayEl.textContent = d;
+    dayEl.dataset.date = dateStr;
+    dayEl.setAttribute('role', 'gridcell');
+    dayEl.setAttribute('aria-label', `${d}. ${t('monthNames')[month]} ${year}`);
+
+    if (isPast(dayDate)) {
+      dayEl.classList.add('past');
+      dayEl.setAttribute('aria-disabled', 'true');
+    } else if (isBooked(dateStr)) {
+      dayEl.classList.add('booked');
+      dayEl.setAttribute('aria-disabled', 'true');
+      dayEl.title = t('legendBooked');
+    } else {
+      dayEl.setAttribute('tabindex', '0');
+      dayEl.onclick = () => selectDate(dateStr);
+      dayEl.onmouseenter = () => hoverDate(dateStr);
+      dayEl.onmouseleave = () => { state.hoveredDate = null; renderCalendar(); };
+    }
+
+    // Heute markieren
+    const todayStr = formatDate(new Date());
+    if (dateStr === todayStr) dayEl.classList.add('today');
+
+    // Auswahl markieren
+    if (state.selectedStart && dateStr === state.selectedStart) dayEl.classList.add('selected-start');
+    if (state.selectedEnd && dateStr === state.selectedEnd) dayEl.classList.add('selected-end');
+    if (state.selectedStart && state.selectedEnd && dateStr > state.selectedStart && dateStr < state.selectedEnd) {
+      dayEl.classList.add('in-range');
+    }
+    if (state.hoveredDate && state.selectedStart && !state.selectedEnd && dateStr > state.selectedStart && dateStr < state.hoveredDate) {
+      dayEl.classList.add('in-range');
+    }
+
+    grid.appendChild(dayEl);
+  }
+
+  // Leere Zellen am Ende (optional, für Grid)
+  const totalCells = startOffset + daysInMonth;
+  const remaining = (7 - (totalCells % 7)) % 7;
+  for (let i = 0; i < remaining; i++) {
+    const empty = document.createElement('div');
+    empty.className = 'calendar-day empty';
+    grid.appendChild(empty);
+  }
+}
+
+function selectDate(dateStr) {
+  const date = parseDate(dateStr);
+  if (isPast(date) || isBooked(dateStr)) return;
+
+  if (!state.selectedStart || (state.selectedStart && state.selectedEnd)) {
+    // Neuer Zeitraum starten
+    state.selectedStart = dateStr;
+    state.selectedEnd = null;
+  } else if (dateStr < state.selectedStart) {
+    // Vor Start geklickt
+    state.selectedEnd = state.selectedStart;
+    state.selectedStart = dateStr;
+  } else if (dateStr > state.selectedStart) {
+    // Nach Start geklickt
+    state.selectedEnd = dateStr;
+  } else {
+    // Gleicher Tag
+    state.selectedStart = dateStr;
+    state.selectedEnd = null;
+  }
+
+  // Prüfen ob Zeitraum gebuchte Tage enthält
+  if (state.selectedStart && state.selectedEnd) {
+    let hasBooked = false;
+    let d = parseDate(state.selectedStart);
+    const end = parseDate(state.selectedEnd);
+    while (d < end) {
+      if (isBooked(formatDate(d))) { hasBooked = true; break; }
+      d = addDays(d, 1);
+    }
+    if (hasBooked) {
+      showToast(t('toastNetworkError'), 'error');
+      state.selectedEnd = null;
+    } else {
+      // Nächte prüfen
+      const nights = diffDays(parseDate(state.selectedStart), parseDate(state.selectedEnd));
+      if (nights < state.minNights) {
+        showToast(`${t('errRequired')} Minimum ${state.minNights} ${t('legendRange')}.`, 'error');
+        state.selectedEnd = null;
+      } else if (nights > state.maxNights) {
+        showToast(`Maximum ${state.maxNights} ${t('legendRange')}.`, 'error');
+        state.selectedEnd = null;
+      } else {
+        // Quote laden
+        loadQuote(state.selectedStart, state.selectedEnd, parseInt($('#formAdults').value), parseInt($('#formChildren').value));
+      }
+    }
+  }
+
+  renderCalendar();
+}
+
+function hoverDate(dateStr) {
+  if (!state.selectedStart || state.selectedEnd) return;
+  const date = parseDate(dateStr);
+  if (isPast(date) || isBooked(dateStr)) return;
+  state.hoveredDate = dateStr;
+  renderCalendar();
+}
+
+function renderPriceBreakdown() {
+  const container = $('#priceBreakdown');
+  const tbody = $('#priceTableBody');
+  if (state.priceBreakdown.length === 0) {
+    container.style.display = 'none';
+    return;
+  }
+  container.style.display = 'block';
+  tbody.innerHTML = state.priceBreakdown.map(item => `
+    <tr>
+      <td>${formatDateForDisplay(item.date)}</td>
+      <td>${item.price.toFixed(2).replace('.', ',')} ${state.propertyData.currency}</td>
+      <td><span class="season-name">${item.season || '-'}</span></td>
+    </tr>
+  `).join('') + `
+    <tr class="total-row">
+      <td><strong>${t('thSeason')}: ${state.priceBreakdown.length} ${t('legendRange')}</strong></td>
+      <td><strong>${state.totalPrice.toFixed(2).replace('.', ',')} ${state.propertyData.currency}</strong></td>
+      <td></td>
+    </tr>
+    <tr class="total-row">
+      <td>Anzahlung (${state.propertyData.downpayment_percent}%)</td>
+      <td>${state.downpayment.toFixed(2).replace('.', ',')} ${state.propertyData.currency}</td>
+      <td></td>
+    </tr>
+    <tr class="total-row">
+      <td>Restbetrag</td>
+      <td>${state.remainder.toFixed(2).replace('.', ',')} ${state.propertyData.currency}</td>
+      <td></td>
+    </tr>
+  `;
+}
+
+function formatDateForDisplay(dateStr) {
+  const date = parseDate(dateStr);
+  return date.toLocaleDateString(state.lang === 'de' ? 'de-DE' : 'en-GB', { weekday: 'short', day: '2-digit', month: '2-digit' });
+}
+
+function renderDescription() {
+  const content = state.lang === 'de' ? state.propertyData.description_de : state.propertyData.description_en;
+  $('#descriptionContent').innerHTML = content || '<p>Keine Beschreibung verfügbar.</p>';
+}
+
+// ===== MODALS =====
+function openBookingModal() {
+  if (!state.selectedStart || !state.selectedEnd) {
+    showToast(t('errRequired'), 'error');
+    return;
+  }
+  $('#formArrival').value = state.selectedStart;
+  $('#formDeparture').value = state.selectedEnd;
+  $('#formAdults').value = $('#formAdults').value || 2;
+  $('#formChildren').value = $('#formChildren').value || 0;
+  $('#formLang').value = state.lang;
+  $('#bookingForm').reset();
+  // Hidden fields behalten
+  $('#formArrival').value = state.selectedStart;
+  $('#formDeparture').value = state.selectedEnd;
+  $('#formLang').value = state.lang;
+  $('#bookingModal').classList.add('active');
+  $('#guest_name').focus();
+  // Body scroll lock
+  document.body.style.overflow = 'hidden';
+}
+
+function closeBookingModal() {
+  $('#bookingModal').classList.remove('active');
+  document.body.style.overflow = '';
+  clearFormErrors();
+}
+
+function openContentModal(key) {
+  $('#contentModalTitle').textContent = key.charAt(0).toUpperCase() + key.slice(1);
+  $('#contentModalBody').innerHTML = `<p style="text-align:center;color:var(--color-text-light);">${t('contentLoading')}</p>`;
+  $('#contentModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+
+  loadContent(key).then(html => {
+    if (html) {
+      $('#contentModalBody').innerHTML = html;
+    } else {
+      $('#contentModalBody').innerHTML = `<p style="text-align:center;color:var(--color-error);">${t('contentError')}</p>`;
+    }
+  });
+}
+
+function closeContentModal() {
+  $('#contentModal').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+$('#modalClose').onclick = closeBookingModal;
+$('#modalCancel').onclick = closeBookingModal;
+$('#contentModalClose').onclick = closeContentModal;
+
+// Close on overlay click
+$$('.modal-overlay').forEach(overlay => {
+  overlay.onclick = e => {
+    if (e.target === overlay) {
+      if (overlay.id === 'bookingModal') closeBookingModal();
+      if (overlay.id === 'contentModal') closeContentModal();
+    }
+  };
+});
+
+// Escape key
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    if ($('#bookingModal').classList.contains('active')) closeBookingModal();
+    if ($('#contentModal').classList.contains('active')) closeContentModal();
+  }
+});
+
+// ===== FORM HANDLING =====
+$('#bookingForm').onsubmit = async function(e) {
+  e.preventDefault();
+  if (!validateForm()) return;
+
+  const method = this.querySelector('input[name="submit_method"]:checked').value;
+  const submitBtn = $('#modalSubmit');
+  const btnText = submitBtn.querySelector('span');
+  const loader = submitBtn.querySelector('.loading');
+
+  submitBtn.disabled = true;
+  btnText.style.display = 'none';
+  loader.style.display = 'inline-block';
+
+  const formData = {
+    guest_name: $('#guest_name').value.trim(),
+    guest_email: $('#guest_email').value.trim(),
+    guest_street: $('#guest_street').value.trim(),
+    guest_zip: $('#guest_zip').value.trim(),
+    guest_city: $('#guest_city').value.trim(),
+    guest_country: $('#guest_country').value,
+    arrival: $('#formArrival').value,
+    departure: $('#formDeparture').value,
+    adults: parseInt($('#formAdults').value),
+    children: parseInt($('#formChildren').value),
+    lang: state.lang,
+    message: $('#guest_message').value.trim()
+  };
+
+  if (method === 'mailto') {
+    sendMailto(formData);
+    submitBtn.disabled = false;
+    btnText.style.display = 'inline';
+    loader.style.display = 'none';
+    closeBookingModal();
+    return;
+  }
+
+  // API Submit
+  try {
+    const result = await apiPost('/book', formData);
+    if (result && result.success) {
+      showToast(t('toastApiSuccess'), 'success');
+      closeBookingModal();
+    } else {
+      throw new Error(result?.message || 'Unbekannter Fehler');
+    }
+  } catch (err) {
+    showToast(t('toastApiError') + err.message, 'error');
+  } finally {
+    submitBtn.disabled = false;
+    btnText.style.display = 'inline';
+    loader.style.display = 'none';
+  }
+};
+
+function validateForm() {
+  clearFormErrors();
+  let valid = true;
+  const required = ['guest_name', 'guest_email', 'guest_street', 'guest_zip', 'guest_city', 'guest_country'];
+  required.forEach(id => {
+    const el = $('#' + id);
+    if (!el.value.trim()) { showFieldError(el, t('errRequired')); valid = false; }
+  });
+  if ($('#guest_email').value.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test($('#guest_email').value)) {
+    showFieldError($('#guest_email'), t('errEmail')); valid = false;
+  }
+  if (!$('#agb').checked) { showToast(t('errAgb'), 'error'); valid = false; }
+  return valid;
+}
+
+function showFieldError(el, msg) {
+  el.classList.add('error');
+  const errEl = $('#err' + el.id.charAt(0).toUpperCase() + el.id.slice(1));
+  if (errEl) errEl.textContent = msg;
+}
+
+function clearFormErrors() {
+  $$('.form-input, .form-select, .form-textarea').forEach(el => el.classList.remove('error'));
+  $$('.form-error').forEach(el => el.textContent = '');
+}
+
+function sendMailto(data) {
+  const nights = diffDays(parseDate(data.arrival), parseDate(data.departure));
+  const subject = encodeURIComponent(`Buchungsanfrage: ${data.guest_name} - ${data.arrival} bis ${data.departure}`);
+  const body = encodeURIComponent(
+    `Neue Buchungsanfrage für ${state.propertyData.name_de}\n\n` +
+    `Gast: ${data.guest_name}\n` +
+    `E-Mail: ${data.guest_email}\n` +
+    `Adresse: ${data.guest_street}, ${data.guest_zip} ${data.guest_city}, ${data.guest_country}\n` +
+    `Anreise: ${data.arrival}\n` +
+    `Abreise: ${data.departure}\n` +
+    `Nächte: ${nights}\n` +
+    `Erwachsene: ${data.adults}, Kinder: ${data.children}\n` +
+    `Nachricht: ${data.message || '—'}\n\n` +
+    `Preisübersicht:\n` +
+    `Gesamt: ${state.totalPrice.toFixed(2).replace('.', ',')} ${state.propertyData.currency}\n` +
+    `Anzahlung (${state.propertyData.downpayment_percent}%): ${state.downpayment.toFixed(2).replace('.', ',')} ${state.propertyData.currency}\n` +
+    `Rest: ${state.remainder.toFixed(2).replace('.', ',')} ${state.propertyData.currency}\n\n` +
+    `Vermieter: ${state.propertyData.owner_name}\n` +
+    `${state.propertyData.owner_address}\n` +
+    `E-Mail: ${state.propertyData.owner_email}\n` +
+    `Telefon: ${state.propertyData.owner_phone}`
+  );
+  window.location.href = `mailto:${state.propertyData.owner_email}?subject=${subject}&body=${body}`;
+  showToast(t('toastMailtoSuccess'), 'success');
+}
+
+// ===== TOAST =====
+function showToast(message, type = 'info') {
+  const container = $('#toastContainer');
+  const toast = document.createElement('div');
+  toast.className = `toast ${type}`;
+  toast.innerHTML = `
+    <svg class="toast-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      ${type === 'success' ? '<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>' : type === 'error' ? '<circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/>' : '<circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/>'}
+    </svg>
+    <span class="toast-message">${escapeHtml(message)}</span>
+    <button class="toast-close" aria-label="Schließen"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+  `;
+  toast.querySelector('.toast-close').onclick = () => toast.remove();
+  container.appendChild(toast);
+  setTimeout(() => toast.remove(), 6000);
+}
+
+// ===== CALENDAR NAV =====
+$('#calPrevMonth').onclick = () => { state.currentMonth = new Date(state.currentMonth.getFullYear(), state.currentMonth.getMonth() - 1, 1); renderCalendar(); };
+$('#calNextMonth').onclick = () => { state.currentMonth = new Date(state.currentMonth.getFullYear(), state.currentMonth.getMonth() + 1, 1); renderCalendar(); };
+
+// ===== LANGUAGE SWITCH =====
+$$('.lang-btn').forEach(btn => {
+  btn.onclick = () => {
+    state.lang = btn.dataset.lang;
+    $('#formLang').value = state.lang;
+    applyLanguage();
+    renderCalendar();
+    renderPriceBreakdown();
+    renderDescription();
+    // Content Cache leeren bei Sprachwechsel
+    state.contentCache = {};
+  };
+});
+
+// ===== INIT =====
+async function init() {
+  // URL Parameter prüfen (?lang=de)
+  const urlLang = new URLSearchParams(window.location.search).get('lang');
+  if (urlLang && i18n[urlLang]) state.lang = urlLang;
+
+  applyLanguage();
+  renderHero();
+  renderCalendar();
+  renderDescription();
+
+  // API laden (nicht blockierend)
+  loadPropertyData().catch(console.warn);
+
+  // Adults/Children Change -> Quote neu laden
+  $('#formAdults').onchange = $('#formChildren').onchange = () => {
+    if (state.selectedStart && state.selectedEnd) {
+      loadQuote(state.selectedStart, state.selectedEnd, parseInt($('#formAdults').value), parseInt($('#formChildren').value));
+    }
+  };
+}
+
+init();
+
+</script>
+</body>
+</html>

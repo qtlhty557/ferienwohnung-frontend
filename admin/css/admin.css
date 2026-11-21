@@ -1,0 +1,243 @@
+/**
+ * Admin CSS für Ferienwohnungen Headless Plugin
+ */
+
+.fh-headless-wrap {
+    max-width: 1200px;
+    margin: 20px auto;
+}
+
+.fh-dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.fh-card {
+    background: #fff;
+    border: 1px solid #ccd0d4;
+    box-shadow: 0 1px 1px rgba(0,0,0,.04);
+    padding: 20px;
+    border-radius: 4px;
+}
+
+.fh-card h2 {
+    margin-top: 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.fh-form-group {
+    margin-bottom: 15px;
+}
+
+.fh-form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.fh-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.fh-filter-form {
+    background: #fff;
+    padding: 15px 20px;
+    border: 1px solid #ccd0d4;
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: flex-end;
+}
+
+.fh-filter-form label {
+    font-weight: 600;
+    margin-right: 5px;
+}
+
+.fh-filter-form select {
+    min-width: 200px;
+}
+
+.fh-status-badge {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.fh-status-request {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.fh-status-confirmed {
+    background: #d4edda;
+    color: #155724;
+}
+
+.fh-status-rejected {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.fh-template-editor {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    background: #fafafa;
+}
+
+.fh-template-editor h3 {
+    margin-top: 0;
+}
+
+.fh-template-actions {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #ddd;
+}
+
+.fh-template-status {
+    margin-left: 15px;
+    color: #46b450;
+    font-weight: 600;
+}
+
+.fh-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 100000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fh-modal-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 4px;
+    max-width: 90%;
+    max-height: 90%;
+    width: 800px;
+    position: relative;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+.fh-modal-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    line-height: 1;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #666;
+}
+
+.fh-modal-close:hover {
+    color: #000;
+}
+
+#fh-import-preview-area {
+    background: #f0f0f1;
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 4px;
+}
+
+#fh-import-preview-area h3 {
+    margin-top: 0;
+}
+
+#fh-import-preview-area .preview-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+#fh-import-preview-area .preview-item:last-child {
+    border-bottom: none;
+}
+
+#fh-import-preview-area .preview-label {
+    font-weight: 600;
+    color: #555;
+}
+
+#fh-import-preview-area .preview-value {
+    color: #222;
+}
+
+#fh-import-preview-area .preview-value.insert {
+    color: #46b450;
+}
+
+#fh-import-preview-area .preview-value.update {
+    color: #0073aa;
+}
+
+#fh-import-result.success {
+    background: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+    padding: 15px;
+    border-radius: 4px;
+}
+
+#fh-import-result.error {
+    background: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
+    padding: 15px;
+    border-radius: 4px;
+}
+
+.fh-import-loading {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid #0073aa;
+    border-radius: 50%;
+    animation: fh-spin 1s linear infinite;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+@keyframes fh-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+code {
+    background: #f4f4f4;
+    padding: 2px 6px;
+    border-radius: 3px;
+}
+
+pre {
+    background: #f4f4f4;
+    padding: 15px;
+    border-radius: 4px;
+    overflow-x: auto;
+    max-height: 400px;
+}
+
+.wp-list-table .column-actions {
+    white-space: nowrap;
+}

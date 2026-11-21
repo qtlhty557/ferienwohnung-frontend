@@ -1,0 +1,32 @@
+{
+  "domain": "ferienhaus-test.local",
+  "name_de": "Ferienhaus Testobjekt",
+  "name_en": "Test Vacation Home",
+  "place_de": "Testort",
+  "place_en": "Test Location",
+  "price_per_night": 80.00,
+  "currency": "EUR",
+  "max_guests": 4,
+  "min_nights": 2,
+  "max_nights": 14,
+  "downpayment_percent": 20.00,
+  "description_de": "Ein einfaches Test-Ferienhaus für Entwicklung und Tests.",
+  "description_en": "A simple test vacation home for development and testing.",
+  "images": [],
+  "owner_name": "Test Vermieter",
+  "owner_address": "Teststraße 1, 12345 Testort",
+  "owner_email": "test@ferienhaus-test.local",
+  "owner_phone": "+49 999 888777",
+  "owner_whatsapp": "",
+  "owner_website": "https://ferienhaus-test.local",
+  "seasons": [
+    {
+      "name_de": "Ganzjährig",
+      "name_en": "Year-round",
+      "start_month_day": "01-01",
+      "end_month_day": "12-31",
+      "price_per_night": 80.00,
+      "is_active": true
+    }
+  ]
+}

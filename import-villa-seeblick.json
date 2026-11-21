@@ -1,0 +1,48 @@
+{
+  "domain": "villa-seeblick.local",
+  "name_de": "Villa Seeblick",
+  "name_en": "Villa Lake View",
+  "place_de": "Mustersee",
+  "place_en": "Sample Lake",
+  "price_per_night": 150.00,
+  "currency": "EUR",
+  "max_guests": 6,
+  "min_nights": 3,
+  "max_nights": 21,
+  "downpayment_percent": 25.00,
+  "description_de": "Wunderschöne Villa direkt am See mit eigenem Bootssteg. Genießen Sie den Panoramablick vom großen Balkon.",
+  "description_en": "Beautiful villa directly on the lake with private jetty. Enjoy the panoramic view from the large balcony.",
+  "images": [],
+  "owner_name": "Max Mustermann",
+  "owner_address": "Seestraße 1, 12345 Mustersee",
+  "owner_email": "max@villa-seeblick.local",
+  "owner_phone": "+49 123 456789",
+  "owner_whatsapp": "+49 123 456789",
+  "owner_website": "https://villa-seeblick.local",
+  "seasons": [
+    {
+      "name_de": "Nebensaison",
+      "name_en": "Low Season",
+      "start_month_day": "01-01",
+      "end_month_day": "04-30",
+      "price_per_night": 120.00,
+      "is_active": true
+    },
+    {
+      "name_de": "Hauptsaison",
+      "name_en": "High Season",
+      "start_month_day": "05-01",
+      "end_month_day": "09-30",
+      "price_per_night": 180.00,
+      "is_active": true
+    },
+    {
+      "name_de": "Weihnachten/Silvester",
+      "name_en": "Christmas/New Year",
+      "start_month_day": "12-20",
+      "end_month_day": "01-06",
+      "price_per_night": 220.00,
+      "is_active": true
+    }
+  ]
+}
