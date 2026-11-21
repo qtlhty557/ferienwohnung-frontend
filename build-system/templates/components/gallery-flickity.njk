@@ -1,0 +1,9 @@
+<div class="gallery gallery-flickity" 
+     data-flickity='{ "cellAlign": "left", "contain": true, "wrapAround": true, "autoPlay": 5000, "pauseAutoPlayOnHover": true, "draggable": true, "prevNextButtons": true, "pageDots": true }' 
+     role="list" aria-label="{{ t('gallery', lang) }}">
+  {% for image in site.images %}
+  <div class="gallery-cell" role="listitem">
+    <img src="{{ image }}" alt="{{ t('gallery', lang) }} {{ loop.index }}" loading="{{ 'eager' if loop.index <= 3 else 'lazy' }}">
+  </div>
+  {% endfor %}
+</div>

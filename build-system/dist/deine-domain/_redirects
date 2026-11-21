@@ -1,0 +1,3 @@
+# Language redirects
+/en/*  /en/:splat  200
+/de/*  /:splat  200

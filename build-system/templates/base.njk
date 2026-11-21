@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="Ferienwohnungen Build System">
+  
+  <!-- SEO -->
+  <title>{% if lang == 'de' %}{{ site.name_de }}{% else %}{{ site.name_en or site.name_de }}{% endif %} | {{ t('bookNow', lang) }}</title>
+  <meta name="description" content="{% if lang == 'de' %}{{ site.description_de | striptags | truncate(155) }}{% else %}{{ site.description_en | striptags | truncate(155) }}{% endif %}">
+  <meta name="keywords" content="Ferienwohnung, Urlaub, Buchung, {{ site.place_de }}, {{ site.place_en }}">
+  
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ baseUrl }}{% if lang == 'en' %}/en{% endif %}/">
+  <meta property="og:title" content="{% if lang == 'de' %}{{ site.name_de }}{% else %}{{ site.name_en or site.name_de }}{% endif %}">
+  <meta property="og:description" content="{% if lang == 'de' %}{{ site.description_de | striptags | truncate(155) }}{% else %}{{ site.description_en | striptags | truncate(155) }}{% endif %}">
+  <meta property="og:image" content="{{ site.images[0] }}">
+  <meta property="og:locale" content="{% if lang == 'de' %}de_DE{% else %}en_US{% endif %}">
+  <meta property="og:locale:alternate" content="{% if lang == 'de' %}en_US{% else %}de_DE{% endif %}">
+  
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="{{ baseUrl }}{% if lang == 'en' %}/en{% endif %}/">
+  <meta name="twitter:title" content="{% if lang == 'de' %}{{ site.name_de }}{% else %}{{ site.name_en or site.name_de }}{% endif %}">
+  <meta name="twitter:description" content="{% if lang == 'de' %}{{ site.description_de | striptags | truncate(155) }}{% else %}{{ site.description_en | striptags | truncate(155) }}{% endif %}">
+  <meta name="twitter:image" content="{{ site.images[0] }}">
+  
+  <!-- Canonical & hreflang -->
+  <link rel="canonical" href="{{ baseUrl }}{% if lang == 'en' %}/en{% endif %}/">
+  <link rel="alternate" hreflang="de" href="{{ baseUrl }}/">
+  <link rel="alternate" hreflang="en" href="{{ baseUrl }}/en/">
+  <link rel="alternate" hreflang="x-default" href="{{ baseUrl }}/">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏠</text></svg>">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏠</text></svg>">
+  
+  <!-- Preset CSS -->
+  <style>{{ presetCSS | safe }}</style>
+  
+  <!-- Component CSS -->
+  <style>{{ componentsCSS | safe }}</style>
+  
+  <!-- Layout specific CSS -->
+  <style>{{ layoutCSS | safe }}</style>
+  
+  <!-- Custom CSS from design config -->
+  <style>
+    :root {
+      --color-primary: {{ design.colors.primary }};
+      --color-secondary: {{ design.colors.secondary }};
+      --color-accent: {{ design.colors.accent }};
+      --color-background: {{ design.colors.background or preset.colors.background }};
+      --color-text: {{ design.colors.text or preset.colors.text }};
+      --font-heading: '{{ design.fonts.heading }}', Georgia, serif;
+      --font-body: '{{ design.fonts.body }}', system-ui, sans-serif;
+    }
+  </style>
+  
+  <!-- JSON-LD Schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LodgingBusiness",
+    "name": "{% if lang == 'de' %}{{ site.name_de }}{% else %}{{ site.name_en or site.name_de }}{% endif %}",
+    "description": "{% if lang == 'de' %}{{ site.description_de | striptags | truncate(300) }}{% else %}{{ site.description_en | striptags | truncate(300) }}{% endif %}",
+    "url": "{{ baseUrl }}{% if lang == 'en' %}/en{% endif %}/",
+    "image": {{ site.images | json }},
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "{{ site.owner.address.split(',')[0] }}",
+      "addressLocality": "{{ site.place_de.split(',')[0] }}",
+      "addressCountry": "DE"
+    },
+    "telephone": "{{ site.owner.phone }}",
+    "email": "{{ site.owner.email }}",
+    "priceRange": "{{ site.currency }}{{ site.price_per_night }} - {{ site.currency }}{{ site.seasons | max(attribute='price_per_night') or site.price_per_night }}",
+    "currenciesAccepted": "{{ site.currency }}",
+    "paymentAccepted": "Cash, Bank Transfer",
+    "knowsLanguage": ["German", "English"],
+    "amenityFeature": [
+      {% if site.max_guests %}{ "@type": "LocationFeatureSpecification", "name": "Sleeps {{ site.max_guests }}", "value": true },{% endif %}
+      { "@type": "LocationFeatureSpecification", "name": "WiFi", "value": true },
+      { "@type": "LocationFeatureSpecification", "name": "Parking", "value": true },
+      { "@type": "LocationFeatureSpecification", "name": "Kitchen", "value": true }
+    ]
+  }
+  </script>
+</head>
+<body class="layout-{{ design.layout }} preset-{{ design.preset }}">
+  <!-- Language Switcher -->
+  <nav class="lang-switcher" aria-label="Language selection">
+    <a href="{{ baseUrl }}/" class="{% if lang == 'de' %}active{% endif %}" hreflang="de" aria-current="{% if lang == 'de' %}page{% else %}false{% endif %}">DE</a>
+    <a href="{{ baseUrl }}/en/" class="{% if lang == 'en' %}active{% endif %}" hreflang="en" aria-current="{% if lang == 'en' %}page{% else %}false{% endif %}">EN</a>
+  </nav>
+  
+  <!-- Skip Link -->
+  <a href="#main" class="skip-link">{{ t('skipToContent', lang) }}</a>
+  
+  {% block header %}
+  <header class="site-header" role="banner">
+    <div class="container">
+      <div class="header-content">
+        <a href="{{ baseUrl }}{% if lang == 'en' %}/en{% endif %}/" class="site-logo" aria-label="{{ site.name_de }} - Startseite">
+          <span class="logo-icon" aria-hidden="true">🏠</span>
+          <span class="logo-text">{% if lang == 'de' %}{{ site.name_de }}{% else %}{{ site.name_en or site.name_de }}{% endif %}</span>
+        </a>
+        <nav class="main-nav" aria-label="Hauptnavigation">
+          <ul>
+            <li><a href="#gallery">{{ t('gallery', lang) }}</a></li>
+            <li><a href="#prices">{{ t('prices', lang) }}</a></li>
+            <li><a href="#features">{{ t('features', lang) }}</a></li>
+            <li><a href="#calendar">{{ t('calendar', lang) }}</a></li>
+            <li><a href="#inquiry" class="nav-cta btn btn-primary">{{ t('bookNow', lang) }}</a></li>
+          </ul>
+        </nav>
+        <button class="mobile-menu-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Menü öffnen">
+          <span aria-hidden="true">☰</span>
+        </button>
+      </div>
+    </div>
+  </header>
+  {% endblock %}
+  
+  <main id="main" role="main">
+    {% block content %}{% endblock %}
+  </main>
+  
+  {% block footer %}
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-info">
+          <h3>{{ t('contactHost', lang) }}</h3>
+          <address>
+            <p><strong>{{ site.owner.name }}</strong></p>
+            {% if site.owner.address %}<p>{{ site.owner.address | replace('\n', '<br>') | safe }}</p>{% endif %}
+            {% if site.owner.phone %}<p><a href="tel:{{ site.owner.phone }}">{{ site.owner.phone }}</a></p>{% endif %}
+            <p><a href="mailto:{{ site.owner.email }}">{{ site.owner.email }}</a></p>
+            {% if site.owner.website %}<p><a href="{{ site.owner.website }}" target="_blank" rel="noopener">{{ t('website', lang) }}</a></p>{% endif %}
+          </address>
+        </div>
+        <div class="footer-links">
+          <h3>Quick Links</h3>
+          <nav aria-label="Footer Navigation">
+            <ul>
+              <li><a href="{{ baseUrl }}{% if lang == 'en' %}/en{% endif %}/#gallery">{{ t('gallery', lang) }}</a></li>
+              <li><a href="{{ baseUrl }}{% if lang == 'en' %}/en{% endif %}/#prices">{{ t('prices', lang) }}</a></li>
+              <li><a href="{{ baseUrl }}{% if lang == 'en' %}/en{% endif %}/#features">{{ t('features', lang) }}</a></li>
+              <li><a href="{{ baseUrl }}{% if lang == 'en' %}/en{% endif %}/#calendar">{{ t('calendar', lang) }}</a></li>
+              <li><a href="{{ baseUrl }}{% if lang == 'en' %}/en{% endif %}/#inquiry">{{ t('bookNow', lang) }}</a></li>
+            </ul>
+          </nav>
+        </div>
+        <div class="footer-legal">
+          <h3>Rechtliches</h3>
+          <nav aria-label="Legal Links">
+            <ul>
+              <li><a href="#imprint">{{ t('imprint', lang) }}</a></li>
+              <li><a href="#privacy">{{ t('privacy', lang) }}</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; {{ currentYear }} {{ site.name_de }}. {{ t('allRightsReserved', lang) }}</p>
+        <p class="made-with">Made with ❤️ for your perfect stay</p>
+      </div>
+    </div>
+  </footer>
+  {% endblock %}
+  
+  <!-- Modals -->
+  <div id="booking-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
+    <div class="modal-overlay" tabindex="-1"></div>
+    <div class="modal-content">
+      <button class="modal-close" aria-label="{{ t('close', lang) }}">&times;</button>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+  
+  <div id="content-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="content-modal-title" hidden>
+    <div class="modal-overlay" tabindex="-1"></div>
+    <div class="modal-content large">
+      <button class="modal-close" aria-label="{{ t('close', lang) }}">&times;</button>
+      <div id="content-modal-body"></div>
+    </div>
+  </div>
+  
+  <!-- Toast Container -->
+  <div id="toast-container" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+  
+  <!-- Scripts -->
+  <script>
+    // Config passed to JS
+    window.FH_CONFIG = {
+      apiBase: 'https://{{ domain }}/wp-json/fh/v1',
+      propertyDomain: '{{ domain }}',
+      defaultLang: '{{ lang }}',
+      siteSlug: '{{ slug }}',
+      minNights: {{ site.min_nights }},
+      maxNights: {{ site.max_nights or 28 }},
+      maxGuests: {{ site.max_guests }},
+      downpaymentPercent: {{ site.downpayment_percent }},
+      currency: '{{ site.currency }}',
+      translations: {{ translations | json | safe }},
+      design: {{ design | json | safe }}
+    };
+  </script>
+  
+  <!-- Component Scripts -->
+  <script>{{ apiJS | safe }}</script>
+  <script>{{ galleryJS | safe }}</script>
+  <script>{{ calendarJS | safe }}</script>
+  <script>{{ bookingJS | safe }}</script>
+  <script>{{ uiJS | safe }}</script>
+  <script>{{ mainJS | safe }}</script>
+  
+  {% if 'scroll-reveal' in design.components.effects %}
+  <script>{{ scrollRevealJS | safe }}</script>
+  {% endif %}
+  {% if 'parallax-hero' in design.components.effects %}
+  <script>{{ parallaxJS | safe }}</script>
+  {% endif %}
+  {% if 'magnetic-buttons' in design.components.effects %}
+  <script>{{ magneticJS | safe }}</script>
+  {% endif %}
+</body>
+</html>

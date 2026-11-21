@@ -1,0 +1,80 @@
+<div class="price-breakdown" id="price-breakdown" style="display: none;">
+  <div class="price-header">
+    <h3>{{ t('priceBreakdown', lang) }}</h3>
+    <button class="price-close" aria-label="{{ t('close', lang) }}">&times;</button>
+  </div>
+  
+  <div class="price-table-wrapper">
+    <table class="price-table" aria-label="{{ t('priceDetails', lang) }}">
+      <thead>
+        <tr>
+          <th scope="col">{{ t('period', lang) }}</th>
+          <th scope="col">{{ t('nights', lang) }}</th>
+          <th scope="col">{{ t('season', lang) }}</th>
+          <th scope="col">{{ t('pricePerNight', lang) }}</th>
+          <th scope="col">{{ t('subtotal', lang) }}</th>
+        </tr>
+      </thead>
+      <tbody id="price-table-body">
+        <!-- Filled by JS -->
+      </tbody>
+      <tfoot>
+        <tr class="total-row">
+          <td colspan="4"><strong>{{ t('total', lang) }}</strong></td>
+          <td><strong id="price-total">–</strong></td>
+        </tr>
+        <tr class="downpayment-row">
+          <td colspan="4">{{ t('downpayment', lang) }} ({{ site.downpayment_percent }}%)</td>
+          <td id="price-downpayment">–</td>
+        </tr>
+        <tr class="remainder-row">
+          <td colspan="4">{{ t('remainder', lang) }}</td>
+          <td id="price-remainder">–</td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+  
+  <div class="price-notes">
+    <p><strong>{{ t('priceNoteTitle', lang) }}</strong></p>
+    <ul>
+      <li>{{ t('priceNoteCleaning', lang) }}</li>
+      <li>{{ t('priceNoteDeposit', lang) }}</li>
+      <li>{{ t('priceNoteTax', lang) }}</li>
+      <li>{{ t('priceNoteFinal', lang) }}</li>
+    </ul>
+  </div>
+  
+  <div class="price-actions">
+    <button class="btn btn-primary btn-lg" id="price-book-now">{{ t('bookNow', lang) }}</button>
+    <button class="btn btn-secondary" id="price-back">{{ t('backToCalendar', lang) }}</button>
+  </div>
+</div>
+
+<!-- Seasonal Overview (always visible) -->
+<section class="seasonal-overview scroll-reveal" aria-labelledby="seasonal-title">
+  <div class="container">
+    <h3 id="seasonal-title">{{ t('seasonalPrices', lang) }}</h3>
+    <div class="season-cards">
+      {% for season in site.seasons %}
+        {% if season.is_active %}
+        <article class="season-card {% if 'hover-zoom' in design.components.effects %}hover-zoom{% endif %}">
+          <header class="season-header">
+            <span class="season-name">{% if lang == 'de' %}{{ season.name_de }}{% else %}{{ season.name_en or season.name_de }}{% endif %}</span>
+            <span class="season-price">{{ season.price_per_night | currency(site.currency, lang) }}/{{ t('night', lang) }}</span>
+          </header>
+          <div class="season-period">
+            {{ season.start_month_day | monthDay(lang) }} – {{ season.end_month_day | monthDay(lang) }}
+          </div>
+        </article>
+        {% endif %}
+      {% endfor %}
+    </div>
+    {% if not site.seasons or site.seasons | selectattr('is_active', 'equalto', true) | list | length == 0 %}
+    <div class="season-card single-price">
+      <span class="season-name">{{ t('yearRound', lang) }}</span>
+      <span class="season-price">{{ site.price_per_night | currency(site.currency, lang) }}/{{ t('night', lang) }}</span>
+    </div>
+    {% endif %}
+  </div>
+</section>

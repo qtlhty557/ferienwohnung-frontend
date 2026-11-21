@@ -1,0 +1,93 @@
+/* ========================================
+   LAYOUT: HERO - GALLERY - CALENDAR
+   Standard layout with hero, gallery, features, calendar, prices, inquiry
+   ======================================== */
+
+.layout-hero-gallery-calendar .hero-standard {
+  min-height: 70vh;
+}
+
+.layout-hero-gallery-calendar .hero-standard .hero-content {
+  max-width: 900px;
+}
+
+.layout-hero-gallery-calendar .hero-meta {
+  justify-content: center;
+}
+
+.layout-hero-gallery-calendar .section {
+  padding: 5rem 0;
+}
+
+.layout-hero-gallery-calendar .gallery-section {
+  background: var(--color-secondary);
+}
+
+.layout-hero-gallery-calendar .features-section {
+  background: var(--color-background);
+}
+
+.layout-hero-gallery-calendar .calendar-section {
+  background: var(--color-secondary);
+}
+
+.layout-hero-gallery-calendar .prices-section {
+  background: var(--color-background);
+}
+
+.layout-hero-gallery-calendar .inquiry-section {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.layout-hero-gallery-calendar .inquiry-section .section-title {
+  color: #fff;
+}
+
+.layout-hero-gallery-calendar .inquiry-section .section-subtitle {
+  color: rgba(255,255,255,0.8);
+}
+
+.layout-hero-gallery-calendar .inquiry-form .form-field input,
+.layout-hero-gallery-calendar .inquiry-form .form-field select,
+.layout-hero-gallery-calendar .inquiry-form .form-field textarea {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.2);
+  color: #fff;
+}
+
+.layout-hero-gallery-calendar .inquiry-form .form-field input::placeholder,
+.layout-hero-gallery-calendar .inquiry-form .form-field textarea::placeholder {
+  color: rgba(255,255,255,0.5);
+}
+
+.layout-hero-gallery-calendar .inquiry-form .form-field input:focus,
+.layout-hero-gallery-calendar .inquiry-form .form-field select:focus,
+.layout-hero-gallery-calendar .inquiry-form .form-field textarea:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(var(--color-accent-rgb, 212, 168, 67), 0.2);
+}
+
+.layout-hero-gallery-calendar .inquiry-form .checkbox-field label {
+  color: rgba(255,255,255,0.9);
+}
+
+.layout-hero-gallery-calendar .inquiry-form .checkbox-field a {
+  color: var(--color-accent);
+}
+
+.layout-hero-gallery-calendar .form-message.success {
+  background: rgba(34, 197, 94, 0.2);
+  border-color: #22c55e;
+  color: #bbf7d0;
+}
+
+.layout-hero-gallery-calendar .form-message.error {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: #ef4444;
+  color: #fecaca;
+}
+
+.layout-hero-gallery-calendar .seasonal-overview {
+  background: var(--color-secondary);
+}

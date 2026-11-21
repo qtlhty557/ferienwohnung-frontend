@@ -1,0 +1,158 @@
+/* ========================================
+   LAYOUT: FULLSCREEN SLIDER
+   Immersive fullscreen hero with gallery, minimal UI
+   ======================================== */
+
+.layout-fullscreen-slider .hero-fullscreen {
+  height: 100vh;
+  min-height: 600px;
+}
+
+.layout-fullscreen-slider .hero-fullscreen .swiper-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.layout-fullscreen-slider .slide-content {
+  text-align: center;
+  color: #fff;
+  max-width: 800px;
+  padding: 2rem;
+  z-index: 2;
+}
+
+.layout-fullscreen-slider .slide-content .hero-title {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  margin-bottom: 1.5rem;
+  text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+
+.layout-fullscreen-slider .slide-content .hero-subtitle {
+  font-size: clamp(1.125rem, 2.5vw, 1.75rem);
+  margin-bottom: 2.5rem;
+  opacity: 0.9;
+  font-weight: 300;
+}
+
+.layout-fullscreen-slider .hero-thumbnails {
+  position: absolute;
+  bottom: 3rem;
+  left: 0;
+  right: 0;
+  padding: 0 2rem;
+  z-index: 10;
+}
+
+.layout-fullscreen-slider .hero-thumbnails .swiper {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.layout-fullscreen-slider .hero-thumbnails .swiper-slide {
+  opacity: 0.6;
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.layout-fullscreen-slider .hero-thumbnails .swiper-slide-thumb-active {
+  opacity: 1;
+  transform: scale(1.15);
+}
+
+.layout-fullscreen-slider .hero-thumbnails img {
+  border-radius: 8px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  border: 2px solid transparent;
+}
+
+.layout-fullscreen-slider .hero-thumbnails .swiper-slide-thumb-active img {
+  border-color: var(--color-accent);
+}
+
+.layout-fullscreen-slider .section {
+  padding: 4rem 0;
+}
+
+.layout-fullscreen-slider .gallery-section {
+  display: none; /* Gallery is in hero */
+}
+
+.layout-fullscreen-slider .features-section {
+  background: var(--color-background);
+  padding: 4rem 0;
+}
+
+.layout-fullscreen-slider .calendar-section {
+  background: var(--color-secondary);
+}
+
+.layout-fullscreen-slider .prices-section {
+  background: var(--color-background);
+}
+
+.layout-fullscreen-slider .inquiry-section {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.layout-fullscreen-slider .inquiry-section .section-title {
+  color: #fff;
+}
+
+.layout-fullscreen-slider .inquiry-section .section-subtitle {
+  color: rgba(255,255,255,0.8);
+}
+
+.layout-fullscreen-slider .inquiry-form .form-field input,
+.layout-fullscreen-slider .inquiry-form .form-field select,
+.layout-fullscreen-slider .inquiry-form .form-field textarea {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.2);
+  color: #fff;
+}
+
+.layout-fullscreen-slider .inquiry-form .form-field input::placeholder,
+.layout-fullscreen-slider .inquiry-form .form-field textarea::placeholder {
+  color: rgba(255,255,255,0.5);
+}
+
+.layout-fullscreen-slider .inquiry-form .form-field input:focus,
+.layout-fullscreen-slider .inquiry-form .form-field select:focus,
+.layout-fullscreen-slider .inquiry-form .form-field textarea:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(var(--color-accent-rgb, 233, 69, 96), 0.2);
+}
+
+.layout-fullscreen-slider .inquiry-form .checkbox-field label {
+  color: rgba(255,255,255,0.9);
+}
+
+.layout-fullscreen-slider .inquiry-form .checkbox-field a {
+  color: var(--color-accent);
+}
+
+.layout-fullscreen-slider .form-message.success {
+  background: rgba(34, 197, 94, 0.2);
+  border-color: #22c55e;
+  color: #bbf7d0;
+}
+
+.layout-fullscreen-slider .form-message.error {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: #ef4444;
+  color: #fecaca;
+}
+
+.layout-fullscreen-slider .seasonal-overview {
+  background: var(--color-secondary);
+}
+
+/* Calendar Modal specific for fullscreen layout */
+.layout-fullscreen-slider .calendar-modal-content {
+  background: var(--color-background);
+  color: var(--color-text);
+}
+
+.layout-fullscreen-slider .modal-overlay {
+  background: rgba(0,0,0,0.85);
+}

@@ -1,0 +1,176 @@
+/* ========================================
+   LAYOUT: COMPACT
+   Compact one-page layout for simple properties
+   ======================================== */
+
+.layout-compact .hero-compact {
+  min-height: 60vh;
+  padding: 4rem 0;
+}
+
+.layout-compact .compact-hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .layout-compact .compact-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+  }
+}
+
+.layout-compact .compact-hero-text .hero-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-bottom: 0.75rem;
+}
+
+.layout-compact .compact-hero-text .hero-subtitle {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  margin-bottom: 1rem;
+  opacity: 0.9;
+}
+
+.layout-compact .compact-hero-text .hero-description {
+  margin-bottom: 1.5rem;
+  opacity: 0.8;
+  font-size: 0.9375rem;
+}
+
+.layout-compact .compact-hero-text .hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  justify-content: flex-start;
+}
+
+@media (max-width: 768px) {
+  .layout-compact .compact-hero-text .hero-meta {
+    justify-content: center;
+  }
+}
+
+.layout-compact .compact-hero-text .meta-item {
+  background: rgba(255,255,255,0.2);
+  backdrop-filter: blur(10px);
+}
+
+.layout-compact .compact-hero-image {
+  aspect-ratio: 4/3;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+
+.layout-compact .section {
+  padding: 3rem 0;
+}
+
+.layout-compact .gallery-section {
+  background: var(--color-secondary);
+}
+
+.layout-compact .features-section {
+  background: var(--color-background);
+}
+
+.layout-compact .calendar-section {
+  background: var(--color-secondary);
+}
+
+.layout-compact .prices-section {
+  background: var(--color-background);
+}
+
+.layout-compact .inquiry-section {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.layout-compact .inquiry-section .section-title {
+  color: #fff;
+}
+
+.layout-compact .inquiry-section .section-subtitle {
+  color: rgba(255,255,255,0.8);
+}
+
+.layout-compact .inquiry-form .form-field input,
+.layout-compact .inquiry-form .form-field select,
+.layout-compact .inquiry-form .form-field textarea {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.2);
+  color: #fff;
+}
+
+.layout-compact .inquiry-form .form-field input::placeholder,
+.layout-compact .inquiry-form .form-field textarea::placeholder {
+  color: rgba(255,255,255,0.5);
+}
+
+.layout-compact .inquiry-form .form-field input:focus,
+.layout-compact .inquiry-form .form-field select:focus,
+.layout-compact .inquiry-form .form-field textarea:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(var(--color-accent-rgb, 212, 168, 67), 0.2);
+}
+
+.layout-compact .inquiry-form .checkbox-field label {
+  color: rgba(255,255,255,0.9);
+}
+
+.layout-compact .inquiry-form .checkbox-field a {
+  color: var(--color-accent);
+}
+
+.layout-compact .form-message.success {
+  background: rgba(34, 197, 94, 0.2);
+  border-color: #22c55e;
+  color: #bbf7d0;
+}
+
+.layout-compact .form-message.error {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: #ef4444;
+  color: #fecaca;
+}
+
+.layout-compact .seasonal-overview {
+  background: var(--color-secondary);
+}
+
+/* Compact calendar - smaller */
+.layout-compact .calendar-wrapper,
+.layout-compact .calendar-sidebar {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.layout-compact .calendar-days {
+  gap: 2px;
+}
+
+.layout-compact .calendar-day {
+  font-size: 0.75rem;
+}
+
+/* Compact features */
+.layout-compact .features-grid {
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+}
+
+.layout-compact .feature-card {
+  padding: 1.5rem;
+}
+
+.layout-compact .feature-icon {
+  width: 56px;
+  height: 56px;
+}

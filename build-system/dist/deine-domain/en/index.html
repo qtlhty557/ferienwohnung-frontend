@@ -1,0 +1,4392 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="Ferienwohnungen Build System">
+  
+  <!-- SEO -->
+  <title>Name of your holiday home | Book now</title>
+  <meta name="description" content="Description in English...">
+  <meta name="keywords" content="Ferienwohnung, Urlaub, Buchung, Ort, Region, Deutschland, Location, Region, Germany">
+  
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://deine-domain.de/en/">
+  <meta property="og:title" content="Name of your holiday home">
+  <meta property="og:description" content="Description in English...">
+  <meta property="og:image" content="https://cdn.example.com/image1.jpg">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="de_DE">
+  
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://deine-domain.de/en/">
+  <meta name="twitter:title" content="Name of your holiday home">
+  <meta name="twitter:description" content="Description in English...">
+  <meta name="twitter:image" content="https://cdn.example.com/image1.jpg">
+  
+  <!-- Canonical & hreflang -->
+  <link rel="canonical" href="https://deine-domain.de/en/">
+  <link rel="alternate" hreflang="de" href="https://deine-domain.de/">
+  <link rel="alternate" hreflang="en" href="https://deine-domain.de/en/">
+  <link rel="alternate" hreflang="x-default" href="https://deine-domain.de/">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏠</text></svg>">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏠</text></svg>">
+  
+  <!-- Preset CSS -->
+  <style>
+/* ========================================
+   PRESET: MODERN MINIMAL
+   ======================================== */
+
+:root {
+  --color-primary: #2c5f3d;
+  --color-secondary: #f5f5f5;
+  --color-accent: #d4a843;
+  --color-background: #ffffff;
+  --color-text: #1a1a1a;
+  --font-heading: 'Inter', Georgia, serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --spacing-unit: 1rem;
+  --border-radius: 8px;
+  --transition-base: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Font loading */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=Nunito:wght@400;500;600;700;800&family=Merriweather:wght@400;700&family=Source+Sans+Pro:wght@400;600&family=Space+Grotesk:wght@400;500;600;700&family=Nunito:wght@400;500;600;700;800&display=swap');
+
+/* Base styles */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-text);
+  background-color: var(--color-background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--color-primary);
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color var(--transition-base);
+}
+
+a:hover {
+  color: var(--color-accent);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-unit);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 2rem;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: var(--color-accent);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.btn-secondary {
+  background: var(--color-secondary);
+  color: var(--color-text);
+  border: 2px solid var(--color-primary);
+}
+
+.btn-secondary:hover {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.section {
+  padding: 4rem 0;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin-bottom: 1rem;
+}
+
+.section-subtitle {
+  font-size: 1.125rem;
+  color: var(--color-text);
+  opacity: 0.8;
+}
+
+/* Scroll reveal effect */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.scroll-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Parallax hero */
+.parallax-hero {
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Hover zoom */
+.hover-zoom {
+  transition: transform var(--transition-base);
+}
+
+.hover-zoom:hover {
+  transform: scale(1.03);
+}
+
+/* Magnetic buttons */
+.magnetic-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.magnetic-btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255,255,255,0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.4s, height 0.4s;
+}
+
+.magnetic-btn:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* Text reveal */
+.text-reveal {
+  overflow: hidden;
+}
+
+.text-reveal span {
+  display: inline-block;
+  transform: translateY(100%);
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.text-reveal.visible span {
+  transform: translateY(0);
+}
+
+/* Page transitions */
+.page-transition {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.page-transition.active {
+  opacity: 1;
+}
+
+/* Image compare */
+.image-compare {
+  position: relative;
+  overflow: hidden;
+}
+
+.image-compare::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 2px;
+  height: 100%;
+  background: var(--color-accent);
+  pointer-events: none;
+}
+</style>
+  
+  <!-- Component CSS -->
+  <style>/* ========================================
+   COMPONENT STYLES
+   ======================================== */
+
+/* Skip Link */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.75rem 1.5rem;
+  background: var(--color-primary);
+  color: #fff;
+  border-radius: var(--border-radius);
+  z-index: 10000;
+  transition: top 0.3s;
+}
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* Lang Switcher */
+.lang-switcher {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  z-index: 1000;
+}
+.lang-switcher a {
+  padding: 0.5rem 1rem;
+  background: var(--color-background);
+  border: 2px solid var(--color-primary);
+  border-radius: var(--border-radius);
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--color-primary);
+  transition: all var(--transition-base);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.lang-switcher a:hover,
+.lang-switcher a.active {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+/* Header */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(var(--color-background-rgb, 255,255,255), 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--color-secondary);
+}
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+}
+.site-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+.logo-icon { font-size: 2rem; }
+.main-nav ul {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+.main-nav a {
+  font-weight: 500;
+  padding: 0.5rem 0;
+  position: relative;
+}
+.main-nav a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--color-accent);
+  transition: width var(--transition-base);
+}
+.main-nav a:hover::after { width: 100%; }
+.nav-cta { display: none; }
+.mobile-menu-toggle { display: none; }
+
+@media (max-width: 768px) {
+  .mobile-menu-toggle { display: block; }
+  .main-nav {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background: var(--color-background);
+    padding: 2rem;
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s;
+    border-bottom: 1px solid var(--color-secondary);
+  }
+  .main-nav.open {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+  .main-nav ul { flex-direction: column; gap: 1rem; }
+  .main-nav a { font-size: 1.25rem; }
+  .nav-cta { display: inline-flex; width: 100%; justify-content: center; }
+}
+
+/* Footer */
+.site-footer {
+  background: var(--color-primary);
+  color: #fff;
+  padding: 4rem 0 2rem;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+.footer-info address { font-style: normal; line-height: 2; }
+.footer-info a { color: rgba(255,255,255,0.8); }
+.footer-info a:hover { color: var(--color-accent); }
+.footer-links ul,
+.footer-legal ul { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+.footer-links a,
+.footer-legal a { color: rgba(255,255,255,0.8); }
+.footer-links a:hover,
+.footer-legal a:hover { color: var(--color-accent); }
+.footer-bottom {
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  text-align: center;
+  color: rgba(255,255,255,0.6);
+  font-size: 0.875rem;
+}
+.made-with { margin-top: 0.5rem; }
+
+/* Modals */
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+.modal[hidden] { display: none; }
+.modal-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(4px);
+}
+.modal-content {
+  position: relative;
+  background: var(--color-background);
+  border-radius: 16px;
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+  animation: modalIn 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+@keyframes modalIn {
+  from { opacity: 0; transform: scale(0.95) translateY(20px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+.modal-content.large { max-width: 800px; }
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--color-secondary);
+}
+.modal-close {
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: var(--color-secondary);
+  border-radius: 50%;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-base);
+}
+.modal-close:hover { background: var(--color-primary); color: #fff; }
+.modal-body { padding: 1.5rem; overflow-y: auto; max-height: 60vh; }
+.btn-block { width: 100%; }
+
+/* Toast Container */
+.toast-container {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.toast {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  background: var(--color-background);
+  border-radius: var(--border-radius);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  border-left: 4px solid var(--color-primary);
+  animation: toastIn 0.3s ease;
+}
+.toast.success { border-color: #22c55e; }
+.toast.error { border-color: #ef4444; }
+.toast.info { border-color: var(--color-primary); }
+@keyframes toastIn {
+  from { opacity: 0; transform: translateX(100%); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* Hero Base */
+.hero {
+  position: relative;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-secondary);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.2) 100%);
+}
+.hero-content {
+  position: relative;
+  text-align: center;
+  color: #fff;
+  max-width: 800px;
+  padding: 2rem;
+}
+.hero-title {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+.hero-subtitle {
+  font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+  margin-bottom: 1.5rem;
+  opacity: 0.9;
+  font-weight: 400;
+}
+.hero-meta {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255,255,255,0.15);
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  backdrop-filter: blur(10px);
+}
+.meta-icon { font-size: 1.25rem; }
+.btn-lg { padding: 1rem 3rem; font-size: 1.125rem; }
+.hero-scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: bounce 2s infinite;
+  color: #fff;
+  opacity: 0.7;
+}
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(10px); }
+}
+
+/* Gallery Base */
+.gallery { margin-top: 2rem; }
+.gallery-item,
+.gallery-cell,
+.grid-item,
+.lightbox-item {
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  cursor: zoom-in;
+}
+.gallery-item img,
+.gallery-cell img,
+.grid-item img,
+.lightbox-item img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
+}
+.gallery-caption,
+.grid-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem;
+  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+.gallery-item:hover .gallery-caption,
+.grid-item:hover .grid-caption { opacity: 1; }
+.gallery-expand {
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: #fff;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--transition-base);
+}
+.gallery-expand:hover { transform: scale(1.1); }
+
+/* Masonry Grid */
+.masonry-grid { columns: 1; column-gap: 1rem; }
+@media (min-width: 640px) { .masonry-grid { columns: 2; } }
+@media (min-width: 1024px) { .masonry-grid { columns: 3; } }
+.masonry-grid .gallery-item { break-inside: avoid; margin-bottom: 1rem; }
+
+/* Grid Layout */
+.grid-layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+/* Lightbox Grid */
+.lightbox-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+/* Flickity overrides */
+.flickity-viewport { border-radius: var(--border-radius); }
+.flickity-button { background: rgba(255,255,255,0.8) !important; }
+.flickity-button:hover { background: #fff !important; }
+.flickity-page-dots .dot { background: rgba(255,255,255,0.5) !important; }
+.flickity-page-dots .dot.is-selected { background: #fff !important; }
+
+/* Thumbnails */
+.hero-thumbnails,
+.gallery-thumbnails {
+  margin-top: 1.5rem;
+  padding: 0 1rem;
+}
+.hero-thumbnails .swiper-slide,
+.gallery-thumbnails .swiper-slide {
+  opacity: 0.5;
+  cursor: pointer;
+  transition: opacity var(--transition-base);
+}
+.hero-thumbnails .swiper-slide-thumb-active,
+.gallery-thumbnails .swiper-slide-thumb-active { opacity: 1; }
+.hero-thumbnails img,
+.gallery-thumbnails img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Swiper overrides */
+.swiper-pagination-bullet { background: #fff !important; opacity: 0.5; }
+.swiper-pagination-bullet-active { opacity: 1 !important; }
+.swiper-button-prev,
+.swiper-button-next { color: #fff !important; width: 48px !important; height: 48px !important; }
+.swiper-button-prev:after,
+.swiper-button-next:after { font-size: 24px !important; }
+
+/* Features */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+.feature-card {
+  padding: 2rem;
+  background: var(--color-background);
+  border: 1px solid var(--color-secondary);
+  border-radius: var(--border-radius);
+  text-align: center;
+  transition: all var(--transition-base);
+}
+.feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+  border-color: var(--color-primary);
+}
+.feature-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-secondary);
+  border-radius: 50%;
+  color: var(--color-primary);
+}
+.feature-number {
+  display: block;
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  font-family: var(--font-heading);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+.feature-title { font-size: 1.125rem; margin-bottom: 0.5rem; }
+.feature-desc { color: var(--color-text); opacity: 0.7; font-size: 0.875rem; }
+
+/* Calendar */
+.calendar-wrapper,
+.calendar-sidebar {
+  background: var(--color-background);
+  border: 1px solid var(--color-secondary);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+}
+.calendar-header { margin-bottom: 1.5rem; }
+.calendar-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-secondary);
+}
+.summary-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.summary-label { font-size: 0.75rem; text-transform: uppercase; color: var(--color-text); opacity: 0.6; }
+.summary-value { font-weight: 600; color: var(--color-primary); }
+.calendar-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+.nav-btn {
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: var(--color-secondary);
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-base);
+}
+.nav-btn:hover { background: var(--color-primary); color: #fff; }
+.current-month {
+  font-weight: 600;
+  font-size: 1.125rem;
+  min-width: 180px;
+  text-align: center;
+}
+.calendar-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  margin-bottom: 0.5rem;
+}
+.weekday {
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--color-text);
+  opacity: 0.6;
+  padding: 0.5rem 0;
+}
+.calendar-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+.calendar-day {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 0.875rem;
+  transition: all var(--transition-base);
+  position: relative;
+}
+.calendar-day:hover:not(.disabled):not(.booked) {
+  background: var(--color-secondary);
+}
+.calendar-day.selected {
+  background: var(--color-primary);
+  color: #fff;
+}
+.calendar-day.in-range {
+  background: var(--color-secondary);
+}
+.calendar-day.in-range::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--color-primary);
+  opacity: 0.1;
+  border-radius: 50%;
+  z-index: -1;
+}
+.calendar-day.start-range,
+.calendar-day.end-range {
+  background: var(--color-primary);
+  color: #fff;
+  border-radius: 50%;
+}
+.calendar-day.booked {
+  color: var(--color-text);
+  opacity: 0.4;
+  cursor: not-allowed;
+  text-decoration: line-through;
+}
+.calendar-day.disabled { opacity: 0.3; cursor: not-allowed; }
+.calendar-day.today:not(.selected):not(.booked)::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  background: var(--color-accent);
+  border-radius: 50%;
+}
+
+.calendar-actions,
+.sidebar-actions,
+.dropdown-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+.calendar-actions .btn { flex: 1; }
+
+.guests-selector,
+.guests-selector-inline {
+  margin-top: 1.5rem;
+}
+.guests-selector label { display: block; margin-bottom: 0.5rem; font-weight: 500; }
+.guests-input { display: flex; align-items: center; gap: 0.5rem; max-width: 150px; }
+.guests-btn {
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--color-secondary);
+  background: var(--color-background);
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-base);
+}
+.guests-btn:hover { background: var(--color-secondary); border-color: var(--color-primary); }
+.guests-input input {
+  flex: 1;
+  text-align: center;
+  border: 1px solid var(--color-secondary);
+  border-radius: var(--border-radius);
+  padding: 0.5rem;
+  font-size: 1rem;
+  -moz-appearance: textfield;
+}
+.guests-input input::-webkit-outer-spin-button,
+.guests-input input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+
+/* Calendar Modal */
+.calendar-modal-content { max-width: 900px; }
+.calendar-modal-grid {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 0;
+}
+.calendar-panel { border-right: 1px solid var(--color-secondary); }
+.summary-panel {
+  padding: 1.5rem;
+  background: var(--color-secondary);
+}
+.summary-panel h3 { margin-bottom: 1.5rem; font-size: 1.125rem; }
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--color-secondary);
+}
+.summary-divider { height: 1px; background: var(--color-secondary); margin: 1rem 0; }
+.summary-price { font-size: 1.25rem; font-weight: 700; color: var(--color-primary); }
+.summary-actions { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1.5rem; }
+
+/* Calendar Sidebar */
+.calendar-sidebar-wrapper { display: grid; grid-template-columns: 300px 1fr; gap: 2rem; }
+@media (max-width: 1024px) { .calendar-sidebar-wrapper { grid-template-columns: 1fr; } }
+.sidebar-header { margin-bottom: 1rem; }
+.sidebar-summary { display: flex; flex-direction: column; gap: 0.75rem; margin: 1.5rem 0; }
+.sidebar-summary .summary-item { display: flex; justify-content: space-between; }
+.sidebar-content { min-height: 400px; }
+
+/* Calendar Dropdown */
+.dropdown-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+@media (max-width: 640px) { .dropdown-row { grid-template-columns: 1fr; } }
+.dropdown-field { margin-bottom: 1rem; }
+.dropdown-field label { display: block; margin-bottom: 0.5rem; font-weight: 500; }
+.dropdown-input-wrapper { position: relative; }
+.dropdown-input-wrapper input {
+  width: 100%;
+  padding: 0.875rem 3rem 0.875rem 1rem;
+  border: 1px solid var(--color-secondary);
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  background: var(--color-background);
+  cursor: pointer;
+}
+.dropdown-input-wrapper input:disabled { opacity: 0.5; cursor: not-allowed; }
+.dropdown-icon {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+.calendar-popover {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--color-background);
+  border: 1px solid var(--color-secondary);
+  border-radius: var(--border-radius);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  z-index: 100;
+  margin-top: 0.5rem;
+  overflow: hidden;
+}
+.popover-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid var(--color-secondary);
+}
+.popover-close { background: none; border: none; font-size: 1.5rem; cursor: pointer; }
+.popover-calendar { padding: 1rem; }
+.popover-calendar .calendar-nav { margin-bottom: 0.5rem; }
+.popover-calendar .weekday { font-size: 0.625rem; padding: 0.25rem; }
+.popover-calendar .calendar-days { gap: 2px; }
+.popover-calendar .calendar-day { font-size: 0.75rem; }
+
+/* Price Breakdown */
+.price-breakdown {
+  background: var(--color-background);
+  border: 1px solid var(--color-secondary);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  margin-top: 1.5rem;
+  animation: slideDown 0.3s ease;
+}
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.price-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
+.price-close { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--color-text); opacity: 0.5; }
+.price-close:hover { opacity: 1; }
+.price-table-wrapper { overflow-x: auto; margin-bottom: 1.5rem; }
+.price-table { width: 100%; border-collapse: collapse; }
+.price-table th,
+.price-table td { padding: 0.875rem 1rem; text-align: left; border-bottom: 1px solid var(--color-secondary); }
+.price-table th { font-weight: 600; color: var(--color-text); opacity: 0.7; font-size: 0.875rem; }
+.price-table tfoot td { font-weight: 600; border-top: 2px solid var(--color-primary); }
+.total-row td { font-size: 1.125rem; }
+.downpayment-row td,
+.remainder-row td { opacity: 0.8; }
+.price-notes {
+  padding: 1rem;
+  background: var(--color-secondary);
+  border-radius: var(--border-radius);
+  margin-bottom: 1.5rem;
+}
+.price-notes p { margin-bottom: 0.5rem; font-weight: 600; }
+.price-notes ul { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.5rem; }
+.price-notes li { font-size: 0.875rem; opacity: 0.8; position: relative; padding-left: 1.25rem; }
+.price-notes li::before { content: '✓'; position: absolute; left: 0; color: var(--color-primary); font-weight: bold; }
+.price-actions { display: flex; gap: 1rem; }
+
+/* Seasonal Overview */
+.seasonal-overview { padding: 3rem 0; }
+.season-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+.season-card {
+  padding: 1.5rem;
+  background: var(--color-background);
+  border: 1px solid var(--color-secondary);
+  border-radius: var(--border-radius);
+  text-align: center;
+  transition: all var(--transition-base);
+}
+.season-card:hover { border-color: var(--color-primary); transform: translateY(-2px); }
+.season-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
+.season-name { font-weight: 600; }
+.season-price { color: var(--color-primary); font-weight: 700; font-size: 1.25rem; }
+.season-period { font-size: 0.875rem; opacity: 0.7; }
+.season-card.single-price { max-width: 400px; margin: 0 auto; }
+
+/* Inquiry Form */
+.inquiry-form { max-width: 700px; margin: 0 auto; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+@media (max-width: 640px) { .form-row { grid-template-columns: 1fr; } }
+.form-field { margin-bottom: 1.5rem; }
+.form-field label { display: block; margin-bottom: 0.5rem; font-weight: 500; }
+.required { color: var(--color-accent); }
+.form-field input,
+.form-field select,
+.form-field textarea {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  border: 1px solid var(--color-secondary);
+  border-radius: var(--border-radius);
+  font-family: inherit;
+  font-size: 1rem;
+  background: var(--color-background);
+  transition: all var(--transition-base);
+}
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(var(--color-primary-rgb, 44, 95, 61), 0.1);
+}
+.form-field textarea { resize: vertical; min-height: 120px; }
+.checkbox-field { display: flex; align-items: flex-start; gap: 0.75rem; }
+.checkbox-field input { width: auto; margin-top: 0.25rem; }
+.checkbox-field label { font-size: 0.875rem; line-height: 1.5; }
+.checkbox-field a { text-decoration: underline; }
+.form-submit { margin-top: 2rem; }
+.btn-block { width: 100%; }
+.form-note { margin-top: 1.5rem; padding: 1rem; background: var(--color-secondary); border-radius: var(--border-radius); font-size: 0.875rem; text-align: center; }
+.form-message {
+  display: flex;
+  gap: 1rem;
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  margin-top: 1.5rem;
+  animation: slideDown 0.3s ease;
+}
+.form-message.success { background: #dcfce7; border: 1px solid #86efac; color: #166534; }
+.form-message.error { background: #fef2f2; border: 1px solid #fecaca; color: #991b1b; }
+.message-icon { flex-shrink: 0; }
+
+/* Content Sections */
+.content-section { padding: 3rem 0; }
+.content-block { line-height: 1.8; }
+.content-block h2, .content-block h3 { margin: 1.5rem 0 0.75rem; }
+.content-block p { margin-bottom: 1rem; }
+.content-block ul { margin: 1rem 0 1rem 1.5rem; }
+.content-block a { text-decoration: underline; }
+
+/* Text Reveal */
+.text-reveal span { display: inline-block; transform: translateY(100%); opacity: 0; transition: transform 0.8s cubic-bezier(0.4,0,0.2,1), opacity 0.8s; }
+.text-reveal.visible span { transform: translateY(0); opacity: 1; }
+.text-reveal.visible span:nth-child(1) { transition-delay: 0ms; }
+.text-reveal.visible span:nth-child(2) { transition-delay: 100ms; }
+.text-reveal.visible span:nth-child(3) { transition-delay: 200ms; }
+.text-reveal.visible span:nth-child(4) { transition-delay: 300ms; }
+
+/* Scroll Reveal */
+.scroll-reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.4,0,0.2,1); }
+.scroll-reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* Parallax */
+.parallax-hero { background-attachment: fixed; background-position: center; background-size: cover; }
+
+/* Hover Zoom */
+.hover-zoom { transition: transform 0.5s cubic-bezier(0.4,0,0.2,1); }
+.hover-zoom:hover { transform: scale(1.02); }
+
+/* Magnetic Button */
+.magnetic-btn { position: relative; overflow: hidden; }
+.magnetic-btn::before {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 0; height: 0;
+  background: rgba(255,255,255,0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.4s ease, height 0.4s ease;
+}
+.magnetic-btn:hover::before { width: 300px; height: 300px; }</style>
+  
+  <!-- Layout specific CSS -->
+  <style>/* ========================================
+   LAYOUT: HERO - GALLERY - CALENDAR
+   Standard layout with hero, gallery, features, calendar, prices, inquiry
+   ======================================== */
+
+.layout-hero-gallery-calendar .hero-standard {
+  min-height: 70vh;
+}
+
+.layout-hero-gallery-calendar .hero-standard .hero-content {
+  max-width: 900px;
+}
+
+.layout-hero-gallery-calendar .hero-meta {
+  justify-content: center;
+}
+
+.layout-hero-gallery-calendar .section {
+  padding: 5rem 0;
+}
+
+.layout-hero-gallery-calendar .gallery-section {
+  background: var(--color-secondary);
+}
+
+.layout-hero-gallery-calendar .features-section {
+  background: var(--color-background);
+}
+
+.layout-hero-gallery-calendar .calendar-section {
+  background: var(--color-secondary);
+}
+
+.layout-hero-gallery-calendar .prices-section {
+  background: var(--color-background);
+}
+
+.layout-hero-gallery-calendar .inquiry-section {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.layout-hero-gallery-calendar .inquiry-section .section-title {
+  color: #fff;
+}
+
+.layout-hero-gallery-calendar .inquiry-section .section-subtitle {
+  color: rgba(255,255,255,0.8);
+}
+
+.layout-hero-gallery-calendar .inquiry-form .form-field input,
+.layout-hero-gallery-calendar .inquiry-form .form-field select,
+.layout-hero-gallery-calendar .inquiry-form .form-field textarea {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.2);
+  color: #fff;
+}
+
+.layout-hero-gallery-calendar .inquiry-form .form-field input::placeholder,
+.layout-hero-gallery-calendar .inquiry-form .form-field textarea::placeholder {
+  color: rgba(255,255,255,0.5);
+}
+
+.layout-hero-gallery-calendar .inquiry-form .form-field input:focus,
+.layout-hero-gallery-calendar .inquiry-form .form-field select:focus,
+.layout-hero-gallery-calendar .inquiry-form .form-field textarea:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(var(--color-accent-rgb, 212, 168, 67), 0.2);
+}
+
+.layout-hero-gallery-calendar .inquiry-form .checkbox-field label {
+  color: rgba(255,255,255,0.9);
+}
+
+.layout-hero-gallery-calendar .inquiry-form .checkbox-field a {
+  color: var(--color-accent);
+}
+
+.layout-hero-gallery-calendar .form-message.success {
+  background: rgba(34, 197, 94, 0.2);
+  border-color: #22c55e;
+  color: #bbf7d0;
+}
+
+.layout-hero-gallery-calendar .form-message.error {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: #ef4444;
+  color: #fecaca;
+}
+
+.layout-hero-gallery-calendar .seasonal-overview {
+  background: var(--color-secondary);
+}</style>
+  
+  <!-- Custom CSS from design config -->
+  <style>
+    :root {
+      --color-primary: #2c5f3d;
+      --color-secondary: #f5f5f5;
+      --color-accent: #d4a843;
+      --color-background: #ffffff;
+      --color-text: #1a1a1a;
+      --font-heading: 'Inter', Georgia, serif;
+      --font-body: 'Inter', system-ui, sans-serif;
+    }
+  </style>
+  
+  <!-- JSON-LD Schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LodgingBusiness",
+    "name": "Name of your holiday home",
+    "description": "Description in English...",
+    "url": "https://deine-domain.de/en/",
+    "image": [
+  &quot;https://cdn.example.com/image1.jpg&quot;,
+  &quot;https://cdn.example.com/image2.jpg&quot;,
+  &quot;https://cdn.example.com/image3.jpg&quot;
+],
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Deine Adresse",
+      "addressLocality": "Ort",
+      "addressCountry": "DE"
+    },
+    "telephone": "+49 123 456789",
+    "email": "deine@email.de",
+    "priceRange": "EUR100 - EUR100",
+    "currenciesAccepted": "EUR",
+    "paymentAccepted": "Cash, Bank Transfer",
+    "knowsLanguage": ["German", "English"],
+    "amenityFeature": [
+      { "@type": "LocationFeatureSpecification", "name": "Sleeps 4", "value": true },
+      { "@type": "LocationFeatureSpecification", "name": "WiFi", "value": true },
+      { "@type": "LocationFeatureSpecification", "name": "Parking", "value": true },
+      { "@type": "LocationFeatureSpecification", "name": "Kitchen", "value": true }
+    ]
+  }
+  </script>
+</head>
+<body class="layout-hero-gallery-calendar preset-modern-minimal">
+  <!-- Language Switcher -->
+  <nav class="lang-switcher" aria-label="Language selection">
+    <a href="https://deine-domain.de/" class="" hreflang="de" aria-current="false">DE</a>
+    <a href="https://deine-domain.de/en/" class="active" hreflang="en" aria-current="page">EN</a>
+  </nav>
+  
+  <!-- Skip Link -->
+  <a href="#main" class="skip-link">Skip to main content</a>
+  
+  
+  <header class="site-header" role="banner">
+    <div class="container">
+      <div class="header-content">
+        <a href="https://deine-domain.de/en/" class="site-logo" aria-label="Name deiner Ferienwohnung - Startseite">
+          <span class="logo-icon" aria-hidden="true">🏠</span>
+          <span class="logo-text">Name of your holiday home</span>
+        </a>
+        <nav class="main-nav" aria-label="Hauptnavigation">
+          <ul>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#prices">Prices</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#calendar">Availability Calendar</a></li>
+            <li><a href="#inquiry" class="nav-cta btn btn-primary">Book now</a></li>
+          </ul>
+        </nav>
+        <button class="mobile-menu-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Menü öffnen">
+          <span aria-hidden="true">☰</span>
+        </button>
+      </div>
+    </div>
+  </header>
+  
+  
+  <main id="main" role="main">
+    
+<!-- Hero Section -->
+
+  <section class="hero hero-standard  scroll-reveal" 
+         aria-labelledby="hero-title"
+         style="background-image: url('https://cdn.example.com/image1.jpg');">
+  <div class="hero-overlay"></div>
+  <div class="container">
+    <div class="hero-content">
+      <h1 id="hero-title" class="hero-title ">
+        <span>Name of your holiday home</span>
+      </h1>
+      <p class="hero-subtitle ">
+        <span>Location, Region, Germany</span>
+      </p>
+      <div class="hero-meta">
+        <div class="meta-item">
+          <span class="meta-icon" aria-hidden="true">👥</span>
+          <span>4 Guests</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-icon" aria-hidden="true">🌙</span>
+          <span>2 Min nights</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-icon" aria-hidden="true">💰</span>
+          <span>from €100 / night</span>
+        </div>
+      </div>
+      <a href="#inquiry" class="btn btn-primary btn-lg magnetic-btn scroll-reveal">
+        <span>Book now</span>
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+  <div class="hero-scroll-indicator" aria-hidden="true">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M12 5v14M19 12l-7 7-7-7"/>
+    </svg>
+  </div>
+</section>
+
+
+<!-- Gallery Section -->
+<section id="gallery" class="section gallery-section scroll-reveal" aria-labelledby="gallery-title">
+  <div class="container">
+    <header class="section-header">
+      <h2 id="gallery-title" class="section-title">Gallery</h2>
+      <p class="section-subtitle">Insights into your holiday home</p>
+    </header>
+    
+      <div class="gallery gallery-masonry" role="list" aria-label="Gallery">
+  <div class="masonry-grid" data-masonry>
+    
+    <figure class="gallery-item hover-zoom scroll-reveal" 
+            role="listitem" 
+            data-index="0"
+            data-full="https://cdn.example.com/image1.jpg"
+            data-caption="Image 1">
+      <img src="https://cdn.example.com/image1.jpg" 
+           alt="Gallery 1" 
+           loading="eager"
+           width="800" height="600">
+      <figcaption class="gallery-caption">
+        <span>Gallery 1</span>
+        <button class="gallery-expand" aria-label="Enlarge image">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+          </svg>
+        </button>
+      </figcaption>
+    </figure>
+    
+    <figure class="gallery-item hover-zoom scroll-reveal" 
+            role="listitem" 
+            data-index="1"
+            data-full="https://cdn.example.com/image2.jpg"
+            data-caption="Image 2">
+      <img src="https://cdn.example.com/image2.jpg" 
+           alt="Gallery 2" 
+           loading="eager"
+           width="800" height="600">
+      <figcaption class="gallery-caption">
+        <span>Gallery 2</span>
+        <button class="gallery-expand" aria-label="Enlarge image">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+          </svg>
+        </button>
+      </figcaption>
+    </figure>
+    
+    <figure class="gallery-item hover-zoom scroll-reveal" 
+            role="listitem" 
+            data-index="2"
+            data-full="https://cdn.example.com/image3.jpg"
+            data-caption="Image 3">
+      <img src="https://cdn.example.com/image3.jpg" 
+           alt="Gallery 3" 
+           loading="eager"
+           width="800" height="600">
+      <figcaption class="gallery-caption">
+        <span>Gallery 3</span>
+        <button class="gallery-expand" aria-label="Enlarge image">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+          </svg>
+        </button>
+      </figcaption>
+    </figure>
+    
+  </div>
+  
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="imageViewer" hidden>
+  <button class="lightbox-close" aria-label="Close">&times;</button>
+  <button class="lightbox-prev" aria-label="Previous image">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M15 18l-6-6 6-6"/>
+    </svg>
+  </button>
+  <button class="lightbox-next" aria-label="Next image">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M9 18l6-6-6-6"/>
+    </svg>
+  </button>
+  <div class="lightbox-content">
+    <img id="lightbox-img" src="" alt="">
+    <p id="lightbox-caption" class="lightbox-caption"></p>
+  </div>
+  <div class="lightbox-counter" aria-live="polite"></div>
+</div>
+    
+  </div>
+</section>
+
+<!-- Features/Highlights -->
+<section id="features" class="section features-section scroll-reveal" aria-labelledby="features-title">
+  <div class="container">
+    <header class="section-header">
+      <h2 id="features-title" class="section-title">Features</h2>
+      <p class="section-subtitle">What to expect</p>
+    </header>
+    <div class="features-grid" role="list" aria-label="Features">
+  <!-- Capacity Highlight -->
+  <div class="feature-card feature-capacity hover-zoom scroll-reveal" role="listitem">
+    <div class="feature-icon" aria-hidden="true">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+        <circle cx="9" cy="7" r="4"/>
+        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+      </svg>
+    </div>
+    <div class="feature-content">
+      <span class="feature-number">4</span>
+      <h3 class="feature-title">Sleeps up to</h3>
+      <p class="feature-desc">Guests</p>
+    </div>
+  </div>
+  
+  <!-- Pre-computed features -->
+  
+  <div class="feature-card hover-zoom scroll-reveal" role="listitem">
+    <div class="feature-icon" aria-hidden="true">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M8.53 16.11a6 6 0 016.94 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+    </div>
+    <h3 class="feature-title">WiFi</h3>
+  </div>
+  
+  <div class="feature-card hover-zoom scroll-reveal" role="listitem">
+    <div class="feature-icon" aria-hidden="true">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L3 7v10c0 5.55 3.84 10.32 9 11.5 5.16-1.18 9-5.95 9-11.5V7l-9-5z"/><path d="M9 11h6"/></svg>
+    </div>
+    <h3 class="feature-title">Fully equipped kitchen</h3>
+  </div>
+  
+  <div class="feature-card hover-zoom scroll-reveal" role="listitem">
+    <div class="feature-icon" aria-hidden="true">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8.5 14.5A2.5 2.5 0 0 1 11 12c0-1.38-.5-2.5-1-3.5"/><path d="M9.5 17.5A3.5 3.5 0 0 1 13 15c0-1.95-.75-3.5-1.5-4.5"/></svg>
+    </div>
+    <h3 class="feature-title">Fireplace / Heating</h3>
+  </div>
+  
+  <div class="feature-card hover-zoom scroll-reveal" role="listitem">
+    <div class="feature-icon" aria-hidden="true">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 7h18"/><path d="M5 7v12a2 2 0 002 2h10a2 2 0 002-2V7"/><circle cx="12" cy="13" r="3"/><path d="M12 10v3"/></svg>
+    </div>
+    <h3 class="feature-title">Washing machine</h3>
+  </div>
+  
+  <div class="feature-card hover-zoom scroll-reveal" role="listitem">
+    <div class="feature-icon" aria-hidden="true">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v20"/><path d="M8 18h8"/><path d="M6 14h12"/><path d="M4 10h16"/></svg>
+    </div>
+    <h3 class="feature-title">Garden &amp; Terrace</h3>
+  </div>
+  
+  <div class="feature-card hover-zoom scroll-reveal" role="listitem">
+    <div class="feature-icon" aria-hidden="true">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8.5 14.5A2.5 2.5 0 0 1 11 12c0-1.38-.5-2.5-1-3.5"/><path d="M9.5 17.5A3.5 3.5 0 0 1 13 15c0-1.95-.75-3.5-1.5-4.5"/></svg>
+    </div>
+    <h3 class="feature-title">BBQ facilities</h3>
+  </div>
+  
+  <div class="feature-card hover-zoom scroll-reveal" role="listitem">
+    <div class="feature-icon" aria-hidden="true">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 13.5 10c-1.3 0-2.5.3-3.5.9"/><line x1="12" y1="9" x2="12" y2="9"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
+    </div>
+    <h3 class="feature-title">Parking at house</h3>
+  </div>
+  
+</div>
+  </div>
+</section>
+
+<!-- Calendar & Pricing -->
+<section id="calendar" class="section calendar-section scroll-reveal" aria-labelledby="calendar-title">
+  <div class="container">
+    <header class="section-header">
+      <h2 id="calendar-title" class="section-title">Availability Calendar</h2>
+      <p class="section-subtitle">Select your travel dates</p>
+    </header>
+    
+      <div class="calendar-wrapper">
+  <div class="calendar-header">
+    <h3 id="calendar-title">Select dates</h3>
+    <div class="calendar-summary" id="calendar-summary" aria-live="polite">
+      <span class="summary-item">Arrival: <span id="summary-arrival">–</span></span>
+      <span class="summary-item">Departure: <span id="summary-departure">–</span></span>
+      <span class="summary-item">nights: <span id="summary-nights">–</span></span>
+      <span class="summary-item">Guests: <span id="summary-guests">4</span></span>
+    </div>
+  </div>
+  
+  <div class="calendar-grid" role="application" aria-label="Availability Calendar">
+    <div class="calendar-nav">
+      <button class="nav-btn prev-month" aria-label="Previous month">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M15 18l-6-6 6-6"/>
+        </svg>
+      </button>
+      <div class="current-month" id="current-month" aria-live="polite"></div>
+      <button class="nav-btn next-month" aria-label="Next month">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 18l6-6-6-6"/>
+        </svg>
+      </button>
+    </div>
+    
+    <div class="calendar-weekdays" role="row" aria-label="Week days">
+      
+      <div class="weekday" role="columnheader">mon</div>
+      
+      <div class="weekday" role="columnheader">tue</div>
+      
+      <div class="weekday" role="columnheader">wed</div>
+      
+      <div class="weekday" role="columnheader">thu</div>
+      
+      <div class="weekday" role="columnheader">fri</div>
+      
+      <div class="weekday" role="columnheader">sat</div>
+      
+      <div class="weekday" role="columnheader">sun</div>
+      
+    </div>
+    
+    <div class="calendar-days" id="calendar-days" role="grid" aria-label="Calendar days"></div>
+  </div>
+  
+  <div class="calendar-actions">
+    <button class="btn btn-primary btn-lg" id="check-price-btn" disabled>
+      Check price
+    </button>
+    <button class="btn btn-secondary btn-lg" id="book-now-btn" disabled>
+      Book now
+    </button>
+  </div>
+  
+  <!-- Guests Selector -->
+  <div class="guests-selector">
+    <label for="guests-count">Guests</label>
+    <div class="guests-input">
+      <button class="guests-btn decrement" aria-label="Decrease">−</button>
+      <input type="number" id="guests-count" value="2" min="1" max="4" aria-label="Guests">
+      <button class="guests-btn increment" aria-label="Increase">+</button>
+    </div>
+  </div>
+</div>
+    
+  </div>
+</section>
+
+<!-- Price Breakdown -->
+<section id="prices" class="section prices-section scroll-reveal" aria-labelledby="prices-title">
+  <div class="container">
+    <header class="section-header">
+      <h2 id="prices-title" class="section-title">Prices</h2>
+      <p class="section-subtitle">Transparent pricing</p>
+    </header>
+    <div class="price-breakdown" id="price-breakdown" style="display: none;">
+  <div class="price-header">
+    <h3>Price breakdown</h3>
+    <button class="price-close" aria-label="Close">&times;</button>
+  </div>
+  
+  <div class="price-table-wrapper">
+    <table class="price-table" aria-label="Price details">
+      <thead>
+        <tr>
+          <th scope="col">Period</th>
+          <th scope="col">nights</th>
+          <th scope="col">Season</th>
+          <th scope="col">Price/night</th>
+          <th scope="col">Subtotal</th>
+        </tr>
+      </thead>
+      <tbody id="price-table-body">
+        <!-- Filled by JS -->
+      </tbody>
+      <tfoot>
+        <tr class="total-row">
+          <td colspan="4"><strong>Total</strong></td>
+          <td><strong id="price-total">–</strong></td>
+        </tr>
+        <tr class="downpayment-row">
+          <td colspan="4">Down payment (30%)</td>
+          <td id="price-downpayment">–</td>
+        </tr>
+        <tr class="remainder-row">
+          <td colspan="4">Remainder</td>
+          <td id="price-remainder">–</td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+  
+  <div class="price-notes">
+    <p><strong>Notes</strong></p>
+    <ul>
+      <li>Final cleaning calculated separately.</li>
+      <li>Deposit due on arrival.</li>
+      <li>Prices incl. VAT.</li>
+      <li>Final price in booking confirmation.</li>
+    </ul>
+  </div>
+  
+  <div class="price-actions">
+    <button class="btn btn-primary btn-lg" id="price-book-now">Book now</button>
+    <button class="btn btn-secondary" id="price-back">Back to calendar</button>
+  </div>
+</div>
+
+<!-- Seasonal Overview (always visible) -->
+<section class="seasonal-overview scroll-reveal" aria-labelledby="seasonal-title">
+  <div class="container">
+    <h3 id="seasonal-title">Seasonal prices</h3>
+    <div class="season-cards">
+      
+        
+        <article class="season-card hover-zoom">
+          <header class="season-header">
+            <span class="season-name">Low season</span>
+            <span class="season-price">€80/night</span>
+          </header>
+          <div class="season-period">
+            January 1 – April 30
+          </div>
+        </article>
+        
+      
+        
+        <article class="season-card hover-zoom">
+          <header class="season-header">
+            <span class="season-name">High season</span>
+            <span class="season-price">€120/night</span>
+          </header>
+          <div class="season-period">
+            May 1 – September 30
+          </div>
+        </article>
+        
+      
+        
+        <article class="season-card hover-zoom">
+          <header class="season-header">
+            <span class="season-name">Christmas/New Year</span>
+            <span class="season-price">€150/night</span>
+          </header>
+          <div class="season-period">
+            December 20 – January 6
+          </div>
+        </article>
+        
+      
+    </div>
+    
+  </div>
+</section>
+  </div>
+</section>
+
+<!-- Booking Inquiry Form -->
+<section id="inquiry" class="section inquiry-section scroll-reveal" aria-labelledby="inquiry-title">
+  <div class="container">
+    <header class="section-header">
+      <h2 id="inquiry-title" class="section-title">Book now</h2>
+      <p class="section-subtitle">Non-binding inquiry</p>
+    </header>
+    <form class="inquiry-form" id="inquiry-form" novalidate>
+  <input type="hidden" name="property_domain" value="deine-domain.de">
+  <input type="hidden" name="lang" value="en">
+  <input type="hidden" name="arrival" id="form-arrival">
+  <input type="hidden" name="departure" id="form-departure">
+  <input type="hidden" name="guests" id="form-guests" value="2">
+  
+  <div class="form-row">
+    <div class="form-field">
+      <label for="guest_name">Name <span class="required" aria-hidden="true">*</span></label>
+      <input type="text" id="guest_name" name="guest_name" required autocomplete="name" placeholder="John Doe">
+    </div>
+    <div class="form-field">
+      <label for="guest_email">Email <span class="required" aria-hidden="true">*</span></label>
+      <input type="email" id="guest_email" name="guest_email" required autocomplete="email" placeholder="email@example.com">
+    </div>
+  </div>
+  
+  <div class="form-row">
+    <div class="form-field">
+      <label for="guest_phone">Phone</label>
+      <input type="tel" id="guest_phone" name="guest_phone" autocomplete="tel" placeholder="+49 123 456789">
+    </div>
+    <div class="form-field">
+      <label for="guest_country">country <span class="required" aria-hidden="true">*</span></label>
+      <select id="guest_country" name="guest_country" required>
+        <option value="DE" selected>Deutschland</option>
+        <option value="AT">Österreich</option>
+        <option value="CH">Schweiz</option>
+        <option value="NL">Niederlande</option>
+        <option value="BE">Belgien</option>
+        <option value="FR">Frankreich</option>
+        <option value="OTHER">other</option>
+      </select>
+    </div>
+  </div>
+  
+  <div class="form-row">
+    <div class="form-field">
+      <label for="guest_street">street <span class="required" aria-hidden="true">*</span></label>
+      <input type="text" id="guest_street" name="guest_street" required autocomplete="street-address" placeholder="Sample Street 1">
+    </div>
+    <div class="form-field">
+      <label for="guest_zip">zip <span class="required" aria-hidden="true">*</span></label>
+      <input type="text" id="guest_zip" name="guest_zip" required autocomplete="postal-code" placeholder="12345">
+    </div>
+    <div class="form-field">
+      <label for="guest_city">city <span class="required" aria-hidden="true">*</span></label>
+      <input type="text" id="guest_city" name="guest_city" required autocomplete="address-level2" placeholder="Sample City">
+    </div>
+  </div>
+  
+  <div class="form-field">
+    <label for="guest_message">Message</label>
+    <textarea id="guest_message" name="guest_message" rows="4" placeholder="Special requests..."></textarea>
+  </div>
+  
+  <div class="form-field checkbox-field">
+    <input type="checkbox" id="agb" name="agb" required>
+    <label for="agb">
+      I agree to the <a href="#imprint" data-content="terms">Terms</a> and <a href="#privacy" data-content="privacy">Privacy</a>
+    </label>
+  </div>
+  
+  <div class="form-submit">
+    <button type="submit" class="btn btn-primary btn-lg btn-block magnetic-btn" id="submit-btn">
+      <span class="btn-text">Send inquiry</span>
+      <span class="btn-loading" hidden>Sending...</span>
+    </button>
+  </div>
+  
+  <div class="form-note">
+    <p>formNote</p>
+  </div>
+</form>
+
+<!-- Success/Error Messages -->
+<div class="form-message" id="form-success" hidden role="alert">
+  <svg class="message-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/>
+  </svg>
+  <h3>Successfully sent!</h3>
+  <p>Thank you! You will receive an email with payment details shortly.</p>
+</div>
+
+<div class="form-message" id="form-error" hidden role="alert">
+  <svg class="message-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/>
+  </svg>
+  <h3>Error</h3>
+  <p>Error sending. Please try again later.</p>
+</div>
+  </div>
+</section>
+
+<!-- Content Sections (Imprint, Privacy) -->
+<section id="imprint" class="section content-section scroll-reveal" aria-labelledby="imprint-title" hidden>
+  <div class="container">
+    <h2 id="imprint-title" class="section-title">Imprint</h2>
+    <div id="imprint-content" class="content-block"></div>
+  </div>
+</section>
+
+<section id="privacy" class="section content-section scroll-reveal" aria-labelledby="privacy-title" hidden>
+  <div class="container">
+    <h2 id="privacy-title" class="section-title">Privacy</h2>
+    <div id="privacy-content" class="content-block"></div>
+  </div>
+</section>
+
+
+  </main>
+  
+  
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-info">
+          <h3>contactHost</h3>
+          <address>
+            <p><strong>Dein Name</strong></p>
+            <p>Deine Adresse</p>
+            <p><a href="tel:+49 123 456789">+49 123 456789</a></p>
+            <p><a href="mailto:deine@email.de">deine@email.de</a></p>
+            <p><a href="https://deine-website.de" target="_blank" rel="noopener">Website</a></p>
+          </address>
+        </div>
+        <div class="footer-links">
+          <h3>Quick Links</h3>
+          <nav aria-label="Footer Navigation">
+            <ul>
+              <li><a href="https://deine-domain.de/en/#gallery">Gallery</a></li>
+              <li><a href="https://deine-domain.de/en/#prices">Prices</a></li>
+              <li><a href="https://deine-domain.de/en/#features">Features</a></li>
+              <li><a href="https://deine-domain.de/en/#calendar">Availability Calendar</a></li>
+              <li><a href="https://deine-domain.de/en/#inquiry">Book now</a></li>
+            </ul>
+          </nav>
+        </div>
+        <div class="footer-legal">
+          <h3>Rechtliches</h3>
+          <nav aria-label="Legal Links">
+            <ul>
+              <li><a href="#imprint">Imprint</a></li>
+              <li><a href="#privacy">Privacy</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Name deiner Ferienwohnung. All rights reserved.</p>
+        <p class="made-with">Made with ❤️ for your perfect stay</p>
+      </div>
+    </div>
+  </footer>
+  
+  
+  <!-- Modals -->
+  <div id="booking-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
+    <div class="modal-overlay" tabindex="-1"></div>
+    <div class="modal-content">
+      <button class="modal-close" aria-label="Close">&times;</button>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+  
+  <div id="content-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="content-modal-title" hidden>
+    <div class="modal-overlay" tabindex="-1"></div>
+    <div class="modal-content large">
+      <button class="modal-close" aria-label="Close">&times;</button>
+      <div id="content-modal-body"></div>
+    </div>
+  </div>
+  
+  <!-- Toast Container -->
+  <div id="toast-container" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+  
+  <!-- Scripts -->
+  <script>
+    // Config passed to JS
+    window.FH_CONFIG = {
+      apiBase: 'https://deine-domain.de/wp-json/fh/v1',
+      propertyDomain: 'deine-domain.de',
+      defaultLang: 'en',
+      siteSlug: 'deine-domain',
+      minNights: 2,
+      maxNights: 21,
+      maxGuests: 4,
+      downpaymentPercent: 30,
+      currency: 'EUR',
+      translations: {
+  "bookNow": {
+    "de": "Jetzt buchen",
+    "en": "Book now"
+  },
+  "checkAvailability": {
+    "de": "Verfügbarkeit prüfen",
+    "en": "Check availability"
+  },
+  "gallery": {
+    "de": "Bilder",
+    "en": "Gallery"
+  },
+  "prices": {
+    "de": "Preise",
+    "en": "Prices"
+  },
+  "features": {
+    "de": "Ausstattung",
+    "en": "Features"
+  },
+  "inquiry": {
+    "de": "Anfrage",
+    "en": "Inquiry"
+  },
+  "calendar": {
+    "de": "Belegungskalender",
+    "en": "Availability Calendar"
+  },
+  "selectDates": {
+    "de": "Reisezeitraum wählen",
+    "en": "Select dates"
+  },
+  "guests": {
+    "de": "Gäste",
+    "en": "Guests"
+  },
+  "name": {
+    "de": "Name",
+    "en": "Name"
+  },
+  "email": {
+    "de": "E-Mail",
+    "en": "Email"
+  },
+  "phone": {
+    "de": "Telefon",
+    "en": "Phone"
+  },
+  "message": {
+    "de": "Nachricht",
+    "en": "Message"
+  },
+  "submit": {
+    "de": "Anfrage senden",
+    "en": "Send inquiry"
+  },
+  "sending": {
+    "de": "Wird gesendet...",
+    "en": "Sending..."
+  },
+  "success": {
+    "de": "Danke! Sie erhalten zeitnah eine E-Mail mit Bankdaten.",
+    "en": "Thank you! You will receive an email with payment details shortly."
+  },
+  "error": {
+    "de": "Fehler beim Senden. Bitte versuchen Sie es später erneut.",
+    "en": "Error sending. Please try again later."
+  },
+  "checkPrice": {
+    "de": "Preis prüfen",
+    "en": "Check price"
+  },
+  "prevSlide": {
+    "de": "Vorheriges Bild",
+    "en": "Previous slide"
+  },
+  "nextSlide": {
+    "de": "Nächstes Bild",
+    "en": "Next slide"
+  },
+  "prevImage": {
+    "de": "Vorheriges Bild",
+    "en": "Previous image"
+  },
+  "nextImage": {
+    "de": "Nächstes Bild",
+    "en": "Next image"
+  },
+  "prevMonth": {
+    "de": "Vorheriger Monat",
+    "en": "Previous month"
+  },
+  "nextMonth": {
+    "de": "Nächster Monat",
+    "en": "Next month"
+  },
+  "weekDays": {
+    "de": "Wochentage",
+    "en": "Week days"
+  },
+  "calendarDays": {
+    "de": "Kalendertage",
+    "en": "Calendar days"
+  },
+  "minNights": {
+    "de": "Mindestnächte",
+    "en": "Min nights"
+  },
+  "nightsShort": {
+    "de": "Nächte",
+    "en": "nights"
+  },
+  "nights": {
+    "de": "Nächte",
+    "en": "nights"
+  },
+  "clickToSelect": {
+    "de": "Klicken zum Auswählen",
+    "en": "Click to select"
+  },
+  "decrease": {
+    "de": "Verringern",
+    "en": "Decrease"
+  },
+  "increase": {
+    "de": "Erhöhen",
+    "en": "Increase"
+  },
+  "close": {
+    "de": "Schließen",
+    "en": "Close"
+  },
+  "enlargeImage": {
+    "de": "Bild vergrößern",
+    "en": "Enlarge image"
+  },
+  "image": {
+    "de": "Bild",
+    "en": "Image"
+  },
+  "loadMore": {
+    "de": "Mehr laden",
+    "en": "Load more"
+  },
+  "gallerySubtitle": {
+    "de": "Einblicke in Ihre Ferienwohnung",
+    "en": "Insights into your holiday home"
+  },
+  "featuresSubtitle": {
+    "de": "Was Sie erwartet",
+    "en": "What to expect"
+  },
+  "calendarSubtitle": {
+    "de": "Wählen Sie Ihren Reisezeitraum",
+    "en": "Select your travel dates"
+  },
+  "pricesSubtitle": {
+    "de": "Transparente Preisübersicht",
+    "en": "Transparent pricing"
+  },
+  "inquirySubtitle": {
+    "de": "Unverbindlich anfragen",
+    "en": "Non-binding inquiry"
+  },
+  "sleepsUpTo": {
+    "de": "Platz für bis zu",
+    "en": "Sleeps up to"
+  },
+  "from": {
+    "de": "ab",
+    "en": "from"
+  },
+  "night": {
+    "de": "Nacht",
+    "en": "night"
+  },
+  "confirmDates": {
+    "de": "Termine bestätigen",
+    "en": "Confirm dates"
+  },
+  "clearDates": {
+    "de": "Termine löschen",
+    "en": "Clear dates"
+  },
+  "yourSelection": {
+    "de": "Ihre Auswahl",
+    "en": "Your selection"
+  },
+  "arrival": {
+    "de": "Anreise",
+    "en": "Arrival"
+  },
+  "departure": {
+    "de": "Abreise",
+    "en": "Departure"
+  },
+  "estimatedPrice": {
+    "de": "Geschätzter Preis",
+    "en": "Estimated price"
+  },
+  "selectArrival": {
+    "de": "Anreise wählen",
+    "en": "Select arrival"
+  },
+  "selectDeparture": {
+    "de": "Abreise wählen",
+    "en": "Select departure"
+  },
+  "selectDate": {
+    "de": "Datum wählen",
+    "en": "Select date"
+  },
+  "arrivalBeforeDeparture": {
+    "de": "Anreise muss vor Abreise liegen",
+    "en": "Arrival must be before departure"
+  },
+  "minNightsError": {
+    "de": "Mindestaufenthalt:",
+    "en": "Minimum stay:"
+  },
+  "maxNightsError": {
+    "de": "Maximalaufenthalt:",
+    "en": "Maximum stay:"
+  },
+  "datesNotAvailable": {
+    "de": "Der gewählte Zeitraum ist leider nicht verfügbar.",
+    "en": "The selected period is not available."
+  },
+  "calculating": {
+    "de": "Wird berechnet...",
+    "en": "Calculating..."
+  },
+  "priceError": {
+    "de": "Fehler bei der Preisberechnung.",
+    "en": "Price calculation error."
+  },
+  "priceBreakdown": {
+    "de": "Preisaufstellung",
+    "en": "Price breakdown"
+  },
+  "priceDetails": {
+    "de": "Preisdetails",
+    "en": "Price details"
+  },
+  "period": {
+    "de": "Zeitraum",
+    "en": "Period"
+  },
+  "season": {
+    "de": "Saison",
+    "en": "Season"
+  },
+  "pricePerNight": {
+    "de": "Preis/Nacht",
+    "en": "Price/night"
+  },
+  "subtotal": {
+    "de": "Zwischensumme",
+    "en": "Subtotal"
+  },
+  "total": {
+    "de": "Gesamt",
+    "en": "Total"
+  },
+  "downpayment": {
+    "de": "Anzahlung",
+    "en": "Down payment"
+  },
+  "remainder": {
+    "de": "Restbetrag",
+    "en": "Remainder"
+  },
+  "priceNoteTitle": {
+    "de": "Hinweise",
+    "en": "Notes"
+  },
+  "priceNoteCleaning": {
+    "de": "Endreinigung wird separat berechnet.",
+    "en": "Final cleaning calculated separately."
+  },
+  "priceNoteDeposit": {
+    "de": "Kaution wird bei Anreise fällig.",
+    "en": "Deposit due on arrival."
+  },
+  "priceNoteTax": {
+    "de": "Preise inkl. MwSt.",
+    "en": "Prices incl. VAT."
+  },
+  "priceNoteFinal": {
+    "de": "Endgültiger Preis in der Buchungsbestätigung.",
+    "en": "Final price in booking confirmation."
+  },
+  "seasonalPrices": {
+    "de": "Saisonale Preise",
+    "en": "Seasonal prices"
+  },
+  "yearRound": {
+    "de": "Ganzjährig",
+    "en": "Year-round"
+  },
+  "standard": {
+    "de": "Standard",
+    "en": "Standard"
+  },
+  "backToCalendar": {
+    "de": "Zurück zum Kalender",
+    "en": "Back to calendar"
+  },
+  "namePlaceholder": {
+    "de": "Max Mustermann",
+    "en": "John Doe"
+  },
+  "emailPlaceholder": {
+    "de": "email@beispiel.de",
+    "en": "email@example.com"
+  },
+  "phonePlaceholder": {
+    "de": "+49 123 456789",
+    "en": "+49 123 456789"
+  },
+  "streetPlaceholder": {
+    "de": "Musterstraße 1",
+    "en": "Sample Street 1"
+  },
+  "zipPlaceholder": {
+    "de": "12345",
+    "en": "12345"
+  },
+  "cityPlaceholder": {
+    "de": "Musterstadt",
+    "en": "Sample City"
+  },
+  "messagePlaceholder": {
+    "de": "Besondere Wünsche...",
+    "en": "Special requests..."
+  },
+  "agreeTerms": {
+    "de": "Ich stimme den",
+    "en": "I agree to the"
+  },
+  "terms": {
+    "de": "AGB",
+    "en": "Terms"
+  },
+  "and": {
+    "de": "und",
+    "en": "and"
+  },
+  "privacy": {
+    "de": "Datenschutz",
+    "en": "Privacy"
+  },
+  "imprint": {
+    "de": "Impressum",
+    "en": "Imprint"
+  },
+  "website": {
+    "de": "Website",
+    "en": "Website"
+  },
+  "allRightsReserved": {
+    "de": "Alle Rechte vorbehalten.",
+    "en": "All rights reserved."
+  },
+  "skipToContent": {
+    "de": "Zum Hauptinhalt springen",
+    "en": "Skip to main content"
+  },
+  "confirmation": {
+    "de": "Bestätigung",
+    "en": "Confirmation"
+  },
+  "cancellation": {
+    "de": "Stornierung",
+    "en": "Cancellation"
+  },
+  "confirmationTitle": {
+    "de": "Bestätigung",
+    "en": "Confirmation"
+  },
+  "successTitle": {
+    "de": "Erfolgreich gesendet!",
+    "en": "Successfully sent!"
+  },
+  "errorTitle": {
+    "de": "Fehler",
+    "en": "Error"
+  },
+  "pleaseFixErrors": {
+    "de": "Bitte korrigieren Sie die markierten Felder.",
+    "en": "Please fix the highlighted fields."
+  },
+  "invalidEmail": {
+    "de": "Ungültige E-Mail-Adresse.",
+    "en": "Invalid email address."
+  },
+  "fieldRequired": {
+    "de": "Dieses Feld ist erforderlich.",
+    "en": "This field is required."
+  },
+  "selectDatesFirst": {
+    "de": "Bitte wählen Sie zuerst einen Reisezeitraum.",
+    "en": "Please select travel dates first."
+  },
+  "loading": {
+    "de": "Lädt...",
+    "en": "Loading..."
+  },
+  "contentNotAvailable": {
+    "de": "Inhalt nicht verfügbar.",
+    "en": "Content not available."
+  },
+  "contentLoadError": {
+    "de": "Fehler beim Laden des Inhalts.",
+    "en": "Error loading content."
+  },
+  "backToTop": {
+    "de": "Nach oben",
+    "en": "Back to top"
+  }
+},
+      design: {
+  "preset": "modern-minimal",
+  "colors": {
+    "primary": "#2c5f3d",
+    "secondary": "#f5f5f5",
+    "accent": "#d4a843",
+    "background": "#ffffff",
+    "text": "#1a1a1a"
+  },
+  "fonts": {
+    "heading": "Inter",
+    "body": "Inter"
+  },
+  "layout": "hero-gallery-calendar",
+  "components": {
+    "gallery": "swiper-masonry",
+    "calendar": "inline-range",
+    "effects": [
+      "scroll-reveal",
+      "hover-zoom"
+    ]
+  }
+}
+    };
+  </script>
+  
+  <!-- Component Scripts -->
+  <script>// ========================================
+   // API Module - Communication with WordPress Backend
+   // ========================================
+
+class FHP_API {
+  constructor(config) {
+    this.config = config;
+    this.cache = new Map();
+    this.cacheTimeout = 5 * 60 * 1000; // 5 minutes
+  }
+
+  // Build URL with lang parameter
+  buildUrl(endpoint, params = {}) {
+    const url = new URL(`${this.config.apiBase}${endpoint}`);
+    url.searchParams.set('lang', params.lang || this.config.defaultLang);
+    url.searchParams.set('domain', this.config.propertyDomain);
+    Object.entries(params).forEach(([key, value]) => {
+      if (key !== 'lang' && key !== 'domain' && value !== undefined && value !== '') {
+        url.searchParams.set(key, value);
+      }
+    });
+    return url.toString();
+  }
+
+  // Fetch with caching
+  async fetchWithCache(url, options = {}) {
+    const cacheKey = url;
+    const cached = this.cache.get(cacheKey);
+    if (cached && Date.now() - cached.timestamp < this.cacheTimeout) {
+      return cached.data;
+    }
+
+    try {
+      const response = await fetch(url, {
+        ...options,
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          ...options.headers
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error(`API Error: ${response.status} ${response.statusText}`);
+      }
+
+      const data = await response.json();
+      this.cache.set(cacheKey, { data, timestamp: Date.now() });
+      return data;
+    } catch (error) {
+      console.error('[FH API] Fetch failed:', error);
+      throw error;
+    }
+  }
+
+  // Get availability (booked dates, min/max nights)
+  async getAvailability(lang = this.config.defaultLang) {
+    return this.fetchWithCache(this.buildUrl('/availability', { lang }));
+  }
+
+  // Get price quote for date range
+  async getQuote(params) {
+    const { arrival, departure, adults = 2, children = 0, lang = this.config.defaultLang } = params;
+    return this.fetchWithCache(this.buildUrl('/quote', { arrival, departure, adults, children, lang }));
+  }
+
+  // Submit booking
+  async submitBooking(data) {
+    const url = this.buildUrl('/book');
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+
+    if (!response.ok) {
+      const error = await response.json().catch(() => ({ message: 'Booking failed' }));
+      throw new Error(error.message || 'Booking failed');
+    }
+
+    return response.json();
+  }
+
+  // Get content (imprint, privacy, etc.)
+  async getContent(key, lang = this.config.defaultLang) {
+    return this.fetchWithCache(this.buildUrl(`/content/${key}`, { lang }));
+  }
+
+  // Health check
+  async healthCheck() {
+    return this.fetchWithCache(this.buildUrl('/health'));
+  }
+
+  // Clear cache
+  clearCache() {
+    this.cache.clear();
+  }
+}
+
+// Export for global use
+window.FHP_API = FHP_API;</script>
+  <script>// ========================================
+   // Gallery Module - Multiple gallery types
+   // ========================================
+
+class FH_Gallery {
+  constructor(config) {
+    this.config = config;
+    this.galleries = [];
+    this.lightbox = null;
+    this.init();
+  }
+
+  init() {
+    // Wait for DOM
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => this.setup());
+    } else {
+      this.setup();
+    }
+  }
+
+  setup() {
+    this.initSwiperGalleries();
+    this.initFlickityGalleries();
+    this.initMasonryGalleries();
+    this.initLightbox();
+    this.initGridGalleries();
+    this.initThumbnails();
+  }
+
+  // Swiper Galleries (fullscreen, masonry with swiper)
+  initSwiperGalleries() {
+    if (typeof Swiper === 'undefined') {
+      this.loadSwiper(() => this.initSwiperGalleries());
+      return;
+    }
+
+    // Hero fullscreen slider
+    document.querySelectorAll('.hero-fullscreen.swiper:not(.thumbs)').forEach(el => {
+      if (el.swiper) return;
+      const thumbsEl = document.querySelector('.hero-thumbnails.swiper[data-thumbs="true"]');
+      const thumbs = thumbsEl ? thumbsEl.swiper : null;
+
+      const swiper = new Swiper(el, {
+        loop: true,
+        speed: 600,
+        effect: 'fade',
+        fadeEffect: { crossFade: true },
+        autoplay: { delay: 6000, disableOnInteraction: false },
+        pagination: { el: '.swiper-pagination', clickable: true },
+        navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+        thumbs: thumbs ? { swiper: thumbs } : undefined,
+        on: {
+          slideChange: () => this.updateThumbs(swiper, thumbs)
+        }
+      });
+      this.galleries.push(swiper);
+    });
+
+    // Gallery fullscreen
+    document.querySelectorAll('.gallery-fullscreen.swiper:not([data-thumbs])').forEach(el => {
+      if (el.swiper) return;
+      const thumbsContainer = el.parentElement.querySelector('.gallery-thumbnails.swiper[data-thumbs="true"]');
+      const thumbs = thumbsContainer ? this.initThumbsSwiper(thumbsContainer) : null;
+
+      const swiper = new Swiper(el, {
+        loop: true,
+        speed: 500,
+        spaceBetween: 0,
+        autoplay: { delay: 5000, disableOnInteraction: false },
+        pagination: { el: '.swiper-pagination', clickable: true },
+        navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+        thumbs: thumbs ? { swiper: thumbs } : undefined
+      });
+      this.galleries.push(swiper);
+    });
+  }
+
+  initThumbsSwiper(container) {
+    if (container.swiper) return container.swiper;
+    const swiper = new Swiper(container, {
+      loop: true,
+      spaceBetween: 8,
+      slidesPerView: 'auto',
+      freeMode: true,
+      watchSlidesProgress: true,
+      slideToClickedSlide: true
+    });
+    this.galleries.push(swiper);
+    return swiper;
+  }
+
+  initThumbsSwiper(container) {
+    if (container.swiper) return container.swiper;
+    const swiper = new Swiper(container, {
+      loop: true,
+      spaceBetween: 8,
+      slidesPerView: 'auto',
+      freeMode: true,
+      watchSlidesProgress: true,
+      slideToClickedSlide: true
+    });
+    this.galleries.push(swiper);
+    return swiper;
+  }
+
+  updateThumbs(mainSwiper, thumbsSwiper) {
+    if (thumbsSwiper) {
+      thumbsSwiper.slideToLoop(mainSwiper.realIndex);
+    }
+  }
+
+  // Flickity Gallery
+  initFlickityGalleries() {
+    if (typeof Flickity === 'undefined') {
+      this.loadFlickity(() => this.initFlickityGalleries());
+      return;
+    }
+
+    document.querySelectorAll('.gallery-flickity[data-flickity]').forEach(el => {
+      if (el.flickity) return;
+      try {
+        const options = JSON.parse(el.dataset.flickity);
+        const flkty = new Flickity(el, options);
+        this.galleries.push(flkty);
+      } catch (e) {
+        console.warn('[FH Gallery] Flickity init failed:', e);
+      }
+    });
+  }
+
+  // Masonry Gallery with Lightbox
+  initMasonryGalleries() {
+    document.querySelectorAll('.gallery-masonry').forEach(gallery => {
+      if (gallery.dataset.masonryInit) return;
+      gallery.dataset.masonryInit = 'true';
+
+      // Setup click handlers for lightbox
+      gallery.querySelectorAll('.gallery-item').forEach((item, index) => {
+        item.addEventListener('click', () => this.openLightbox(index, gallery));
+        item.style.cursor = 'zoom-in';
+      });
+    });
+  }
+
+  // Grid Gallery
+  initGridGalleries() {
+    document.querySelectorAll('.gallery-grid, .gallery-lightbox').forEach(gallery => {
+      if (gallery.dataset.gridInit) return;
+      gallery.dataset.gridInit = 'true';
+
+      gallery.querySelectorAll('.grid-item, .lightbox-item').forEach((item, index) => {
+        item.addEventListener('click', () => this.openLightbox(index, gallery));
+        item.style.cursor = 'zoom-in';
+      });
+    });
+  }
+
+  // Lightbox
+  initLightbox() {
+    this.lightbox = document.getElementById('lightbox');
+    if (!this.lightbox) return;
+
+    this.lightboxImg = document.getElementById('lightbox-img');
+    this.lightboxCaption = document.getElementById('lightbox-caption');
+    this.lightboxCounter = this.lightbox.querySelector('.lightbox-counter');
+
+    // Close handlers
+    this.lightbox.querySelector('.lightbox-close').addEventListener('click', () => this.closeLightbox());
+    this.lightbox.querySelector('.lightbox-prev').addEventListener('click', () => this.navigateLightbox(-1));
+    this.lightbox.querySelector('.lightbox-next').addEventListener('click', () => this.navigateLightbox(1));
+    this.lightbox.querySelector('.modal-overlay').addEventListener('click', () => this.closeLightbox());
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (!this.lightbox.hidden) {
+        if (e.key === 'Escape') this.closeLightbox();
+        if (e.key === 'ArrowLeft') this.navigateLightbox(-1);
+        if (e.key === 'ArrowRight') this.navigateLightbox(1);
+      }
+    });
+  }
+
+  openLightbox(startIndex, gallery) {
+    this.currentGallery = gallery;
+    this.currentIndex = startIndex;
+    this.galleryItems = Array.from(gallery.querySelectorAll('.gallery-item, .grid-item, .lightbox-item'));
+    this.showLightboxImage(startIndex);
+    this.lightbox.hidden = false;
+    document.body.style.overflow = 'hidden';
+    this.trapFocus(this.lightbox);
+  }
+
+  showLightboxImage(index) {
+    const item = this.galleryItems[index];
+    if (!item) return;
+
+    const img = item.querySelector('img');
+    const fullSrc = item.dataset.full || img.src;
+    const caption = item.dataset.caption || img.alt || '';
+
+    this.lightboxImg.src = fullSrc;
+    this.lightboxImg.alt = img.alt || '';
+    this.lightboxCaption.textContent = caption;
+    this.lightboxCounter.textContent = `${index + 1} / ${this.galleryItems.length}`;
+    this.currentIndex = index;
+  }
+
+  navigateLightbox(direction) {
+    if (!this.galleryItems) return;
+    let newIndex = this.currentIndex + direction;
+    if (newIndex < 0) newIndex = this.galleryItems.length - 1;
+    if (newIndex >= this.galleryItems.length) newIndex = 0;
+    this.showLightboxImage(newIndex);
+  }
+
+  closeLightbox() {
+    this.lightbox.hidden = true;
+    document.body.style.overflow = '';
+    this.currentGallery = null;
+    this.galleryItems = null;
+  }
+
+  trapFocus(element) {
+    const focusable = element.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    first?.focus();
+
+    element.addEventListener('keydown', (e) => {
+      if (e.key === 'Tab') {
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last?.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first?.focus();
+        }
+      }
+    }, { once: true });
+  }
+
+  // Thumbnails sync
+  initThumbnails() {
+    // Handled by Swiper thumbs
+  }
+
+  // Load external libraries
+  loadSwiper(callback) {
+    if (window.Swiper) { callback(); return; }
+    if (document.querySelector('script[src*="swiper"]')) return;
+
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js';
+    script.onload = callback;
+    document.head.appendChild(script);
+
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css';
+    document.head.appendChild(link);
+  }
+
+  loadFlickity(callback) {
+    if (window.Flickity) { callback(); return; }
+    if (document.querySelector('script[src*="flickity"]')) return;
+
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/flickity@2/dist/flickity.pkgd.min.js';
+    script.onload = callback;
+    document.head.appendChild(script);
+
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'https://cdn.jsdelivr.net/npm/flickity@2/dist/flickity.min.css';
+    document.head.appendChild(link);
+  }
+}
+
+// Auto-init
+if (typeof window !== 'undefined') {
+  window.FH_Gallery = FH_Gallery;
+}</script>
+  <script>// ========================================
+   // Calendar Module - Multiple calendar types
+   // ========================================
+
+class FH_Calendar {
+  constructor(config) {
+    this.config = config;
+    this.state = {
+      currentMonth: new Date(),
+      selectedDates: { arrival: null, departure: null },
+      hoveredDate: null,
+      bookedDates: [],
+      minNights: config.minNights || 2,
+      maxNights: config.maxNights || 28,
+      guests: 2,
+      availabilityLoaded: false
+    };
+    this.calendars = [];
+    this.init();
+  }
+
+  init() {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => this.setup());
+    } else {
+      this.setup();
+    }
+  }
+
+  setup() {
+    this.loadAvailability();
+    this.initInlineCalendars();
+    this.initModalCalendars();
+    this.initSidebarCalendars();
+    this.initDropdownCalendars();
+    this.initGuestsSelectors();
+  }
+
+  // Load availability from API
+  async loadAvailability() {
+    try {
+      const data = await window.FH_API_INSTANCE.getAvailability(this.config.defaultLang);
+      this.state.bookedDates = data.booked || [];
+      this.state.minNights = data.min_nights || this.state.minNights;
+      this.state.maxNights = data.max_nights || this.state.maxNights;
+      this.state.availabilityLoaded = true;
+      this.renderAll();
+    } catch (error) {
+      console.error('[FH Calendar] Failed to load availability:', error);
+      // Fallback: no booked dates
+      this.state.availabilityLoaded = true;
+      this.renderAll();
+    }
+  }
+
+  // Get all calendar containers
+  getCalendarContainers() {
+    return {
+      inline: document.getElementById('calendar-days'),
+      modal: document.getElementById('modal-calendar-days'),
+      sidebar: document.getElementById('sidebar-calendar-days'),
+      popoverArrival: document.getElementById('popover-arrival-days'),
+      popoverDeparture: document.getElementById('popover-departure-days')
+    };
+  }
+
+  // Render all calendars
+  renderAll() {
+    const containers = this.getCalendarContainers();
+    Object.values(containers).forEach(container => {
+      if (container) this.renderMonth(container, this.state.currentMonth);
+    });
+    this.updateMonthHeaders();
+    this.updateSummaries();
+    this.updateActionButtons();
+  }
+
+  // Render a single month grid
+  renderMonth(container, date) {
+    const year = date.getFullYear();
+    const month = date.getMonth();
+    const firstDay = new Date(year, month, 1);
+    const lastDay = new Date(year, month + 1, 0);
+    const startDay = (firstDay.getDay() + 6) % 7; // Monday = 0
+    const daysInMonth = lastDay.getDate();
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    let html = '';
+
+    // Previous month days
+    const prevMonthLastDay = new Date(year, month, 0).getDate();
+    for (let i = startDay - 1; i >= 0; i--) {
+      const dayNum = prevMonthLastDay - i;
+      const dayDate = new Date(year, month - 1, dayNum);
+      html += this.renderDay(dayNum, dayDate, true, true);
+    }
+
+    // Current month days
+    for (let day = 1; day <= daysInMonth; day++) {
+      const dayDate = new Date(year, month, day);
+      html += this.renderDay(day, dayDate, false, false);
+    }
+
+    // Next month days
+    const totalCells = startDay + daysInMonth;
+    const nextMonthDays = (7 - (totalCells % 7)) % 7;
+    for (let day = 1; day <= nextMonthDays; day++) {
+      const dayDate = new Date(year, month + 1, day);
+      html += this.renderDay(day, dayDate, true, true);
+    }
+
+    container.innerHTML = html;
+    container.dataset.month = month;
+    container.dataset.year = year;
+
+    // Add click handlers
+    container.querySelectorAll('.calendar-day:not(.disabled):not(.booked):not(.other-month)').forEach(dayEl => {
+      dayEl.addEventListener('click', () => this.handleDayClick(dayEl, container));
+      dayEl.addEventListener('mouseenter', () => this.handleDayHover(dayEl, container));
+      dayEl.addEventListener('mouseleave', () => this.handleDayLeave(container));
+    });
+  }
+
+  // Render single day
+  renderDay(dayNum, date, isOtherMonth, isDisabled) {
+    const dateStr = this.formatDate(date);
+    const isToday = this.isSameDay(date, new Date());
+    const isBooked = this.state.bookedDates.includes(dateStr);
+    const isPast = date < new Date().setHours(0,0,0,0);
+    const isSelected = this.isDateSelected(dateStr);
+    const isInRange = this.isDateInRange(dateStr);
+    const isStart = this.state.selectedDates.arrival && dateStr === this.state.selectedDates.arrival;
+    const isEnd = this.state.selectedDates.departure && dateStr === this.state.selectedDates.departure;
+
+    const classes = ['calendar-day'];
+    if (isOtherMonth) classes.push('other-month');
+    if (isDisabled || isPast || isOtherMonth) classes.push('disabled');
+    if (isBooked) classes.push('booked');
+    if (isSelected) classes.push('selected');
+    if (isInRange && !isStart && !isEnd) classes.push('in-range');
+    if (isStart) classes.push('start-range');
+    if (isEnd) classes.push('end-range');
+    if (isToday && !isSelected && !isBooked) classes.push('today');
+
+    return `<button type="button" class="${classes.join(' ')}" 
+      data-date="${dateStr}" 
+      aria-label="${this.formatDateForAria(date)}"
+      aria-selected="${isSelected}"
+      aria-disabled="${isDisabled || isBooked || isPast || isOtherMonth}"
+      ${isDisabled || isBooked || isPast || isOtherMonth ? 'disabled' : ''}>
+      ${dayNum}
+    </button>`;
+  }
+
+  // Handle day click
+  handleDayClick(dayEl, container) {
+    const dateStr = dayEl.dataset.date;
+    const { arrival, departure } = this.state.selectedDates;
+
+    if (!arrival || (arrival && departure)) {
+      // New selection
+      this.state.selectedDates = { arrival: dateStr, departure: null };
+      this.state.hoveredDate = null;
+    } else if (dateStr === arrival) {
+      // Clicked arrival again - clear
+      this.state.selectedDates = { arrival: null, departure: null };
+    } else if (dateStr < arrival) {
+      // New arrival before current arrival
+      this.state.selectedDates = { arrival: dateStr, departure: arrival };
+    } else {
+      // New departure
+      const nights = this.calculateNights(arrival, dateStr);
+      if (nights < this.state.minNights) {
+        this.showToast(`${this.t('minNightsError')} ${this.state.minNights} ${this.t('nights')}`, 'error');
+        return;
+      }
+      if (nights > this.state.maxNights) {
+        this.showToast(`${this.t('maxNightsError')} ${this.state.maxNights} ${this.t('nights')}`, 'error');
+        return;
+      }
+      // Check for booked dates in range
+      if (this.hasBookedInRange(arrival, dateStr)) {
+        this.showToast(this.t('datesNotAvailable'), 'error');
+        return;
+      }
+      this.state.selectedDates.departure = dateStr;
+    }
+
+    this.renderAll();
+    this.updateActionButtons();
+  }
+
+  // Handle day hover (for range preview)
+  handleDayHover(dayEl, container) {
+    if (!this.state.selectedDates.arrival || this.state.selectedDates.departure) return;
+    const dateStr = dayEl.dataset.date;
+    if (dateStr <= this.state.selectedDates.arrival) return;
+    this.state.hoveredDate = dateStr;
+    this.renderRangePreview(container);
+  }
+
+  handleDayLeave(container) {
+    this.state.hoveredDate = null;
+    this.renderRangePreview(container);
+  }
+
+  renderRangePreview(container) {
+    const { arrival } = this.state.selectedDates;
+    const hover = this.state.hoveredDate;
+    if (!arrival || !hover) return;
+
+    container.querySelectorAll('.calendar-day:not(.disabled):not(.booked):not(.other-month)').forEach(dayEl => {
+      const dateStr = dayEl.dataset.date;
+      const isInPreview = dateStr > arrival && dateStr < hover;
+      dayEl.classList.toggle('in-range', isInPreview);
+    });
+  }
+
+  // Update month headers
+  updateMonthHeaders() {
+    const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+      'July', 'August', 'September', 'October', 'November', 'December'];
+    const monthName = monthNames[this.state.currentMonth.getMonth()];
+    const year = this.state.currentMonth.getFullYear();
+
+    document.querySelectorAll('.current-month, #modal-current-month, #sidebar-current-month, #popover-arrival-month, #popover-departure-month').forEach(el => {
+      el.textContent = `${monthName} ${year}`;
+    });
+  }
+
+  // Update summaries
+  updateSummaries() {
+    const { arrival, departure } = this.state.selectedDates;
+    const nights = arrival && departure ? this.calculateNights(arrival, departure) : null;
+
+    const updateEl = (id, value) => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = value;
+    };
+
+    updateEl('summary-arrival', arrival ? this.formatDateForDisplay(arrival) : '–');
+    updateEl('summary-departure', departure ? this.formatDateForDisplay(departure) : '–');
+    updateEl('summary-nights', nights !== null ? `${nights} ${this.t('nightsShort')}` : '–');
+    updateEl('summary-guests', this.state.guests);
+
+    updateEl('modal-summary-arrival', arrival ? this.formatDateForDisplay(arrival) : '–');
+    updateEl('modal-summary-departure', departure ? this.formatDateForDisplay(departure) : '–');
+    updateEl('modal-summary-nights', nights !== null ? `${nights} ${this.t('nightsShort')}` : '–');
+    updateEl('modal-summary-guests', this.state.guests);
+
+    updateEl('sidebar-arrival', arrival ? this.formatDateForDisplay(arrival) : '–');
+    updateEl('sidebar-departure', departure ? this.formatDateForDisplay(departure) : '–');
+    updateEl('sidebar-nights', nights !== null ? `${nights} ${this.t('nightsShort')}` : '–');
+    updateEl('sidebar-guests', this.state.guests);
+
+    updateEl('trigger-dates', arrival && departure 
+      ? `${this.formatDateForDisplay(arrival)} – ${this.formatDateForDisplay(departure)}`
+      : arrival ? `${this.formatDateForDisplay(arrival)} – ${this.t('selectDeparture')}`
+      : this.t('clickToSelect'));
+  }
+
+  // Update action buttons
+  updateActionButtons() {
+    const { arrival, departure } = this.state.selectedDates;
+    const isComplete = arrival && departure;
+    const nights = isComplete ? this.calculateNights(arrival, departure) : 0;
+    const validNights = nights >= this.state.minNights && nights <= this.state.maxNights;
+    const noBookedInRange = !this.hasBookedInRange(arrival, departure);
+
+    const buttons = [
+      'check-price-btn', 'book-now-btn',
+      'modal-confirm-dates', 'sidebar-check-price', 'sidebar-book-now',
+      'dropdown-check-price', 'dropdown-book-now'
+    ];
+
+    buttons.forEach(id => {
+      const btn = document.getElementById(id);
+      if (btn) {
+        btn.disabled = !(isComplete && validNights && noBookedInRange);
+      }
+    });
+
+    // Clear dates button
+    const clearBtns = ['modal-clear-dates'];
+    clearBtns.forEach(id => {
+      const btn = document.getElementById(id);
+      if (btn) btn.style.display = isComplete ? 'block' : 'none';
+    });
+  }
+
+  // Navigation
+  navigateMonth(direction) {
+    this.state.currentMonth = new Date(
+      this.state.currentMonth.getFullYear(),
+      this.state.currentMonth.getMonth() + direction,
+      1
+    );
+    this.renderAll();
+  }
+
+  // Clear selection
+  clearSelection() {
+    this.state.selectedDates = { arrival: null, departure: null };
+    this.renderAll();
+  }
+
+  // Set guests
+  setGuests(count) {
+    this.state.guests = Math.max(1, Math.min(count, this.config.maxGuests || 10));
+    this.updateSummaries();
+    this.updateActionButtons();
+  }
+
+  // Check if date is selected
+  isDateSelected(dateStr) {
+    return dateStr === this.state.selectedDates.arrival || dateStr === this.state.selectedDates.departure;
+  }
+
+  // Check if date is in range
+  isDateInRange(dateStr) {
+    const { arrival, departure } = this.state.selectedDates;
+    if (!arrival || !departure) return false;
+    return dateStr > arrival && dateStr < departure;
+  }
+
+  // Calculate nights between dates
+  calculateNights(arrival, departure) {
+    const a = new Date(arrival);
+    const d = new Date(departure);
+    return Math.round((d - a) / (1000 * 60 * 60 * 24));
+  }
+
+  // Check for booked dates in range
+  hasBookedInRange(arrival, departure) {
+    if (!arrival || !departure) return false;
+    const start = new Date(arrival);
+    const end = new Date(departure);
+    for (let d = new Date(start); d < end; d.setDate(d.getDate() + 1)) {
+      if (this.state.bookedDates.includes(this.formatDate(d))) return true;
+    }
+    return false;
+  }
+
+  // Format date as YYYY-MM-DD
+  formatDate(date) {
+    const d = new Date(date);
+    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+  }
+
+  formatDateForDisplay(dateStr) {
+    const [year, month, day] = dateStr.split('-');
+    return new Date(year, month - 1, day).toLocaleDateString(this.config.defaultLang, { day: '2-digit', month: '2-digit' });
+  }
+
+  formatDateForAria(date) {
+    return new Date(date).toLocaleDateString(this.config.defaultLang, { weekday: 'long', day: 'numeric', month: 'long' });
+  }
+
+  isSameDay(d1, d2) {
+    return d1.getFullYear() === d2.getFullYear() && d1.getMonth() === d2.getMonth() && d1.getDate() === d2.getDate();
+  }
+
+  // Translation helper
+  t(key) {
+    const translations = window.FH_CONFIG?.translations || {};
+    return translations[key]?.[this.config.defaultLang] || translations[key]?.de || key;
+  }
+
+  // Toast notification
+  showToast(message, type = 'info') {
+    const container = document.getElementById('toast-container');
+    if (!container) return;
+
+    const toast = document.createElement('div');
+    toast.className = `toast ${type}`;
+    toast.innerHTML = `
+      <svg class="toast-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        ${type === 'error' ? '<circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/>' : '<path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/>' }
+      </svg>
+      <span>${message}</span>
+    `;
+    container.appendChild(toast);
+    setTimeout(() => toast.remove(), 4000);
+  }
+
+  // ========== Calendar Type Initializers ==========
+
+  initInlineCalendars() {
+    const prevBtn = document.querySelector('#calendar-days ~ .calendar-nav .prev-month, .calendar-wrapper .prev-month');
+    const nextBtn = document.querySelector('#calendar-days ~ .calendar-nav .next-month, .calendar-wrapper .next-month');
+
+    if (prevBtn) prevBtn.addEventListener('click', () => this.navigateMonth(-1));
+    if (nextBtn) nextBtn.addEventListener('click', () => this.navigateMonth(1));
+
+    // Guests selector
+    const guestsInput = document.getElementById('guests-count');
+    if (guestsInput) {
+      guestsInput.addEventListener('change', () => this.setGuests(parseInt(guestsInput.value)));
+      guestsInput.parentElement.querySelectorAll('.guests-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const delta = btn.classList.contains('increment') ? 1 : -1;
+          this.setGuests(this.state.guests + delta);
+          guestsInput.value = this.state.guests;
+        });
+      });
+    }
+
+    // Check price button
+    const checkPriceBtn = document.getElementById('check-price-btn');
+    if (checkPriceBtn) {
+      checkPriceBtn.addEventListener('click', () => this.showPriceBreakdown());
+    }
+
+    // Book now button
+    const bookNowBtn = document.getElementById('book-now-btn');
+    if (bookNowBtn) {
+      bookNowBtn.addEventListener('click', () => this.openBookingForm());
+    }
+  }
+
+  initModalCalendars() {
+    const modal = document.getElementById('calendar-modal');
+    const trigger = document.getElementById('open-calendar-modal');
+    const closeBtn = modal?.querySelector('.modal-close');
+    const overlay = modal?.querySelector('.modal-overlay');
+    const confirmBtn = document.getElementById('modal-confirm-dates');
+    const clearBtn = document.getElementById('modal-clear-dates');
+
+    if (trigger) trigger.addEventListener('click', () => this.openModal());
+    if (closeBtn) closeBtn.addEventListener('click', () => this.closeModal());
+    if (overlay) overlay.addEventListener('click', () => this.closeModal());
+    if (confirmBtn) confirmBtn.addEventListener('click', () => { this.closeModal(); this.openBookingForm(); });
+    if (clearBtn) clearBtn.addEventListener('click', () => this.clearSelection());
+
+    // Guests in modal
+    const modalGuests = document.getElementById('guests-count-modal');
+    if (modalGuests) {
+      modalGuests.addEventListener('change', () => this.setGuests(parseInt(modalGuests.value)));
+      modalGuests.parentElement.querySelectorAll('.guests-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const delta = btn.classList.contains('increment') ? 1 : -1;
+          this.setGuests(this.state.guests + delta);
+          modalGuests.value = this.state.guests;
+        });
+      });
+    }
+
+    // Nav buttons in modal
+    modal?.querySelectorAll('.nav-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const dir = btn.classList.contains('prev-month') ? -1 : 1;
+        this.navigateMonth(dir);
+      });
+    });
+
+    // ESC to close
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal && !modal.hidden) this.closeModal();
+    });
+  }
+
+  openModal() {
+    const modal = document.getElementById('calendar-modal');
+    if (modal) {
+      modal.hidden = false;
+      document.body.style.overflow = 'hidden';
+      this.renderAll();
+    }
+  }
+
+  closeModal() {
+    const modal = document.getElementById('calendar-modal');
+    if (modal) {
+      modal.hidden = true;
+      document.body.style.overflow = '';
+    }
+  }
+
+  initSidebarCalendars() {
+    const sidebar = document.getElementById('sidebar-calendar-days');
+    if (!sidebar) return;
+
+    const prevBtn = sidebar.parentElement?.querySelector('.prev-month');
+    const nextBtn = sidebar.parentElement?.querySelector('.next-month');
+
+    if (prevBtn) prevBtn.addEventListener('click', () => this.navigateMonth(-1));
+    if (nextBtn) nextBtn.addEventListener('click', () => this.navigateMonth(1));
+
+    const guestsInput = document.getElementById('guests-count-sidebar');
+    if (guestsInput) {
+      guestsInput.addEventListener('change', () => this.setGuests(parseInt(guestsInput.value)));
+      guestsInput.parentElement.querySelectorAll('.guests-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const delta = btn.classList.contains('increment') ? 1 : -1;
+          this.setGuests(this.state.guests + delta);
+          guestsInput.value = this.state.guests;
+        });
+      });
+    }
+
+    const checkPriceBtn = document.getElementById('sidebar-check-price');
+    if (checkPriceBtn) checkPriceBtn.addEventListener('click', () => this.showPriceBreakdown());
+
+    const bookNowBtn = document.getElementById('sidebar-book-now');
+    if (bookNowBtn) bookNowBtn.addEventListener('click', () => this.openBookingForm());
+  }
+
+  initDropdownCalendars() {
+    const arrivalInput = document.getElementById('arrival-date');
+    const departureInput = document.getElementById('departure-date');
+    const arrivalPopover = document.getElementById('arrival-popover');
+    const departurePopover = document.getElementById('departure-popover');
+
+    if (arrivalInput && arrivalPopover) {
+      arrivalInput.addEventListener('click', () => this.togglePopover(arrivalPopover, 'arrival'));
+      arrivalPopover.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const dir = btn.classList.contains('prev-month') ? -1 : 1;
+          this.navigatePopoverMonth('arrival', dir);
+        });
+      });
+      arrivalPopover.querySelector('.popover-close')?.addEventListener('click', () => this.hidePopover(arrivalPopover));
+    }
+
+    if (departureInput && departurePopover) {
+      departureInput.addEventListener('click', () => {
+        if (!this.state.selectedDates.arrival) return;
+        this.togglePopover(departurePopover, 'departure');
+      });
+      departurePopover.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const dir = btn.classList.contains('prev-month') ? -1 : 1;
+          this.navigatePopoverMonth('departure', dir);
+        });
+      });
+      departurePopover.querySelector('.popover-close')?.addEventListener('click', () => this.hidePopover(departurePopover));
+    }
+
+    // Click outside to close
+    document.addEventListener('click', (e) => {
+      if (arrivalPopover && !arrivalPopover.contains(e.target) && e.target !== arrivalInput) {
+        this.hidePopover(arrivalPopover);
+      }
+      if (departurePopover && !departurePopover.contains(e.target) && e.target !== departureInput) {
+        this.hidePopover(departurePopover);
+      }
+    });
+
+    // Guests dropdown
+    const guestsInput = document.getElementById('guests-count-dropdown');
+    if (guestsInput) {
+      guestsInput.addEventListener('change', () => this.setGuests(parseInt(guestsInput.value)));
+      guestsInput.parentElement.querySelectorAll('.guests-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const delta = btn.classList.contains('increment') ? 1 : -1;
+          this.setGuests(this.state.guests + delta);
+          guestsInput.value = this.state.guests;
+        });
+      });
+    }
+
+    const checkPriceBtn = document.getElementById('dropdown-check-price');
+    if (checkPriceBtn) checkPriceBtn.addEventListener('click', () => this.showPriceBreakdown());
+
+    const bookNowBtn = document.getElementById('dropdown-book-now');
+    if (bookNowBtn) bookNowBtn.addEventListener('click', () => this.openBookingForm());
+  }
+
+  togglePopover(popover, type) {
+    if (popover.hidden) {
+      // Position popover
+      const input = type === 'arrival' ? document.getElementById('arrival-date') : document.getElementById('departure-date');
+      if (input) {
+        const rect = input.getBoundingClientRect();
+        popover.style.top = `${rect.bottom + window.scrollY + 4}px`;
+        popover.style.left = `${rect.left + window.scrollX}px`;
+        popover.style.width = `${rect.width}px`;
+      }
+      popover.hidden = false;
+      this.renderPopover(type);
+    } else {
+      this.hidePopover(popover);
+    }
+  }
+
+  hidePopover(popover) {
+    popover.hidden = true;
+  }
+
+  navigatePopoverMonth(type, direction) {
+    const monthEl = document.getElementById(`popover-${type}-month`);
+    const daysEl = document.getElementById(`popover-${type}-days`);
+    if (!monthEl || !daysEl) return;
+
+    const current = new Date(monthEl.dataset.year || new Date().getFullYear(), monthEl.dataset.month || new Date().getMonth(), 1);
+    current.setMonth(current.getMonth() + direction);
+    this.renderPopoverMonth(daysEl, current, type);
+  }
+
+  renderPopover(type) {
+    const monthEl = document.getElementById(`popover-${type}-month`);
+    const daysEl = document.getElementById(`popover-${type}-days`);
+    if (!monthEl || !daysEl) return;
+
+    const date = type === 'departure' && this.state.selectedDates.arrival
+      ? new Date(this.state.selectedDates.arrival)
+      : new Date();
+    date.setDate(1);
+
+    monthEl.dataset.month = date.getMonth();
+    monthEl.dataset.year = date.getFullYear();
+    this.renderPopoverMonth(daysEl, date, type);
+  }
+
+  renderPopoverMonth(container, date, type) {
+    const year = date.getFullYear();
+    const month = date.getMonth();
+    const firstDay = new Date(year, month, 1);
+    const lastDay = new Date(year, month + 1, 0);
+    const startDay = (firstDay.getDay() + 6) % 7;
+    const daysInMonth = lastDay.getDate();
+
+    let html = '';
+    const prevMonthLastDay = new Date(year, month, 0).getDate();
+
+    for (let i = startDay - 1; i >= 0; i--) {
+      html += this.renderPopoverDay(prevMonthLastDay - i, new Date(year, month - 1, prevMonthLastDay - i), true);
+    }
+
+    for (let day = 1; day <= daysInMonth; day++) {
+      const dayDate = new Date(year, month, day);
+      html += this.renderPopoverDay(day, dayDate, false);
+    }
+
+    const totalCells = startDay + daysInMonth;
+    const nextMonthDays = (7 - (totalCells % 7)) % 7;
+    for (let day = 1; day <= nextMonthDays; day++) {
+      html += this.renderPopoverDay(day, new Date(year, month + 1, day), true);
+    }
+
+    container.innerHTML = html;
+    container.querySelectorAll('.popover-day:not(.disabled):not(.booked):not(.other-month)').forEach(dayEl => {
+      dayEl.addEventListener('click', () => this.handlePopoverDayClick(dayEl, type));
+    });
+  }
+
+  renderPopoverDay(dayNum, date, isOtherMonth) {
+    const dateStr = this.formatDate(date);
+    const isPast = date < new Date().setHours(0,0,0,0);
+    const isBooked = this.state.bookedDates.includes(dateStr);
+    const isSelected = dateStr === this.state.selectedDates.arrival || dateStr === this.state.selectedDates.departure;
+    const isInRange = this.isDateInRange(dateStr);
+
+    const classes = ['popover-day'];
+    if (isOtherMonth) classes.push('other-month');
+    if (isPast || isOtherMonth) classes.push('disabled');
+    if (isBooked) classes.push('booked');
+    if (isSelected) classes.push('selected');
+    if (isInRange) classes.push('in-range');
+
+    return `<button type="button" class="${classes.join(' ')}" data-date="${dateStr}" ${isPast || isBooked || isOtherMonth ? 'disabled' : ''}>${dayNum}</button>`;
+  }
+
+  handlePopoverDayClick(dayEl, type) {
+    const dateStr = dayEl.dataset.date;
+
+    if (type === 'arrival') {
+      if (this.state.selectedDates.departure && dateStr >= this.state.selectedDates.departure) {
+        this.showToast(this.t('arrivalBeforeDeparture'), 'error');
+        return;
+      }
+      this.state.selectedDates.arrival = dateStr;
+      if (this.state.selectedDates.departure && dateStr > this.state.selectedDates.departure) {
+        this.state.selectedDates.departure = null;
+      }
+      // Switch to departure popover
+      this.hidePopover(document.getElementById('arrival-popover'));
+      this.togglePopover(document.getElementById('departure-popover'), 'departure');
+    } else {
+      const nights = this.calculateNights(this.state.selectedDates.arrival, dateStr);
+      if (nights < this.state.minNights) {
+        this.showToast(`${this.t('minNightsError')} ${this.state.minNights} ${this.t('nights')}`, 'error');
+        return;
+      }
+      if (this.hasBookedInRange(this.state.selectedDates.arrival, dateStr)) {
+        this.showToast(this.t('datesNotAvailable'), 'error');
+        return;
+      }
+      this.state.selectedDates.departure = dateStr;
+      this.hidePopover(document.getElementById('departure-popover'));
+    }
+
+    this.updateInputs();
+    this.renderAll();
+    this.updateActionButtons();
+  }
+
+  updateInputs() {
+    const { arrival, departure } = this.state.selectedDates;
+    const arrivalInput = document.getElementById('arrival-date');
+    const departureInput = document.getElementById('departure-date');
+
+    if (arrivalInput) {
+      arrivalInput.value = arrival ? this.formatDateForDisplay(arrival) : '';
+      arrivalInput.placeholder = arrival ? this.formatDateForDisplay(arrival) : this.t('selectDate');
+    }
+    if (departureInput) {
+      departureInput.disabled = !arrival;
+      departureInput.value = departure ? this.formatDateForDisplay(departure) : '';
+      departureInput.placeholder = departure ? this.formatDateForDisplay(departure) : this.t('selectDate');
+    }
+  }
+
+  initGuestsSelectors() {
+    // All guest inputs sync
+    const syncGuests = (value) => {
+      document.querySelectorAll('#guests-count, #guests-count-modal, #guests-count-sidebar, #guests-count-dropdown').forEach(input => {
+        if (input) input.value = value;
+      });
+      this.setGuests(value);
+    };
+
+    document.querySelectorAll('#guests-count, #guests-count-modal, #guests-count-sidebar, #guests-count-dropdown').forEach(input => {
+      input.addEventListener('change', () => syncGuests(parseInt(input.value)));
+    });
+  }
+
+  // Price breakdown & booking
+  async showPriceBreakdown() {
+    const { arrival, departure } = this.state.selectedDates;
+    const guests = this.state.guests;
+
+    if (!arrival || !departure) return;
+
+    const breakdown = document.getElementById('price-breakdown');
+    const tableBody = document.getElementById('price-table-body');
+    if (!breakdown || !tableBody) return;
+
+    breakdown.style.display = 'block';
+    tableBody.innerHTML = '<tr><td colspan="5" class="loading">' + this.t('calculating') + '...</td></tr>';
+
+    try {
+      const data = await window.FH_API_INSTANCE.getQuote({
+        arrival, departure, adults: guests, children: 0, lang: this.config.defaultLang
+      });
+
+      this.renderPriceBreakdown(data);
+      breakdown.scrollIntoView({ behavior: 'smooth' });
+    } catch (error) {
+      console.error('[FH Calendar] Price quote failed:', error);
+      tableBody.innerHTML = '<tr><td colspan="5" class="error">' + this.t('priceError') + '</td></tr>';
+    }
+  }
+
+  renderPriceBreakdown(data) {
+    const tableBody = document.getElementById('price-table-body');
+    const totalEl = document.getElementById('price-total');
+    const downpaymentEl = document.getElementById('price-downpayment');
+    const remainderEl = document.getElementById('price-remainder');
+
+    if (!tableBody) return;
+
+    tableBody.innerHTML = '';
+    if (data.breakdown && data.breakdown.length) {
+      data.breakdown.forEach(item => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${this.formatDateForDisplay(item.from)} – ${this.formatDateForDisplay(item.to)}</td>
+          <td>${item.nights} ${this.t('nightsShort')}</td>
+          <td>${item.season_name || this.t('standard')}</td>
+          <td>${item.price_per_night | currency(this.config.currency, this.config.defaultLang)}</td>
+          <td>${item.subtotal | currency(this.config.currency, this.config.defaultLang)}</td>
+        `;
+        tableBody.appendChild(row);
+      });
+    } else {
+      const nights = this.calculateNights(this.state.selectedDates.arrival, this.state.selectedDates.departure);
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td>${this.formatDateForDisplay(this.state.selectedDates.arrival)} – ${this.formatDateForDisplay(this.state.selectedDates.departure)}</td>
+        <td>${nights} ${this.t('nightsShort')}</td>
+        <td>${this.t('standard')}</td>
+        <td>${data.price_per_night | currency(this.config.currency, this.config.defaultLang)}</td>
+        <td>${data.total | currency(this.config.currency, this.config.defaultLang)}</td>
+      `;
+      tableBody.appendChild(row);
+    }
+
+    if (totalEl) totalEl.textContent = data.total | currency(this.config.currency, this.config.defaultLang);
+    if (downpaymentEl) downpaymentEl.textContent = data.downpayment | currency(this.config.currency, this.config.defaultLang);
+    if (remainderEl) remainderEl.textContent = data.remainder | currency(this.config.currency, this.config.defaultLang);
+  }
+
+  openBookingForm() {
+    const { arrival, departure } = this.state.selectedDates;
+    if (!arrival || !departure) return;
+
+    // Fill hidden form fields
+    document.getElementById('form-arrival').value = arrival;
+    document.getElementById('form-departure').value = departure;
+    document.getElementById('form-guests').value = this.state.guests;
+
+    // Scroll to form
+    const formSection = document.getElementById('inquiry');
+    if (formSection) {
+      formSection.scrollIntoView({ behavior: 'smooth' });
+      // Focus first field
+      setTimeout(() => document.getElementById('guest_name')?.focus(), 500);
+    }
+  }
+}
+
+// Initialize globally
+if (typeof window !== 'undefined') {
+  window.FH_Calendar = FH_Calendar;
+}</script>
+  <script>// ========================================
+   // Booking Module - Form handling, submission
+   // ========================================
+
+class FH_Booking {
+  constructor(config) {
+    this.config = config;
+    this.form = null;
+    this.init();
+  }
+
+  init() {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => this.setup());
+    } else {
+      this.setup();
+    }
+  }
+
+  setup() {
+    this.form = document.getElementById('inquiry-form');
+    if (!this.form) return;
+
+    this.bindEvents();
+    this.loadContentPages();
+  }
+
+  bindEvents() {
+    // Form submission
+    this.form.addEventListener('submit', (e) => this.handleSubmit(e));
+
+    // Content links (Impressum, Datenschutz)
+    this.form.querySelectorAll('[data-content]').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        this.openContentModal(link.dataset.content);
+      });
+    });
+
+    // Also bind footer/content links
+    document.querySelectorAll('[data-content]').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        this.openContentModal(link.dataset.content);
+      });
+    });
+
+    // Real-time validation
+    this.form.querySelectorAll('input[required], select[required], textarea[required]').forEach(input => {
+      input.addEventListener('blur', () => this.validateField(input));
+      input.addEventListener('input', () => this.clearFieldError(input));
+    });
+  }
+
+  async handleSubmit(e) {
+    e.preventDefault();
+
+    if (!this.validateForm()) {
+      this.showToast(this.t('pleaseFixErrors'), 'error');
+      return;
+    }
+
+    this.setSubmitting(true);
+
+    const formData = new FormData(this.form);
+    const data = Object.fromEntries(formData);
+
+    // Ensure guests is number
+    data.guests = parseInt(data.guests) || 2;
+
+    try {
+      const result = await window.FH_API_INSTANCE.submitBooking(data);
+      this.showSuccess(result);
+    } catch (error) {
+      console.error('[FH Booking] Submit failed:', error);
+      this.showError(error.message || this.t('error'));
+    } finally {
+      this.setSubmitting(false);
+    }
+  }
+
+  validateForm() {
+    let isValid = true;
+    const requiredFields = this.form.querySelectorAll('[required]');
+
+    requiredFields.forEach(field => {
+      if (!this.validateField(field)) {
+        isValid = false;
+      }
+    });
+
+    // Check email format
+    const emailField = this.form.querySelector('input[type="email"]');
+    if (emailField && emailField.value && !this.isValidEmail(emailField.value)) {
+      this.showFieldError(emailField, this.t('invalidEmail'));
+      isValid = false;
+    }
+
+    // Check arrival/departure are set
+    const arrival = this.form.querySelector('#form-arrival');
+    const departure = this.form.querySelector('#form-departure');
+    if ((!arrival?.value || !departure?.value) && this.config.requireDates) {
+      this.showToast(this.t('selectDatesFirst'), 'error');
+      isValid = false;
+    }
+
+    return isValid;
+  }
+
+  validateField(field) {
+    if (field.required && !field.value.trim()) {
+      this.showFieldError(field, this.t('fieldRequired'));
+      return false;
+    }
+
+    if (field.type === 'email' && field.value && !this.isValidEmail(field.value)) {
+      this.showFieldError(field, this.t('invalidEmail'));
+      return false;
+    }
+
+    this.clearFieldError(field);
+    return true;
+  }
+
+  showFieldError(field, message) {
+    field.classList.add('error');
+    field.setAttribute('aria-invalid', 'true');
+
+    let errorEl = field.parentElement.querySelector('.field-error');
+    if (!errorEl) {
+      errorEl = document.createElement('div');
+      errorEl.className = 'field-error';
+      field.parentElement.appendChild(errorEl);
+    }
+    errorEl.textContent = message;
+    errorEl.style.display = 'block';
+  }
+
+  clearFieldError(field) {
+    field.classList.remove('error');
+    field.removeAttribute('aria-invalid');
+    const errorEl = field.parentElement.querySelector('.field-error');
+    if (errorEl) errorEl.style.display = 'none';
+  }
+
+  isValidEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
+
+  setSubmitting(submitting) {
+    const btn = this.form.querySelector('#submit-btn');
+    const btnText = btn?.querySelector('.btn-text');
+    const btnLoading = btn?.querySelector('.btn-loading');
+
+    if (btn) {
+      btn.disabled = submitting;
+      if (submitting) {
+        btnText?.classList.add('hidden');
+        btnLoading?.classList.remove('hidden');
+      } else {
+        btnText?.classList.remove('hidden');
+        btnLoading?.classList.add('hidden');
+      }
+    }
+  }
+
+  showSuccess(result) {
+    this.form.hidden = true;
+    const successEl = document.getElementById('form-success');
+    if (successEl) {
+      successEl.hidden = false;
+      successEl.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Reset form
+    this.form.reset();
+    document.getElementById('form-arrival').value = '';
+    document.getElementById('form-departure').value = '';
+    document.getElementById('form-guests').value = '2';
+
+    // Show toast
+    this.showToast(this.t('success'), 'success');
+  }
+
+  showError(message) {
+    const errorEl = document.getElementById('form-error');
+    if (errorEl) {
+      errorEl.querySelector('p').textContent = message;
+      errorEl.hidden = false;
+      errorEl.scrollIntoView({ behavior: 'smooth' });
+    }
+    this.showToast(message, 'error');
+  }
+
+  // Content modals (Impressum, Datenschutz, etc.)
+  async loadContentPages() {
+    // Pre-load common content
+    const keys = ['terms', 'privacy', 'cancellation', 'confirm', 'imprint'];
+    for (const key of keys) {
+      try {
+        await window.FH_API_INSTANCE.getContent(key, this.config.defaultLang);
+      } catch (e) {
+        // Ignore preload errors
+      }
+    }
+  }
+
+  async openContentModal(key) {
+    const modal = document.getElementById('content-modal');
+    const body = document.getElementById('content-modal-body');
+    const titleEl = document.getElementById('content-modal-title');
+
+    if (!modal || !body) return;
+
+    const titles = {
+      terms: this.t('terms'),
+      privacy: this.t('privacy'),
+      cancellation: this.t('cancellation'),
+      confirm: this.t('confirmation'),
+      imprint: this.t('imprint')
+    };
+
+    if (titleEl) titleEl.textContent = titles[key] || key;
+
+    modal.hidden = false;
+    document.body.style.overflow = 'hidden';
+    body.innerHTML = '<div class="loading">' + this.t('loading') + '</div>';
+
+    try {
+      const data = await window.FH_API_INSTANCE.getContent(key, this.config.defaultLang);
+      body.innerHTML = data.content || data.html || '<p>' + this.t('contentNotAvailable') + '</p>';
+    } catch (error) {
+      console.error('[FH Booking] Content load failed:', error);
+      body.innerHTML = '<p class="error">' + this.t('contentLoadError') + '</p>';
+    }
+  }
+
+  closeContentModal() {
+    const modal = document.getElementById('content-modal');
+    if (modal) {
+      modal.hidden = true;
+      document.body.style.overflow = '';
+    }
+  }
+
+  // Toast notifications
+  showToast(message, type = 'info') {
+    const container = document.getElementById('toast-container');
+    if (!container) return;
+
+    const toast = document.createElement('div');
+    toast.className = `toast ${type}`;
+    toast.innerHTML = `
+      <svg class="toast-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        ${type === 'error' ? '<circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/>' : '<path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/>' }
+      </svg>
+      <span>${message}</span>
+    `;
+    container.appendChild(toast);
+    setTimeout(() => toast.remove(), 5000);
+  }
+
+  // Translation helper
+  t(key) {
+    const translations = window.FH_CONFIG?.translations || {};
+    return translations[key]?.[this.config.defaultLang] || translations[key]?.de || key;
+  }
+}
+
+// Initialize globally
+if (typeof window !== 'undefined') {
+  window.FH_Booking = FH_Booking;
+}</script>
+  <script>// ========================================
+   // UI Module - General UI interactions
+   // ========================================
+
+class FH_UI {
+  constructor(config) {
+    this.config = config;
+    this.init();
+  }
+
+  init() {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => this.setup());
+    } else {
+      this.setup();
+    }
+  }
+
+  setup() {
+    this.initMobileMenu();
+    this.initSmoothScroll();
+    this.initScrollReveal();
+    this.initHeaderScroll();
+    this.initBackToTop();
+    this.initLanguageSwitcher();
+    this.initModalClose();
+    this.initFocusManagement();
+  }
+
+  // Mobile menu toggle
+  initMobileMenu() {
+    const toggle = document.querySelector('.mobile-menu-toggle');
+    const nav = document.querySelector('.main-nav');
+
+    if (toggle && nav) {
+      toggle.addEventListener('click', () => {
+        const isOpen = nav.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', isOpen);
+        toggle.querySelector('span').textContent = isOpen ? '✕' : '☰';
+        document.body.style.overflow = isOpen ? 'hidden' : '';
+      });
+
+      // Close on link click
+      nav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          nav.classList.remove('open');
+          toggle.setAttribute('aria-expanded', 'false');
+          toggle.querySelector('span').textContent = '☰';
+          document.body.style.overflow = '';
+        });
+      });
+    }
+  }
+
+  // Smooth scroll for anchor links
+  initSmoothScroll() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', (e) => {
+        const targetId = anchor.getAttribute('href');
+        if (targetId === '#') return;
+
+        const target = document.querySelector(targetId);
+        if (target) {
+          e.preventDefault();
+          const headerHeight = document.querySelector('.site-header')?.offsetHeight || 0;
+          const targetPosition = target.getBoundingClientRect().top + window.scrollY - headerHeight - 20;
+
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+
+          // Update URL without scroll
+          history.pushState(null, '', targetId);
+        }
+      });
+    });
+  }
+
+  // Scroll reveal animations
+  initScrollReveal() {
+    if (!('IntersectionObserver' in window)) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      rootMargin: '0px 0px -50px 0px',
+      threshold: 0.1
+    });
+
+    document.querySelectorAll('.scroll-reveal').forEach(el => {
+      observer.observe(el);
+    });
+  }
+
+  // Header scroll effect
+  initHeaderScroll() {
+    const header = document.querySelector('.site-header');
+    if (!header) return;
+
+    let lastScroll = 0;
+    const threshold = 100;
+
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.scrollY;
+
+      if (currentScroll > threshold) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+
+      // Hide on scroll down, show on scroll up
+      if (currentScroll > lastScroll && currentScroll > 200) {
+        header.classList.add('header-hidden');
+      } else {
+        header.classList.remove('header-hidden');
+      }
+
+      lastScroll = currentScroll;
+    }, { passive: true });
+  }
+
+  // Back to top button
+  initBackToTop() {
+    const btn = document.createElement('button');
+    btn.className = 'back-to-top';
+    btn.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 15l-6-6-6 6"/></svg>';
+    btn.setAttribute('aria-label', this.t('backToTop'));
+    btn.style.cssText = `
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--color-primary);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(20px);
+      transition: all 0.3s;
+      z-index: 100;
+    `;
+    document.body.appendChild(btn);
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        btn.style.opacity = '1';
+        btn.style.visibility = 'visible';
+        btn.style.transform = 'translateY(0)';
+      } else {
+        btn.style.opacity = '0';
+        btn.style.visibility = 'hidden';
+        btn.style.transform = 'translateY(20px)';
+      }
+    }, { passive: true });
+
+    btn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  // Language switcher
+  initLanguageSwitcher() {
+    document.querySelectorAll('.lang-switcher a').forEach(link => {
+      link.addEventListener('click', (e) => {
+        // Let default behavior handle navigation
+        // Just update active state immediately
+        document.querySelectorAll('.lang-switcher a').forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+      });
+    });
+  }
+
+  // Modal close handlers
+  initModalClose() {
+    // Close buttons
+    document.querySelectorAll('.modal-close').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const modal = btn.closest('.modal');
+        if (modal) {
+          modal.hidden = true;
+          document.body.style.overflow = '';
+        }
+      });
+    });
+
+    // Overlay clicks
+    document.querySelectorAll('.modal-overlay').forEach(overlay => {
+      overlay.addEventListener('click', () => {
+        const modal = overlay.closest('.modal');
+        if (modal) {
+          modal.hidden = true;
+          document.body.style.overflow = '';
+        }
+      });
+    });
+
+    // ESC key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        document.querySelectorAll('.modal:not([hidden])').forEach(modal => {
+          modal.hidden = true;
+          document.body.style.overflow = '';
+        });
+      }
+    });
+  }
+
+  // Focus management for accessibility
+  initFocusManagement() {
+    // Trap focus in modals
+    document.addEventListener('focusin', (e) => {
+      const modal = document.querySelector('.modal:not([hidden])');
+      if (modal) {
+        const focusable = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+
+        if (e.target === last && !e.shiftKey) {
+          e.preventDefault();
+          first?.focus();
+        } else if (e.target === first && e.shiftKey) {
+          e.preventDefault();
+          last?.focus();
+        }
+      }
+    });
+  }
+
+  // Translation helper
+  t(key) {
+    const translations = window.FH_CONFIG?.translations || {};
+    return translations[key]?.[this.config.defaultLang] || translations[key]?.de || key;
+  }
+}
+
+// Initialize globally
+if (typeof window !== 'undefined') {
+  window.FH_UI = FH_UI;
+}</script>
+  <script>// ========================================
+   // Main App Initialization
+   // ========================================
+
+// Global instances
+let FH_API_INSTANCE = null;
+let FH_GALLERY_INSTANCE = null;
+let FH_CALENDAR_INSTANCE = null;
+let FH_BOOKING_INSTANCE = null;
+let FH_UI_INSTANCE = null;
+
+// Initialize when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+  // Wait for config to be available
+  if (!window.FH_CONFIG) {
+    console.warn('[FH] Config not found, retrying...');
+    setTimeout(initApp, 100);
+    return;
+  }
+  initApp();
+});
+
+function initApp() {
+  const config = window.FH_CONFIG;
+
+  try {
+    // 1. Initialize API
+    FH_API_INSTANCE = new FH_API(config);
+    window.FH_API_INSTANCE = FH_API_INSTANCE;
+
+    // 2. Initialize UI (mobile menu, smooth scroll, etc.)
+    FH_UI_INSTANCE = new FH_UI(config);
+
+    // 3. Initialize Gallery
+    FH_GALLERY_INSTANCE = new FH_Gallery(config);
+
+    // 4. Initialize Calendar (loads availability first)
+    FH_CALENDAR_INSTANCE = new FH_Calendar(config);
+    window.FH_CALENDAR_INSTANCE = FH_CALENDAR_INSTANCE;
+
+    // 5. Initialize Booking Form
+    FH_BOOKING_INSTANCE = new FH_Booking(config);
+
+    // 6. Initialize Effects (if enabled)
+    initEffects(config);
+
+    // 7. Mark app as ready
+    document.body.classList.add('fh-ready');
+
+    console.log('[FH] App initialized successfully', {
+      preset: config.design.preset,
+      layout: config.design.layout,
+      components: config.design.components
+    });
+  } catch (error) {
+    console.error('[FH] Initialization failed:', error);
+  }
+}
+
+// Initialize effects based on config
+function initEffects(config) {
+  const effects = config.design?.components?.effects || [];
+
+  effects.forEach(effect => {
+    try {
+      switch (effect) {
+        case 'text-reveal':
+          initTextReveal();
+          break;
+        case 'scroll-reveal':
+          // Already handled in FH_UI
+          break;
+        case 'parallax-hero':
+          initParallaxHero();
+          break;
+        case 'magnetic-buttons':
+          initMagneticButtons();
+          break;
+        case 'hover-zoom':
+          // Handled via CSS
+          break;
+        case 'page-transitions':
+          initPageTransitions();
+          break;
+        case 'image-compare':
+          initImageCompare();
+          break;
+      }
+    } catch (e) {
+      console.warn(`[FH] Effect "${effect}" failed:`, e);
+    }
+  });
+}
+
+// Text reveal animation
+function initTextReveal() {
+  if (!('IntersectionObserver' in window)) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  document.querySelectorAll('.text-reveal').forEach(el => observer.observe(el));
+}
+
+// Parallax hero effect
+function initParallaxHero() {
+  const hero = document.querySelector('.parallax-hero, .hero-fullscreen, .hero-split, .hero-standard');
+  if (!hero) return;
+
+  let ticking = false;
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        const scrolled = window.scrollY;
+        const rate = scrolled * 0.3;
+
+        // Parallax background
+        if (hero.style.backgroundImage) {
+          hero.style.backgroundPosition = `center ${rate}px`;
+        }
+
+        // Parallax content (optional)
+        const content = hero.querySelector('.hero-content, .slide-content, .hero-text');
+        if (content) {
+          content.style.transform = `translateY(${rate * 0.3}px)`;
+        }
+
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+}
+
+// Magnetic button effect
+function initMagneticButtons() {
+  document.querySelectorAll('.magnetic-btn').forEach(btn => {
+    btn.addEventListener('mousemove', (e) => {
+      const rect = btn.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+
+      btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+    });
+
+    btn.addEventListener('mouseleave', () => {
+      btn.style.transform = 'translate(0, 0)';
+    });
+  });
+}
+
+// Page transitions
+function initPageTransitions() {
+  document.body.classList.add('page-transition');
+  requestAnimationFrame(() => {
+    document.body.classList.add('active');
+  });
+
+  // Handle navigation
+  document.querySelectorAll('a[href^="/"]').forEach(link => {
+    if (link.hostname !== window.location.hostname) return;
+    if (link.hasAttribute('target')) return;
+
+    link.addEventListener('click', (e) => {
+      const href = link.getAttribute('href');
+      if (href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:')) return;
+
+      e.preventDefault();
+      document.body.classList.remove('active');
+
+      setTimeout(() => {
+        window.location.href = href;
+      }, 200);
+    });
+  });
+}
+
+// Image compare slider
+function initImageCompare() {
+  document.querySelectorAll('.image-compare').forEach(container => {
+    const images = container.querySelectorAll('img');
+    if (images.length < 2) return;
+
+    const before = images[0];
+    const after = images[1];
+
+    // Setup container
+    container.style.position = 'relative';
+    container.style.overflow = 'hidden';
+
+    after.style.position = 'absolute';
+    after.style.top = '0';
+    after.style.left = '0';
+    after.style.width = '50%';
+    after.style.height = '100%';
+    after.style.objectFit = 'cover';
+    after.style.clipPath = 'inset(0 50% 0 0)';
+
+    // Create slider handle
+    const handle = document.createElement('div');
+    handle.className = 'compare-handle';
+    handle.style.cssText = `
+      position: absolute;
+      top: 0; bottom: 0; left: 50%;
+      width: 4px; background: var(--color-accent);
+      transform: translateX(-50%);
+      cursor: ew-resize;
+      z-index: 10;
+    `;
+    handle.innerHTML = `
+      <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:40px;height:40px;background:var(--color-accent);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><line x1="12" y1="5" x2="12" y2="19"/></svg>
+      </div>
+    `;
+    container.appendChild(handle);
+
+    let isDragging = false;
+
+    const updateClip = (clientX) => {
+      const rect = container.getBoundingClientRect();
+      const x = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+      after.style.width = `${x * 100}%`;
+      after.style.clipPath = `inset(0 ${100 - x * 100}% 0 0)`;
+      handle.style.left = `${x * 100}%`;
+    };
+
+    handle.addEventListener('mousedown', () => { isDragging = true; });
+    window.addEventListener('mousemove', (e) => { if (isDragging) updateClip(e.clientX); });
+    window.addEventListener('mouseup', () => { isDragging = false; });
+
+    // Touch support
+    handle.addEventListener('touchstart', () => { isDragging = true; }, { passive: true });
+    window.addEventListener('touchmove', (e) => { if (isDragging) updateClip(e.touches[0].clientX); }, { passive: true });
+    window.addEventListener('touchend', () => { isDragging = false; });
+
+    // Click on container
+    container.addEventListener('click', (e) => { if (!isDragging) updateClip(e.clientX); });
+  });
+}
+
+// Utility: Debounce
+function debounce(fn, wait) {
+  let timeout;
+  return (...args) => {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => fn(...args), wait);
+  };
+}
+
+// Utility: Throttle
+function throttle(fn, limit) {
+  let inThrottle;
+  return (...args) => {
+    if (!inThrottle) {
+      fn(...args);
+      inThrottle = true;
+      setTimeout(() => inThrottle = false, limit);
+    }
+  };
+}
+
+// Export for use in other scripts
+window.FH_Utils = { debounce, throttle };</script>
+  
+  
+  <script>// ========================================
+   // Scroll Reveal Effect
+   // ========================================
+
+(function() {
+  'use strict';
+
+  const SELECTOR = '.scroll-reveal';
+  const VISIBLE_CLASS = 'visible';
+  const ROOT_MARGIN = '0px 0px -50px 0px';
+  const THRESHOLD = 0.1;
+
+  function init() {
+    if (!('IntersectionObserver' in window)) {
+      // Fallback: show all immediately
+      document.querySelectorAll(SELECTOR).forEach(el => el.classList.add(VISIBLE_CLASS));
+      return;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add(VISIBLE_CLASS);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      rootMargin: ROOT_MARGIN,
+      threshold: THRESHOLD
+    });
+
+    document.querySelectorAll(SELECTOR).forEach(el => {
+      observer.observe(el);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();</script>
+  
+  
+  
+</body>
+</html>

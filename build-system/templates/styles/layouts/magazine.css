@@ -1,0 +1,215 @@
+/* ========================================
+   LAYOUT: MAGAZINE
+   Editorial magazine-style layout with asymmetric grid
+   ======================================== */
+
+.layout-magazine .hero-magazine {
+  min-height: 80vh;
+}
+
+.layout-magazine .magazine-hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 8px;
+  height: 80vh;
+  min-height: 600px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+@media (max-width: 1024px) {
+  .layout-magazine .magazine-hero-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    height: auto;
+    min-height: auto;
+    gap: 1rem;
+  }
+}
+
+.layout-magazine .magazine-hero-main {
+  grid-column: 1 / 3;
+  grid-row: 1 / 3;
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.layout-magazine .magazine-hero-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 3rem;
+  color: #fff;
+  z-index: 2;
+}
+
+.layout-magazine .magazine-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.7) 100%);
+  z-index: 1;
+}
+
+.layout-magazine .magazine-category {
+  display: inline-block;
+  padding: 0.5rem 1.5rem;
+  background: var(--color-accent);
+  color: var(--color-primary);
+  border-radius: 50px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 1.5rem;
+  width: fit-content;
+}
+
+.layout-magazine .magazine-hero-content .hero-title {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  margin-bottom: 1rem;
+  line-height: 1.1;
+}
+
+.layout-magazine .magazine-lead {
+  font-size: clamp(1.125rem, 2vw, 1.375rem);
+  margin-bottom: 2rem;
+  opacity: 0.9;
+  font-weight: 300;
+  max-width: 500px;
+}
+
+.layout-magazine .magazine-meta {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.layout-magazine .magazine-meta .meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.layout-magazine .magazine-meta .meta-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  opacity: 0.7;
+  letter-spacing: 0.05em;
+}
+
+.layout-magazine .magazine-meta .meta-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-family: var(--font-heading);
+}
+
+.layout-magazine .magazine-hero-secondary {
+  grid-column: 3;
+  grid-row: 1 / 3;
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.layout-magazine .magazine-hero-secondary .magazine-overlay {
+  background: linear-gradient(180deg, transparent 30%, rgba(0,0,0,0.6) 100%);
+}
+
+.layout-magazine .section {
+  padding: 5rem 0;
+}
+
+.layout-magazine .gallery-section {
+  background: var(--color-secondary);
+}
+
+.layout-magazine .features-section {
+  background: var(--color-background);
+}
+
+.layout-magazine .calendar-section {
+  background: var(--color-secondary);
+}
+
+.layout-magazine .prices-section {
+  background: var(--color-background);
+}
+
+.layout-magazine .inquiry-section {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.layout-magazine .inquiry-section .section-title {
+  color: #fff;
+}
+
+.layout-magazine .inquiry-section .section-subtitle {
+  color: rgba(255,255,255,0.8);
+}
+
+.layout-magazine .inquiry-form .form-field input,
+.layout-magazine .inquiry-form .form-field select,
+.layout-magazine .inquiry-form .form-field textarea {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.2);
+  color: #fff;
+}
+
+.layout-magazine .inquiry-form .form-field input::placeholder,
+.layout-magazine .inquiry-form .form-field textarea::placeholder {
+  color: rgba(255,255,255,0.5);
+}
+
+.layout-magazine .inquiry-form .form-field input:focus,
+.layout-magazine .inquiry-form .form-field select:focus,
+.layout-magazine .inquiry-form .form-field textarea:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(var(--color-accent-rgb, 255, 255, 255), 0.2);
+}
+
+.layout-magazine .inquiry-form .checkbox-field label {
+  color: rgba(255,255,255,0.9);
+}
+
+.layout-magazine .inquiry-form .checkbox-field a {
+  color: var(--color-accent);
+}
+
+.layout-magazine .form-message.success {
+  background: rgba(34, 197, 94, 0.2);
+  border-color: #22c55e;
+  color: #bbf7d0;
+}
+
+.layout-magazine .form-message.error {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: #ef4444;
+  color: #fecaca;
+}
+
+.layout-magazine .seasonal-overview {
+  background: var(--color-secondary);
+}
+
+/* Magazine-style gallery grid */
+.layout-magazine .grid-layout {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.layout-magazine .grid-item:nth-child(1) {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+@media (max-width: 768px) {
+  .layout-magazine .grid-item:nth-child(1) {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+}

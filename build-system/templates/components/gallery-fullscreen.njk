@@ -1,0 +1,23 @@
+<div class="gallery gallery-fullscreen swiper" role="list" aria-label="{{ t('gallery', lang) }}">
+  <div class="swiper-wrapper">
+    {% for image in site.images %}
+    <div class="swiper-slide" role="listitem">
+      <img src="{{ image }}" alt="{{ t('gallery', lang) }} {{ loop.index }}" loading="{{ 'eager' if loop.index <= 3 else 'lazy' }}">
+    </div>
+    {% endfor %}
+  </div>
+  <div class="swiper-pagination"></div>
+  <div class="swiper-button-prev" aria-label="{{ t('prevImage', lang) }}"></div>
+  <div class="swiper-button-next" aria-label="{{ t('nextImage', lang) }}"></div>
+  
+  <!-- Thumbnails -->
+  <div class="gallery-thumbnails swiper" data-thumbs="true" role="list" aria-label="{{ t('thumbnails', lang) }}">
+    <div class="swiper-wrapper">
+      {% for image in site.images %}
+      <div class="swiper-slide" role="listitem">
+        <img src="{{ image }}" alt="{{ t('gallery', lang) }} {{ loop.index }}" loading="lazy">
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>

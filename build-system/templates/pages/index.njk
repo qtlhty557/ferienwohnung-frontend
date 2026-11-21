@@ -1,0 +1,105 @@
+{% extends 'base.njk' %}
+
+{% block content %}
+<!-- Hero Section -->
+{% if design.layout == 'fullscreen-slider' %}
+  {% include 'components/hero-fullscreen.njk' %}
+{% elif design.layout == 'split-map' %}
+  {% include 'components/hero-split.njk' %}
+{% elif design.layout == 'magazine' %}
+  {% include 'components/hero-magazine.njk' %}
+{% elif design.layout == 'compact' %}
+  {% include 'components/hero-compact.njk' %}
+{% else %}
+  {% include 'components/hero-standard.njk' %}
+{% endif %}
+
+<!-- Gallery Section -->
+<section id="gallery" class="section gallery-section scroll-reveal" aria-labelledby="gallery-title">
+  <div class="container">
+    <header class="section-header">
+      <h2 id="gallery-title" class="section-title">{{ t('gallery', lang) }}</h2>
+      <p class="section-subtitle">{{ t('gallerySubtitle', lang) }}</p>
+    </header>
+    {% if design.components.gallery == 'swiper-fullscreen' %}
+      {% include 'components/gallery-fullscreen.njk' %}
+    {% elif design.components.gallery == 'flickity' %}
+      {% include 'components/gallery-flickity.njk' %}
+    {% elif design.components.gallery == 'grid' %}
+      {% include 'components/gallery-grid.njk' %}
+    {% elif design.components.gallery == 'lightbox-only' %}
+      {% include 'components/gallery-lightbox.njk' %}
+    {% else %}
+      {% include 'components/gallery-masonry.njk' %}
+    {% endif %}
+  </div>
+</section>
+
+<!-- Features/Highlights -->
+<section id="features" class="section features-section scroll-reveal" aria-labelledby="features-title">
+  <div class="container">
+    <header class="section-header">
+      <h2 id="features-title" class="section-title">{{ t('features', lang) }}</h2>
+      <p class="section-subtitle">{{ t('featuresSubtitle', lang) }}</p>
+    </header>
+    {% include 'components/features.njk' %}
+  </div>
+</section>
+
+<!-- Calendar & Pricing -->
+<section id="calendar" class="section calendar-section scroll-reveal" aria-labelledby="calendar-title">
+  <div class="container">
+    <header class="section-header">
+      <h2 id="calendar-title" class="section-title">{{ t('calendar', lang) }}</h2>
+      <p class="section-subtitle">{{ t('calendarSubtitle', lang) }}</p>
+    </header>
+    {% if design.components.calendar == 'modal-picker' %}
+      {% include 'components/calendar-modal.njk' %}
+    {% elif design.components.calendar == 'sidebar' %}
+      {% include 'components/calendar-sidebar.njk' %}
+    {% elif design.components.calendar == 'dropdown' %}
+      {% include 'components/calendar-dropdown.njk' %}
+    {% else %}
+      {% include 'components/calendar-inline.njk' %}
+    {% endif %}
+  </div>
+</section>
+
+<!-- Price Breakdown -->
+<section id="prices" class="section prices-section scroll-reveal" aria-labelledby="prices-title">
+  <div class="container">
+    <header class="section-header">
+      <h2 id="prices-title" class="section-title">{{ t('prices', lang) }}</h2>
+      <p class="section-subtitle">{{ t('pricesSubtitle', lang) }}</p>
+    </header>
+    {% include 'components/price-breakdown.njk' %}
+  </div>
+</section>
+
+<!-- Booking Inquiry Form -->
+<section id="inquiry" class="section inquiry-section scroll-reveal" aria-labelledby="inquiry-title">
+  <div class="container">
+    <header class="section-header">
+      <h2 id="inquiry-title" class="section-title">{{ t('bookNow', lang) }}</h2>
+      <p class="section-subtitle">{{ t('inquirySubtitle', lang) }}</p>
+    </header>
+    {% include 'components/inquiry-form.njk' %}
+  </div>
+</section>
+
+<!-- Content Sections (Imprint, Privacy) -->
+<section id="imprint" class="section content-section scroll-reveal" aria-labelledby="imprint-title" hidden>
+  <div class="container">
+    <h2 id="imprint-title" class="section-title">{{ t('imprint', lang) }}</h2>
+    <div id="imprint-content" class="content-block"></div>
+  </div>
+</section>
+
+<section id="privacy" class="section content-section scroll-reveal" aria-labelledby="privacy-title" hidden>
+  <div class="container">
+    <h2 id="privacy-title" class="section-title">{{ t('privacy', lang) }}</h2>
+    <div id="privacy-content" class="content-block"></div>
+  </div>
+</section>
+
+{% endblock %}

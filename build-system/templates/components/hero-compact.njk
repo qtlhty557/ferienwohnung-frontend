@@ -1,0 +1,30 @@
+<section class="hero hero-compact scroll-reveal" aria-labelledby="hero-title">
+  <div class="container">
+    <div class="compact-hero-grid">
+      <div class="compact-hero-text scroll-reveal">
+        <h1 id="hero-title" class="hero-title {% if 'text-reveal' in design.components.effects %}text-reveal{% endif %}">
+          {% if lang == 'de' %}{{ site.name_de }}{% else %}{{ site.name_en or site.name_de }}{% endif %}
+        </h1>
+        <p class="hero-subtitle {% if 'text-reveal' in design.components.effects %}text-reveal{% endif %}">
+          {% if lang == 'de' %}{{ site.place_de }}{% else %}{{ site.place_en or site.place_de }}{% endif %}
+        </p>
+        {% if site.description_de or site.description_en %}
+        <p class="hero-description">
+          {% if lang == 'de' %}{{ site.description_de | striptags | truncate(150) | safe }}{% else %}{{ site.description_en | striptags | truncate(150) | safe }}{% endif %}
+        </p>
+        {% endif %}
+        <div class="hero-meta">
+          <span>👥 {{ site.max_guests }} {{ t('guests', lang) }}</span>
+          <span>🌙 {{ site.min_nights }} {{ t('minNights', lang) }}</span>
+          <span>💰 {{ t('from', lang) }} {{ site.price_per_night | currency(site.currency, lang) }}/{{ t('night', lang) }}</span>
+        </div>
+        <a href="#inquiry" class="btn btn-primary magnetic-btn">{{ t('bookNow', lang) }}</a>
+      </div>
+      {% if site.images[0] %}
+      <div class="compact-hero-image {% if 'parallax-hero' in design.components.effects %}parallax-hero{% endif %} scroll-reveal" 
+           style="background-image: url('{{ site.images[0] }}');" 
+           aria-hidden="true"></div>
+      {% endif %}
+    </div>
+  </div>
+</section>

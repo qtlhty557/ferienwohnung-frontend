@@ -1,0 +1,12 @@
+<div class="gallery gallery-lightbox" role="list" aria-label="{{ t('gallery', lang) }}">
+  <div class="lightbox-grid">
+    {% for image in site.images %}
+    <figure class="lightbox-item {% if 'hover-zoom' in design.components.effects %}hover-zoom{% endif %} scroll-reveal" 
+            role="listitem"
+            data-full="{{ image }}"
+            data-caption="{{ t('image', lang) }} {{ loop.index }}">
+      <img src="{{ image }}" alt="{{ t('gallery', lang) }} {{ loop.index }}" loading="{{ 'eager' if loop.index <= 4 else 'lazy' }}">
+    </figure>
+    {% endfor %}
+  </div>
+</div>

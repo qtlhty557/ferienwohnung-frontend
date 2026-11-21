@@ -1,0 +1,87 @@
+<div class="calendar-trigger-wrapper">
+  <button class="btn btn-primary btn-lg calendar-trigger magnetic-btn" 
+          id="open-calendar-modal" 
+          aria-haspopup="dialog"
+          aria-label="{{ t('openCalendar', lang) }}">
+    <span class="trigger-icon" aria-hidden="true">📅</span>
+    <span class="trigger-text">{{ t('selectDates', lang) }}</span>
+    <span class="trigger-dates" id="trigger-dates">{{ t('clickToSelect', lang) }}</span>
+  </button>
+  
+  <div class="guests-selector-inline">
+    <label for="guests-count-modal">{{ t('guests', lang) }}</label>
+    <div class="guests-input">
+      <button class="guests-btn decrement" aria-label="{{ t('decrease', lang) }}">−</button>
+      <input type="number" id="guests-count-modal" value="2" min="1" max="{{ site.max_guests }}" aria-label="{{ t('guests', lang) }}">
+      <button class="guests-btn increment" aria-label="{{ t('increase', lang) }}">+</button>
+    </div>
+  </div>
+</div>
+
+<!-- Calendar Modal -->
+<div class="modal" id="calendar-modal" role="dialog" aria-modal="true" aria-labelledby="modal-calendar-title" hidden>
+  <div class="modal-overlay" tabindex="-1"></div>
+  <div class="modal-content calendar-modal-content">
+    <header class="modal-header">
+      <h2 id="modal-calendar-title">{{ t('calendar', lang) }}</h2>
+      <button class="modal-close" aria-label="{{ t('close', lang) }}">&times;</button>
+    </header>
+    <div class="modal-body">
+      <div class="calendar-modal-grid">
+        <div class="calendar-panel">
+          <div class="calendar-nav">
+            <button class="nav-btn prev-month" aria-label="{{ t('prevMonth', lang) }}">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M15 18l-6-6 6-6"/>
+              </svg>
+            </button>
+            <div class="current-month" id="modal-current-month" aria-live="polite"></div>
+            <button class="nav-btn next-month" aria-label="{{ t('nextMonth', lang) }}">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 18l6-6-6-6"/>
+              </svg>
+            </button>
+          </div>
+          <div class="calendar-weekdays" role="row">
+            {% for day in ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'] %}
+            <div class="weekday" role="columnheader">{{ t(day | lower, lang) }}</div>
+            {% endfor %}
+          </div>
+          <div class="calendar-days" id="modal-calendar-days" role="grid"></div>
+        </div>
+        <div class="summary-panel scroll-reveal">
+          <h3>{{ t('yourSelection', lang) }}</h3>
+          <div class="summary-item">
+            <span class="summary-label">{{ t('arrival', lang) }}</span>
+            <span class="summary-value" id="modal-summary-arrival">–</span>
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">{{ t('departure', lang) }}</span>
+            <span class="summary-value" id="modal-summary-departure">–</span>
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">{{ t('nights', lang) }}</span>
+            <span class="summary-value" id="modal-summary-nights">–</span>
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">{{ t('guests', lang) }}</span>
+            <span class="summary-value" id="modal-summary-guests">2</span>
+          </div>
+          <div class="summary-divider"></div>
+          <div class="summary-price" id="modal-summary-price" style="display: none;">
+            <span class="summary-label">{{ t('estimatedPrice', lang) }}</span>
+            <span class="summary-value" id="modal-price-value">–</span>
+          </div>
+          <div class="summary-actions">
+            <button class="btn btn-primary btn-block" id="modal-confirm-dates" disabled>
+              {{ t('confirmDates', lang) }}
+            </button>
+            <button class="btn btn-secondary btn-block" id="modal-clear-dates">
+              {{ t('clearDates', lang) }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

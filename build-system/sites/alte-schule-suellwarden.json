@@ -1,0 +1,95 @@
+{
+  "domain": "alte-schule-suellwarden.de",
+  "slug": "alte-schule-suellwarden",
+  "data": {
+    "name_de": "Ferienhaus mit Grill und Garten | Naturblick",
+    "name_en": "Holiday home with grill and garden | Nature view",
+    "place_de": "Süllwarden, Butjadingen, Deutschland",
+    "place_en": "Süllwarden, Butjadingen, Germany",
+    "price_per_night": 62,
+    "currency": "EUR",
+    "max_guests": 6,
+    "min_nights": 2,
+    "max_nights": 28,
+    "downpayment_percent": 30,
+    "description_de": "Urlaub in Butjadingen. Wo Geschichte auf Nordseeluft trifft. Mitten im ruhigen Bauerndorf Süllwarden, eingebettet zwischen Deichen, Wiesen und dem weiten Nordsee-Horizont, liegt ein Ferienhaus der ganz besonderen Art: die Alte Schule Süllwarden. Wo Generationen von Kindern das Lesen lernten, beginnt heute dein Urlaub — in einem über 100 Jahre alten Klinkerbau, liebevoll zur modernen Wohlfühloase umgebaut. Auf 69 m² erwartet euch ein Zuhause auf Zeit, das nichts vermissen lässt. Der großzügige Wohn- und Essbereich mit knisterndem Kaminofen wird an kühlen Nordseeabenden schnell zum liebsten Platz der ganzen Familie. Am großen Esstisch kommen morgens alle zusammen — für ein gemeinsames Frühstück, das den Tag so richtig gut beginnen lässt. Die vollausgestattete Küche im Landhausstil lädt dazu ein, gemeinsam zu kochen, zu lachen und den Tag ausklingen zu lassen. Im großen Badezimmer entscheidet ihr selbst, wie der Abend endet — mit einem langen Bad in der Wanne oder einer belebenden Regendusche. Warme Holzdielen, moderne dimmbare LED-Beleuchtung und ein Smart-TV mit Streaming sorgen dafür, dass moderner Komfort und historisches Ambiente sich hier auf das Schönste ergänzen. Ein Bluetooth-Radio bringt die passende Musik in jeden Moment — ob beim Kochen, Frühstücken oder einfach Nichtstun. USB-Ladedosen an den Nachttischen kümmern sich um den Rest. Ein geräumiges Doppelbettzimmer, ein Zimmer mit Etagenbett und ein ausziehbares Schlafsofa im Wohnzimmer — die Alte Schule bietet Platz für bis zu 6 Personen und ist damit ideal für Familien oder kleine Gruppen, die gemeinsam Urlaub machen möchten. Der Garten ist das eigentliche Herzstück. Auf 4.700 m² entfaltet sich ein Ort, der zum Verweilen, Spielen und Loslassen einlädt. Alte Bäume spenden Schatten, eine Baumschaukel schaukelt Kinderträume in den Himmel, und der Abenteuerbereich weckt den Entdeckergeist — groß wie klein. Zwei Sonnenterrassen fangen das Licht des Tages ein: Die Südterrasse begrüßt euch morgens mit warmem Sonnenschein und dem ersten Kaffee des Tages, während der hintere Gartenbereich abends zum perfekten Platz wird, um mit einem Glas Wein in der Hand den Sonnenuntergang zu genießen. Ein Hängesessel, bequeme Liegestühle und ein Weber-Grill sorgen dafür, dass aus einem entspannten Nachmittag schnell ein unvergesslicher Familienabend wird.",
+    "description_en": "Holiday in Butjadingen. Where history meets North Sea air. In the middle of the quiet farming village Süllwarden, nestled between dikes, meadows and the wide North Sea horizon, lies a holiday home of a very special kind: the Alte Schule Süllwarden. Where generations of children once learned to read, your holiday begins today — in a more than 100-year-old brick building, lovingly converted into a modern oasis of well-being. On 69 m² you will find a home away from home that lacks nothing. The spacious living and dining area with a crackling wood-burning stove quickly becomes the family's favorite spot on cool North Sea evenings. Everyone gathers at the large dining table in the morning — for a shared breakfast that starts the day perfectly. The fully equipped country-style kitchen invites you to cook, laugh and let the day wind down together. In the large bathroom, you decide how the evening ends — with a long bath in the tub or an invigorating rain shower. Warm wooden floors, modern dimmable LED lighting and a Smart TV with streaming ensure that modern comfort and historical ambiance complement each other perfectly. A Bluetooth radio brings the right music to every moment — whether cooking, having breakfast or simply doing nothing. USB charging sockets at the bedside tables take care of the rest. A spacious double bedroom, a room with a bunk bed and a pull-out sofa bed in the living room — the Alte Schule offers space for up to 6 people and is therefore ideal for families or small groups who want to spend their holidays together. The garden is the true heart of the place. On 4,700 m² a place unfolds that invites you to linger, play and let go. Old trees provide shade, a tree swing sends children's dreams into the sky, and the adventure area awakens the spirit of discovery — in young and old alike. Two sun terraces capture the light of the day: the south terrace welcomes you in the morning with warm sunshine and the first coffee of the day, while the rear garden area becomes the perfect place in the evening to enjoy the sunset with a glass of wine in hand. A hanging chair, comfortable lounge chairs and a Weber grill ensure that a relaxed afternoon quickly turns into an unforgettable family evening.",
+    "images": [
+      "https://cdn.hometogo.net/assets/media/images/rental/76a08a8efd9fae92/main.jpg",
+      "https://cdn.hometogo.net/assets/media/images/rental/76a08a8efd9fae92/gallery1.jpg",
+      "https://cdn.hometogo.net/assets/media/images/rental/76a08a8efd9fae92/gallery2.jpg",
+      "https://cdn.hometogo.net/assets/media/images/rental/76a08a8efd9fae92/gallery3.jpg",
+      "https://cdn.hometogo.net/assets/media/images/rental/76a08a8efd9fae92/gallery4.jpg"
+    ],
+    "owner": {
+      "name": "Familie Wallus",
+      "address": "Süllwarden, 26969 Butjadingen, Deutschland",
+      "email": "info@alte-schule-suellwarden.de",
+      "phone": "+49 4733 000000",
+      "whatsapp": "+49 4733 000000",
+      "website": "https://www.alte-schule-suellwarden.de"
+    },
+    "seasons": [
+      {
+        "name_de": "Nebensaison (Winter)",
+        "name_en": "Low season (Winter)",
+        "start_month_day": "01-06",
+        "end_month_day": "02-27",
+        "price_per_night": 62,
+        "is_active": true
+      },
+      {
+        "name_de": "Frühjahr / Vor-Saison",
+        "name_en": "Spring / Pre-season",
+        "start_month_day": "03-05",
+        "end_month_day": "04-10",
+        "price_per_night": 79,
+        "is_active": true
+      },
+      {
+        "name_de": "Ostern / Frühling",
+        "name_en": "Easter / Spring",
+        "start_month_day": "04-11",
+        "end_month_day": "04-27",
+        "price_per_night": 93,
+        "is_active": true
+      },
+      {
+        "name_de": "Frühsommer",
+        "name_en": "Early summer",
+        "start_month_day": "04-28",
+        "end_month_day": "05-27",
+        "price_per_night": 79,
+        "is_active": true
+      },
+      {
+        "name_de": "Hochsaison (Sommer/Weihnachten/Neujahr)",
+        "name_en": "High season (Summer/Christmas/New Year)",
+        "start_month_day": "12-20",
+        "end_month_day": "01-05",
+        "price_per_night": 93,
+        "is_active": true
+      }
+    ]
+  },
+  "design": {
+    "preset": "nature-immersive",
+    "colors": {
+      "primary": "#2d5a3d",
+      "secondary": "#e8f0e8",
+      "accent": "#c9a84c",
+      "background": "#f7f9f7",
+      "text": "#1b3a2b"
+    },
+    "fonts": {
+      "heading": "Merriweather",
+      "body": "Source Sans Pro"
+    },
+    "layout": "fullscreen-slider",
+    "components": {
+      "gallery": "swiper-fullscreen",
+      "calendar": "modal-picker",
+      "effects": ["parallax-hero", "scroll-reveal", "image-compare"]
+    }
+  }
+}

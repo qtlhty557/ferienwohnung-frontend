@@ -1,0 +1,54 @@
+<div class="calendar-wrapper">
+  <div class="calendar-header">
+    <h3 id="calendar-title">{{ t('selectDates', lang) }}</h3>
+    <div class="calendar-summary" id="calendar-summary" aria-live="polite">
+      <span class="summary-item">{{ t('arrival', lang) }}: <span id="summary-arrival">–</span></span>
+      <span class="summary-item">{{ t('departure', lang) }}: <span id="summary-departure">–</span></span>
+      <span class="summary-item">{{ t('nights', lang) }}: <span id="summary-nights">–</span></span>
+      <span class="summary-item">{{ t('guests', lang) }}: <span id="summary-guests">{{ site.max_guests }}</span></span>
+    </div>
+  </div>
+  
+  <div class="calendar-grid" role="application" aria-label="{{ t('calendar', lang) }}">
+    <div class="calendar-nav">
+      <button class="nav-btn prev-month" aria-label="{{ t('prevMonth', lang) }}">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M15 18l-6-6 6-6"/>
+        </svg>
+      </button>
+      <div class="current-month" id="current-month" aria-live="polite"></div>
+      <button class="nav-btn next-month" aria-label="{{ t('nextMonth', lang) }}">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 18l6-6-6-6"/>
+        </svg>
+      </button>
+    </div>
+    
+    <div class="calendar-weekdays" role="row" aria-label="{{ t('weekDays', lang) }}">
+      {% for day in ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'] %}
+      <div class="weekday" role="columnheader">{{ t(day | lower, lang) }}</div>
+      {% endfor %}
+    </div>
+    
+    <div class="calendar-days" id="calendar-days" role="grid" aria-label="{{ t('calendarDays', lang) }}"></div>
+  </div>
+  
+  <div class="calendar-actions">
+    <button class="btn btn-primary btn-lg" id="check-price-btn" disabled>
+      {{ t('checkPrice', lang) }}
+    </button>
+    <button class="btn btn-secondary btn-lg" id="book-now-btn" disabled>
+      {{ t('bookNow', lang) }}
+    </button>
+  </div>
+  
+  <!-- Guests Selector -->
+  <div class="guests-selector">
+    <label for="guests-count">{{ t('guests', lang) }}</label>
+    <div class="guests-input">
+      <button class="guests-btn decrement" aria-label="{{ t('decrease', lang) }}">−</button>
+      <input type="number" id="guests-count" value="2" min="1" max="{{ site.max_guests }}" aria-label="{{ t('guests', lang) }}">
+      <button class="guests-btn increment" aria-label="{{ t('increase', lang) }}">+</button>
+    </div>
+  </div>
+</div>

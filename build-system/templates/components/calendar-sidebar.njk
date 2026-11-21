@@ -1,0 +1,60 @@
+<div class="calendar-sidebar-wrapper">
+  <aside class="calendar-sidebar" aria-labelledby="sidebar-calendar-title">
+    <header class="sidebar-header">
+      <h3 id="sidebar-calendar-title">{{ t('calendar', lang) }}</h3>
+    </header>
+    <div class="calendar-nav">
+      <button class="nav-btn prev-month" aria-label="{{ t('prevMonth', lang) }}">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M15 18l-6-6 6-6"/>
+        </svg>
+      </button>
+      <div class="current-month" id="sidebar-current-month" aria-live="polite"></div>
+      <button class="nav-btn next-month" aria-label="{{ t('nextMonth', lang) }}">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 18l6-6-6-6"/>
+        </svg>
+      </button>
+    </div>
+    <div class="calendar-weekdays" role="row">
+      {% for day in ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'] %}
+      <div class="weekday" role="columnheader">{{ t(day | lower, lang) }}</div>
+      {% endfor %}
+    </div>
+    <div class="calendar-days" id="sidebar-calendar-days" role="grid"></div>
+    <div class="sidebar-summary">
+      <div class="summary-item">
+        <span>{{ t('arrival', lang) }}</span>
+        <span id="sidebar-arrival">–</span>
+      </div>
+      <div class="summary-item">
+        <span>{{ t('departure', lang) }}</span>
+        <span id="sidebar-departure">–</span>
+      </div>
+      <div class="summary-item">
+        <span>{{ t('nights', lang) }}</span>
+        <span id="sidebar-nights">–</span>
+      </div>
+      <div class="summary-item">
+        <span>{{ t('guests', lang) }}</span>
+        <span id="sidebar-guests">2</span>
+      </div>
+    </div>
+    <div class="sidebar-actions">
+      <button class="btn btn-primary btn-block" id="sidebar-check-price" disabled>{{ t('checkPrice', lang) }}</button>
+      <button class="btn btn-secondary btn-block" id="sidebar-book-now" disabled>{{ t('bookNow', lang) }}</button>
+    </div>
+    <div class="guests-selector">
+      <label for="guests-count-sidebar">{{ t('guests', lang) }}</label>
+      <div class="guests-input">
+        <button class="guests-btn decrement" aria-label="{{ t('decrease', lang) }}">−</button>
+        <input type="number" id="guests-count-sidebar" value="2" min="1" max="{{ site.max_guests }}" aria-label="{{ t('guests', lang) }}">
+        <button class="guests-btn increment" aria-label="{{ t('increase', lang) }}">+</button>
+      </div>
+    </div>
+  </aside>
+  
+  <div class="sidebar-content">
+    <slot name="sidebar-content"></slot>
+  </div>
+</div>

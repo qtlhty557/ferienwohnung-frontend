@@ -1,0 +1,73 @@
+<div class="calendar-dropdown-wrapper">
+  <div class="dropdown-row">
+    <div class="dropdown-field">
+      <label for="arrival-date">{{ t('arrival', lang) }}</label>
+      <div class="dropdown-input-wrapper">
+        <input type="text" id="arrival-date" readonly placeholder="{{ t('selectDate', lang) }}" aria-label="{{ t('arrival', lang) }}">
+        <span class="dropdown-icon" aria-hidden="true">📅</span>
+      </div>
+    </div>
+    <div class="dropdown-field">
+      <label for="departure-date">{{ t('departure', lang) }}</label>
+      <div class="dropdown-input-wrapper">
+        <input type="text" id="departure-date" readonly placeholder="{{ t('selectDate', lang) }}" aria-label="{{ t('departure', lang) }}" disabled>
+        <span class="dropdown-icon" aria-hidden="true">📅</span>
+      </div>
+    </div>
+  </div>
+  
+  <div class="dropdown-field">
+    <label for="guests-count-dropdown">{{ t('guests', lang) }}</label>
+    <div class="guests-input">
+      <button class="guests-btn decrement" aria-label="{{ t('decrease', lang) }}">−</button>
+      <input type="number" id="guests-count-dropdown" value="2" min="1" max="{{ site.max_guests }}" aria-label="{{ t('guests', lang) }}">
+      <button class="guests-btn increment" aria-label="{{ t('increase', lang) }}">+</button>
+    </div>
+  </div>
+  
+  <div class="dropdown-actions">
+    <button class="btn btn-primary btn-block" id="dropdown-check-price" disabled>{{ t('checkPrice', lang) }}</button>
+    <button class="btn btn-secondary btn-block" id="dropdown-book-now" disabled>{{ t('bookNow', lang) }}</button>
+  </div>
+  
+  <!-- Popover Calendar -->
+  <div class="calendar-popover" id="arrival-popover" role="dialog" aria-label="{{ t('selectArrival', lang) }}" hidden>
+    <div class="popover-header">
+      <span class="popover-title">{{ t('arrival', lang) }}</span>
+      <button class="popover-close" aria-label="{{ t('close', lang) }}">&times;</button>
+    </div>
+    <div class="popover-calendar">
+      <div class="calendar-nav">
+        <button class="nav-btn prev-month" aria-label="{{ t('prevMonth', lang) }}">‹</button>
+        <div class="current-month" id="popover-arrival-month"></div>
+        <button class="nav-btn next-month" aria-label="{{ t('nextMonth', lang) }}">›</button>
+      </div>
+      <div class="calendar-weekdays">
+        {% for day in ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'] %}
+        <div class="weekday">{{ t(day | lower, lang) }}</div>
+        {% endfor %}
+      </div>
+      <div class="calendar-days" id="popover-arrival-days"></div>
+    </div>
+  </div>
+  
+  <div class="calendar-popover" id="departure-popover" role="dialog" aria-label="{{ t('selectDeparture', lang) }}" hidden>
+    <div class="popover-header">
+      <span class="popover-title">{{ t('departure', lang) }}</span>
+      <button class="popover-close" aria-label="{{ t('close', lang) }}">&times;</button>
+    </div>
+    <div class="popover-calendar">
+      <div class="calendar-nav">
+        <button class="nav-btn prev-month" aria-label="{{ t('prevMonth', lang) }}">‹</button>
+        <div class="current-month" id="popover-departure-month"></div>
+        <button class="nav-btn next-month" aria-label="{{ t('nextMonth', lang) }}">›</button>
+      </div>
+      <div class="calendar-weekdays">
+        {% for day in ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'] %}
+        <div class="weekday">{{ t(day | lower, lang) }}</div>
+        {% endfor %}
+      </div>
+      <div class="calendar-days" id="popover-departure-days"></div>
+    </div>
+  </div>
+</div>

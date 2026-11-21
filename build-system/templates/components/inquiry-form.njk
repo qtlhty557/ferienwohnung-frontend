@@ -1,0 +1,92 @@
+<form class="inquiry-form" id="inquiry-form" novalidate>
+  <input type="hidden" name="property_domain" value="{{ domain }}">
+  <input type="hidden" name="lang" value="{{ lang }}">
+  <input type="hidden" name="arrival" id="form-arrival">
+  <input type="hidden" name="departure" id="form-departure">
+  <input type="hidden" name="guests" id="form-guests" value="2">
+  
+  <div class="form-row">
+    <div class="form-field">
+      <label for="guest_name">{{ t('name', lang) }} <span class="required" aria-hidden="true">*</span></label>
+      <input type="text" id="guest_name" name="guest_name" required autocomplete="name" placeholder="{{ t('namePlaceholder', lang) }}">
+    </div>
+    <div class="form-field">
+      <label for="guest_email">{{ t('email', lang) }} <span class="required" aria-hidden="true">*</span></label>
+      <input type="email" id="guest_email" name="guest_email" required autocomplete="email" placeholder="{{ t('emailPlaceholder', lang) }}">
+    </div>
+  </div>
+  
+  <div class="form-row">
+    <div class="form-field">
+      <label for="guest_phone">{{ t('phone', lang) }}</label>
+      <input type="tel" id="guest_phone" name="guest_phone" autocomplete="tel" placeholder="{{ t('phonePlaceholder', lang) }}">
+    </div>
+    <div class="form-field">
+      <label for="guest_country">{{ t('country', lang) }} <span class="required" aria-hidden="true">*</span></label>
+      <select id="guest_country" name="guest_country" required>
+        <option value="DE" selected>Deutschland</option>
+        <option value="AT">Österreich</option>
+        <option value="CH">Schweiz</option>
+        <option value="NL">Niederlande</option>
+        <option value="BE">Belgien</option>
+        <option value="FR">Frankreich</option>
+        <option value="OTHER">{{ t('other', lang) }}</option>
+      </select>
+    </div>
+  </div>
+  
+  <div class="form-row">
+    <div class="form-field">
+      <label for="guest_street">{{ t('street', lang) }} <span class="required" aria-hidden="true">*</span></label>
+      <input type="text" id="guest_street" name="guest_street" required autocomplete="street-address" placeholder="{{ t('streetPlaceholder', lang) }}">
+    </div>
+    <div class="form-field">
+      <label for="guest_zip">{{ t('zip', lang) }} <span class="required" aria-hidden="true">*</span></label>
+      <input type="text" id="guest_zip" name="guest_zip" required autocomplete="postal-code" placeholder="{{ t('zipPlaceholder', lang) }}">
+    </div>
+    <div class="form-field">
+      <label for="guest_city">{{ t('city', lang) }} <span class="required" aria-hidden="true">*</span></label>
+      <input type="text" id="guest_city" name="guest_city" required autocomplete="address-level2" placeholder="{{ t('cityPlaceholder', lang) }}">
+    </div>
+  </div>
+  
+  <div class="form-field">
+    <label for="guest_message">{{ t('message', lang) }}</label>
+    <textarea id="guest_message" name="guest_message" rows="4" placeholder="{{ t('messagePlaceholder', lang) }}"></textarea>
+  </div>
+  
+  <div class="form-field checkbox-field">
+    <input type="checkbox" id="agb" name="agb" required>
+    <label for="agb">
+      {{ t('agreeTerms', lang) }} <a href="#imprint" data-content="terms">{{ t('terms', lang) }}</a> {{ t('and', lang) }} <a href="#privacy" data-content="privacy">{{ t('privacy', lang) }}</a>
+    </label>
+  </div>
+  
+  <div class="form-submit">
+    <button type="submit" class="btn btn-primary btn-lg btn-block magnetic-btn" id="submit-btn">
+      <span class="btn-text">{{ t('submit', lang) }}</span>
+      <span class="btn-loading" hidden>{{ t('sending', lang) }}</span>
+    </button>
+  </div>
+  
+  <div class="form-note">
+    <p>{{ t('formNote', lang) }}</p>
+  </div>
+</form>
+
+<!-- Success/Error Messages -->
+<div class="form-message" id="form-success" hidden role="alert">
+  <svg class="message-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/>
+  </svg>
+  <h3>{{ t('successTitle', lang) }}</h3>
+  <p>{{ t('success', lang) }}</p>
+</div>
+
+<div class="form-message" id="form-error" hidden role="alert">
+  <svg class="message-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/>
+  </svg>
+  <h3>{{ t('errorTitle', lang) }}</h3>
+  <p>{{ t('error', lang) }}</p>
+</div>

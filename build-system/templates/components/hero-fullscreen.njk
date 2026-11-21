@@ -1,0 +1,39 @@
+<div class="hero hero-fullscreen swiper {% if 'parallax-hero' in design.components.effects %}parallax-hero{% endif %}" 
+     aria-label="{{ t('gallery', lang) }}"
+     role="region">
+  <div class="swiper-wrapper">
+    {% for image in site.images %}
+    <div class="swiper-slide" style="background-image: url('{{ image }}');">
+      {% if loop.first %}
+      <div class="slide-content">
+        <h1 class="hero-title {% if 'text-reveal' in design.components.effects %}text-reveal{% endif %}">
+          <span>{% if lang == 'de' %}{{ site.name_de }}{% else %}{{ site.name_en or site.name_de }}{% endif %}</span>
+        </h1>
+        <p class="hero-subtitle {% if 'text-reveal' in design.components.effects %}text-reveal{% endif %}">
+          <span>{% if lang == 'de' %}{{ site.place_de }}{% else %}{{ site.place_en or site.place_de }}{% endif %}</span>
+        </p>
+        <a href="#inquiry" class="btn btn-primary btn-lg magnetic-btn">
+          <span>{{ t('bookNow', lang) }}</span>
+        </a>
+      </div>
+      {% endif %}
+    </div>
+    {% endfor %}
+  </div>
+  <div class="swiper-pagination"></div>
+  <div class="swiper-button-prev" aria-label="{{ t('prevSlide', lang) }}"></div>
+  <div class="swiper-button-next" aria-label="{{ t('nextSlide', lang) }}"></div>
+  
+  <!-- Thumbnails -->
+  {% if site.images.length > 1 %}
+  <div class="hero-thumbnails swiper" data-thumbs="true">
+    <div class="swiper-wrapper">
+      {% for image in site.images %}
+      <div class="swiper-slide">
+        <img src="{{ image }}" alt="{{ t('gallery', lang) }} {{ loop.index }}" loading="lazy">
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+</div>

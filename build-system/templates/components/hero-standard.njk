@@ -1,0 +1,40 @@
+<section class="hero hero-standard {% if 'parallax-hero' in design.components.effects %}parallax-hero{% endif %} scroll-reveal" 
+         aria-labelledby="hero-title"
+         style="{% if site.images[0] %}background-image: url('{{ site.images[0] }}');{% endif %}">
+  <div class="hero-overlay"></div>
+  <div class="container">
+    <div class="hero-content">
+      <h1 id="hero-title" class="hero-title {% if 'text-reveal' in design.components.effects %}text-reveal{% endif %}">
+        <span>{% if lang == 'de' %}{{ site.name_de }}{% else %}{{ site.name_en or site.name_de }}{% endif %}</span>
+      </h1>
+      <p class="hero-subtitle {% if 'text-reveal' in design.components.effects %}text-reveal{% endif %}">
+        <span>{% if lang == 'de' %}{{ site.place_de }}{% else %}{{ site.place_en or site.place_de }}{% endif %}</span>
+      </p>
+      <div class="hero-meta">
+        <div class="meta-item">
+          <span class="meta-icon" aria-hidden="true">👥</span>
+          <span>{{ site.max_guests }} {{ t('guests', lang) }}</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-icon" aria-hidden="true">🌙</span>
+          <span>{{ site.min_nights }} {{ t('minNights', lang) }}</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-icon" aria-hidden="true">💰</span>
+          <span>{{ t('from', lang) }} {{ site.price_per_night | currency(site.currency, lang) }} / {{ t('night', lang) }}</span>
+        </div>
+      </div>
+      <a href="#inquiry" class="btn btn-primary btn-lg magnetic-btn scroll-reveal">
+        <span>{{ t('bookNow', lang) }}</span>
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+  <div class="hero-scroll-indicator" aria-hidden="true">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M12 5v14M19 12l-7 7-7-7"/>
+    </svg>
+  </div>
+</section>

@@ -1,0 +1,51 @@
+<div class="gallery gallery-masonry" role="list" aria-label="{{ t('gallery', lang) }}">
+  <div class="masonry-grid" data-masonry>
+    {% for image in site.images %}
+    <figure class="gallery-item {% if 'hover-zoom' in design.components.effects %}hover-zoom{% endif %} scroll-reveal" 
+            role="listitem" 
+            data-index="{{ loop.index0 }}"
+            data-full="{{ image }}"
+            data-caption="{{ t('image', lang) }} {{ loop.index }}">
+      <img src="{{ image }}" 
+           alt="{{ t('gallery', lang) }} {{ loop.index }}" 
+           loading="{{ 'eager' if loop.index <= 4 else 'lazy' }}"
+           width="800" height="600">
+      <figcaption class="gallery-caption">
+        <span>{{ t('gallery', lang) }} {{ loop.index }}</span>
+        <button class="gallery-expand" aria-label="{{ t('enlargeImage', lang) }}">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+          </svg>
+        </button>
+      </figcaption>
+    </figure>
+    {% endfor %}
+  </div>
+  {% if site.images.length > 12 %}
+  <div class="gallery-load-more text-center scroll-reveal">
+    <button class="btn btn-secondary" id="load-more-gallery">
+      {{ t('loadMore', lang) }}
+    </button>
+  </div>
+  {% endif %}
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="{{ t('imageViewer', lang) }}" hidden>
+  <button class="lightbox-close" aria-label="{{ t('close', lang) }}">&times;</button>
+  <button class="lightbox-prev" aria-label="{{ t('prevImage', lang) }}">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M15 18l-6-6 6-6"/>
+    </svg>
+  </button>
+  <button class="lightbox-next" aria-label="{{ t('nextImage', lang) }}">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M9 18l6-6-6-6"/>
+    </svg>
+  </button>
+  <div class="lightbox-content">
+    <img id="lightbox-img" src="" alt="">
+    <p id="lightbox-caption" class="lightbox-caption"></p>
+  </div>
+  <div class="lightbox-counter" aria-live="polite"></div>
+</div>
