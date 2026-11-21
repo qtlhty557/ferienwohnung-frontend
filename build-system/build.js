@@ -227,6 +227,7 @@ async function buildSite(filePath) {
   const preset = loadPreset(site.design.preset);
   
   // Read all static assets as raw strings
+  const globalCSS = readFileSync(join(TEMPLATES_DIR, 'styles', 'global.css'), 'utf-8');
   const presetCSS = getPresetCSS(site.design.preset);
   const componentsCSS = readFileSync(join(TEMPLATES_DIR, 'styles', 'components.css'), 'utf-8');
   const layoutCSS = readFileSync(join(TEMPLATES_DIR, 'styles', 'layouts', `${site.design.layout}.css`), 'utf-8');
@@ -252,6 +253,7 @@ async function buildSite(filePath) {
     baseUrl: `https://${site.domain}`,
     currentYear: new Date().getFullYear(),
     // Static assets as raw strings
+    globalCSS,
     presetCSS,
     componentsCSS,
     layoutCSS,

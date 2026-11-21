@@ -1,0 +1,1 @@
+& 'C:\Program Files\Git\bin\git.exe' -C C:\Users\Archi\Documents\Standardprojekt\ferienwohnungen-headless filter-branch --force --index-filter "git rm --cached --ignore-unmatch build-system/scripts/deploy-cloudflare.js" --prune-empty --tag-name-filter cat -- --all
