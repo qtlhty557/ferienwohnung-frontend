@@ -31,11 +31,34 @@ jobs:
           cache: 'pnpm'
           cache-dependency-path: build-system/pnpm-lock.yaml
 
+      - name: Verify Cloudflare Secrets
+        run: |
+          if [ -z "${{ secrets.CLOUDFLARE_API_TOKEN }}" ]; then
+            echo "❌ ERROR: CLOUDFLARE_API_TOKEN secret not set!"
+            echo "Add it in: Settings > Secrets and variables > Actions > New repository secret"
+            exit 1
+          fi
+          if [ -z "${{ secrets.CLOUDFLARE_ACCOUNT_ID }}" ]; then
+            echo "❌ ERROR: CLOUDFLARE_ACCOUNT_ID secret not set!"
+            echo "Add it in: Settings > Secrets and variables > Actions > New repository secret"
+            exit 1
+          fi
+          echo "✅ Cloudflare secrets configured"
+
       - name: Install dependencies
         run: cd build-system && pnpm install --frozen-lockfile
 
       - name: Build all sites
         run: cd build-system && pnpm build
+
+      - name: Verify build output
+        run: |
+          if [ ! -d "build-system/dist" ]; then
+            echo "❌ Build output directory not found!"
+            exit 1
+          fi
+          echo "✅ Build output exists"
+          ls -la build-system/dist/
 
       - name: Install Wrangler
         run: pnpm add -g wrangler
