@@ -1,0 +1,7 @@
+name = "ferienwohnung-portfolio"
+main = "scripts/deploy-cloudflare.js"
+compatibility_date = "2024-12-01"
+
+[vars]
+CLOUDFLARE_ACCOUNT_ID = "414ef0bc8429ace0cd5dde0c52a9e08d"
+CLOUDFLARE_API_TOKEN = "YOUR_CLOUDFLARE_API_TOKEN_HERE"
